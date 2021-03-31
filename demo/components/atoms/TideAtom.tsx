@@ -1,6 +1,6 @@
-import React, { ComponentProps, PropsWithChildren, ReactNode } from 'react';
+import React, { ComponentProps, ReactNode } from 'react';
 import { Inline, Stack, useSpacing } from '@mobily/stacks';
-import { ViewStyle, StyleProp, View } from 'react-native';
+import { ViewStyle, StyleProp, View, AccessibilityProps } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 import BoxNucleon from '../nucleons/BoxNucleon';
 import TextNucleon from '../nucleons/TextNucleon';
@@ -9,7 +9,7 @@ import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
 import IconNucleon, { IconName } from '../nucleons/IconNucleon';
 import GestureHandlerAdapterNucleon from '../nucleons/GestureHandlerAdapterNucleon';
 
-export interface TideAtomProps {
+export interface TideAtomProps extends AccessibilityProps {
   style?: StyleProp<ViewStyle>;
   title: string;
   leftIconName: IconName;
@@ -24,13 +24,12 @@ const RIGHT_WIDTH = 40;
 const COMPONENT_PADDING = 2;
 const INLINE_SPACING = 4;
 
-function ConditionalTouchable({
-  children,
-  onPress
-}: PropsWithChildren<{ onPress?: any }>) {
+function ConditionalTouchable({ children, onPress, ...other }: any) {
   return onPress ? (
-    <GestureHandlerAdapterNucleon onPress={onPress}>
-      <TouchableRipple onPress={onPress}>{children}</TouchableRipple>
+    <GestureHandlerAdapterNucleon onPress={onPress} {...other}>
+      <TouchableRipple onPress={onPress} {...other}>
+        {children}
+      </TouchableRipple>
     </GestureHandlerAdapterNucleon>
   ) : (
     <>{children}</>
@@ -44,7 +43,8 @@ export default function TideAtom({
   right,
   bottom,
   onPress,
-  rightIconName
+  rightIconName,
+  ...accessibilityProps
 }: TideAtomProps) {
   const displayRight = !!(right || rightIconName);
   const displayBottom = !!bottom;
@@ -59,7 +59,7 @@ export default function TideAtom({
     Number(displayRight) * RIGHT_WIDTH;
   return (
     <View style={style}>
-      <ConditionalTouchable onPress={onPress}>
+      <ConditionalTouchable onPress={onPress} {...accessibilityProps}>
         <BoxNucleon padding={COMPONENT_PADDING}>
           <Inline space={INLINE_SPACING}>
             <BoxNucleon alignY="center">

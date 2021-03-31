@@ -5930,6 +5930,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chroma-js@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "chroma-js@npm:2.1.1"
+  dependencies:
+    cross-env: ^6.0.3
+  checksum: 331a9c5ee0acda12f8278978d98526997d4002abf9623cfd3eaa480715de032ce9ab0fbef43323eb29c4cade32a3d93d105f16e3bf42463081567720a5705810
+  languageName: node
+  linkType: hard
+
 "ci-info@npm:^2.0.0":
   version: 2.0.0
   resolution: "ci-info@npm:2.0.0"
@@ -6660,6 +6669,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cross-env@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "cross-env@npm:6.0.3"
+  dependencies:
+    cross-spawn: ^7.0.0
+  bin:
+    cross-env: src/bin/cross-env.js
+    cross-env-shell: src/bin/cross-env-shell.js
+  checksum: ac3bcc24ad65336d2e2cf27aa73d9b4b816b03684d27a8afb9afaf9f670fac00aa4dd5c7dd6927fd599f624666d604ea2e25828c259d18677d71cc9204565f0f
+  languageName: node
+  linkType: hard
+
 "cross-spawn@npm:^5.1.0":
   version: 5.1.0
   resolution: "cross-spawn@npm:5.1.0"
@@ -7109,6 +7130,7 @@ __metadata:
     react-dom: 16.13.1
     react-native: "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz"
     react-native-gesture-handler: ~1.8.0
+    react-native-hsv-color-picker: ^1.0.2
     react-native-paper: ^4.7.2
     react-native-reanimated: ~1.13.0
     react-native-render-html: "workspace:*"
@@ -8085,7 +8107,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-linear-gradient@npm:~8.4.0":
+"expo-linear-gradient@npm:^8.0.0, expo-linear-gradient@npm:~8.4.0":
   version: 8.4.0
   resolution: "expo-linear-gradient@npm:8.4.0"
   peerDependencies:
@@ -14653,6 +14675,18 @@ fsevents@^1.2.7:
     invariant: ^2.2.4
     prop-types: ^15.7.2
   checksum: ca157914493dbcb54b105de959b0d5857a837e8376606f800160a5669220f3c5bcf38c2396add1a97f44417f4248fd983fc3ae999df226d99700e84b97073df2
+  languageName: node
+  linkType: hard
+
+"react-native-hsv-color-picker@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "react-native-hsv-color-picker@npm:1.0.2"
+  dependencies:
+    chroma-js: ^2.1.0
+    expo-linear-gradient: ^8.0.0
+  peerDependencies:
+    prop-types: ^15.7.2
+  checksum: 24819993154f868536090fe1e38b4149fc05e511cd3bd0a7c80ec56907a0ecb5fb15882e8b4845736721a07204e7b660995112c6cc9af5d753375af98d8c880c
   languageName: node
   linkType: hard
 

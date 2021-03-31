@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Slider, { SliderProps } from '@react-native-community/slider';
 import { useComponentColors } from '../../state/ThemeProvider';
-import { Platform, View } from 'react-native';
+import { AccessibilityProps, Platform, View } from 'react-native';
 import { NativeViewGestureHandler } from 'react-native-gesture-handler';
 import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
 import Color from 'color';
@@ -12,7 +12,7 @@ export type SliderControlAtomProps = Pick<
   'step' | 'minimumValue' | 'maximumValue' | 'value' | 'onValueChange' | 'style'
 > & {
   width?: number;
-};
+} & AccessibilityProps;
 
 // Fix offsets, see https://github.com/callstack/react-native-slider/issues/258
 function getFixedStyle(contentWidth: number) {
@@ -32,7 +32,8 @@ export default function SliderControlAtom({
   step,
   value,
   width,
-  style
+  style,
+  ...accessibilityProps
 }: SliderControlAtomProps) {
   const initialValueRef = useRef(value);
   const colors = useComponentColors('controls');
@@ -57,6 +58,7 @@ export default function SliderControlAtom({
           }
           value={initialValueRef.current}
           onValueChange={onValueChange}
+          {...accessibilityProps}
         />
       </NativeViewGestureHandler>
     </View>

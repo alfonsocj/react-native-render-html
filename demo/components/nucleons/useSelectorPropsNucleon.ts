@@ -1,18 +1,8 @@
 import { useMemo } from 'react';
-
-export type SelectorItem<V extends string | number> = {
-  value: V;
-  label?: string;
-};
-
-export interface SelectorProps<V extends string | number> {
-  items: ReadonlyArray<SelectorItem<V>> | ReadonlyArray<V>;
-  selectedValue: V;
-  onSelectedValueChange: (v: V) => void;
-}
+import { SelectorItem } from './types';
 
 export default function useSelectorItemsNucleon<V extends string | number>(
-  items: SelectorProps<V>['items']
+  items: SelectorItem<V>[]
 ) {
   return useMemo<Array<Required<SelectorItem<V>>>>(
     () =>
