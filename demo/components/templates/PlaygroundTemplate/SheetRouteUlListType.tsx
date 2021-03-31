@@ -8,11 +8,11 @@ import {
 
 export default function SheetRouteUlListType() {
   const ulListType = usePlaygroundStateSlice('ulListType');
-  const setListType = usePlaygroundSetter('ulListType');
+  const setUlListType = usePlaygroundSetter('ulListType');
   return (
     <RadioListControlMolecule
       selectedValue={ulListType}
-      onSelectedValueChange={setListType}
+      onSelectedValueChange={setUlListType}
       items={ulListTypes}
     />
   );

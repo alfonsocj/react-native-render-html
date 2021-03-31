@@ -136,7 +136,7 @@ const HtmlDisplayMolecule = React.memo(
         debug={false}
         systemFonts={systemFonts}
         remoteLoadingView={() => <DisplayLoadingAtom />}
-        triggerTREInvalidationPropNames={['baseStyle']}
+        triggerTREInvalidationPropNames={['baseStyle', 'tagsStyles']}
       />
     );
     return <View style={style}>{renderHtml}</View>;

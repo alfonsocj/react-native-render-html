@@ -1,24 +1,18 @@
 import React from 'react';
-import Constants from 'expo-constants';
 import TextNucleon from '../components/nucleons/TextNucleon';
 import HtmlElDisplayAtom from '../components/atoms/HtmlElDisplayAtom';
 import PlaygroundTemplate, {
   PlaygroundControls,
-  PlaygroundDescription,
-  PlaygroundNavigator,
-  PlaygroundScreen
+  PlaygroundDescription
 } from '../components/templates/PlaygroundTemplate';
 import TideListAtom from '../components/atoms/TideListAtom';
 import SliderTideMolecule from '../components/molecules/SliderTideMolecule';
 import SwitchTideMolecule from '../components/molecules/SwitchTideMolecule';
 import NavTideMolecule from '../components/molecules/NavTideMolecule';
-import RadioListControlMolecule from '../components/molecules/RadioListControlMolecule';
 import {
   usePlaygroundSetter,
   usePlaygroundStateSlice
 } from '../components/templates/PlaygroundTemplate/playgroundStore';
-
-
 
 const sourceMap = {
   shortOl: {
@@ -173,7 +167,7 @@ function FontFamilyTide(props: any) {
     <NavTideMolecule
       leftIconName="format-font"
       label="Font family"
-      route="DemoFontFamily"
+      route="PlaygroundFontFamily"
       {...props}
     />
   );
@@ -182,7 +176,7 @@ function FontFamilyTide(props: any) {
 function OrderedListTypeTide(props: any) {
   return (
     <NavTideMolecule
-      leftIconName="format-list-bulleted-type"
+      leftIconName="format-list-numbered"
       label="ol List type"
       route="PlaygroundOlListType"
       {...props}

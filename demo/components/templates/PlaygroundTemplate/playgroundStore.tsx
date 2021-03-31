@@ -1,5 +1,6 @@
 import React, { Dispatch } from 'react';
 import { PropsWithChildren, Reducer, useCallback, useReducer } from 'react';
+import { Platform } from 'react-native';
 import {
   createContext,
   useContextSelector,
@@ -78,9 +79,15 @@ function getInitialState<Sk extends string>({
     lineHeight: 1.2,
     olListType: 'default',
     ulListType: 'default',
-    fontFamily: 'system',
-    isBold: true,
-    isItalic: true,
+    fontFamily: Platform.select({
+      android: 'Roboto',
+      ios: 'San Francisco',
+      macos: 'San Francisco',
+      windows: 'Segoe UI',
+      default: 'sans-serif'
+    }),
+    isBold: false,
+    isItalic: false,
     selectedSource: initialSource,
     sourceMap
   };

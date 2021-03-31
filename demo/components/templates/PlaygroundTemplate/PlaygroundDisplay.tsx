@@ -52,10 +52,10 @@ export default function PlaygroundDisplay({
       },
       tagsStyles: {
         ul: {
-          listStyleType: ulListType === 'default' ? null : ulListType
+          listStyleType: ulListType === 'default' ? undefined : ulListType
         },
         ol: {
-          listStyleType: olListType === 'default' ? null : olListType
+          listStyleType: olListType === 'default' ? undefined : olListType
         }
       },
       source: { html },
@@ -68,6 +68,7 @@ export default function PlaygroundDisplay({
       fontFamily,
       isItalic,
       isBold,
+      ulListType,
       olListType,
       html,
       onTTreeChange
