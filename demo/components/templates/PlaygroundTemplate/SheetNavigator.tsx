@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { LogBox } from 'react-native';
 import { TouchableOpacity } from '@gorhom/bottom-sheet';
 import {
@@ -13,6 +13,7 @@ import SheetSourceRoute from './SheetRouteSource';
 import SheetRouteFontFamily from './SheetRouteFontFamily';
 import SheetRouteOlListType from './SheetRouteOlListType';
 import SheetRouteUlListType from './SheetRouteUlListType';
+import useSurfaceBackgroundStyleNucleon from '../../nucleons/useSurfaceBackgroundStyleNucleon';
 
 LogBox.ignoreLogs([
   "Accessing the 'state' property of the 'route' object is not supported."
@@ -23,21 +24,22 @@ const homeOptions = { header: () => null };
 const controlsOptions = { title: 'Play' };
 const sourceOptions = { title: 'HTML Source' };
 
-const screenOptions: StackNavigationOptions = {
-  ...TransitionPresets.SlideFromRightIOS,
-  headerShown: true,
-  safeAreaInsets: { top: 0 },
-  headerLeft: ({ onPress, ...props }) => (
-    <TouchableOpacity onPress={onPress}>
-      <HeaderBackButton {...props} />
-    </TouchableOpacity>
-  ),
-  cardStyle: {
-    overflow: 'visible'
-  }
-};
-
 export default function SheetNavigator() {
+  const contentStyle = useSurfaceBackgroundStyleNucleon();
+  const screenOptions: StackNavigationOptions = useMemo(
+    () => ({
+      ...TransitionPresets.SlideFromRightIOS,
+      headerShown: true,
+      safeAreaInsets: { top: 0 },
+      headerLeft: ({ onPress, ...props }) => (
+        <TouchableOpacity onPress={onPress}>
+          <HeaderBackButton {...props} />
+        </TouchableOpacity>
+      ),
+      cardStyle: contentStyle
+    }),
+    [contentStyle]
+  );
   return (
     <SheetStack.Navigator screenOptions={screenOptions} headerMode="screen">
       <SheetStack.Screen

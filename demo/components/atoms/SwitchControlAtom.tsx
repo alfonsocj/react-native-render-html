@@ -1,9 +1,8 @@
 import React from 'react';
 import { SwitchProps, Switch, AccessibilityProps } from 'react-native';
-import { useComponentColors } from '../../state/ThemeProvider';
 import { NativeViewGestureHandler } from 'react-native-gesture-handler';
+import { useColorRoles } from '../../state/colorSystem';
 
-// contains AccessibilityProps
 export type SwitchControlAtomProps = Omit<
   SwitchProps,
   'tintColor' | 'trackColor' | 'thumbColor'
@@ -14,15 +13,15 @@ export default function SwitchControlAtom({
   value,
   ...switchProps
 }: SwitchControlAtomProps) {
-  const colors = useComponentColors('controls');
+  const { switchColor, trackColor } = useColorRoles();
   return (
     <NativeViewGestureHandler disallowInterruption={true}>
       <Switch
         value={value}
-        thumbColor={value ? colors.tintColorOn : colors.tintColorOff}
+        thumbColor={value ? switchColor.on : switchColor.off}
         trackColor={{
-          true: colors.trackColorOn,
-          false: colors.trackColorOff
+          true: trackColor.on,
+          false: trackColor.off
         }}
         {...switchProps}
       />

@@ -1,18 +1,18 @@
-import { Box } from '@mobily/stacks';
 import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
-import { useComponentColors } from '../../state/ThemeProvider';
+import { useColorRoles } from '../../state/colorSystem';
+import BoxNucleon from '../nucleons/BoxNucleon';
 
 export default function DisplayLoadingAtom({
   style
 }: {
   style?: StyleProp<ViewStyle>;
 }) {
-  const { color } = useComponentColors('displayLoading');
+  const { spinnerColor } = useColorRoles();
   return (
-    <Box alignX="center" alignY="center" style={style}>
-      <ActivityIndicator color={color} size="large" />
-    </Box>
+    <BoxNucleon grow alignX="center" alignY="center" style={style}>
+      <ActivityIndicator color={spinnerColor} size="large" />
+    </BoxNucleon>
   );
 }

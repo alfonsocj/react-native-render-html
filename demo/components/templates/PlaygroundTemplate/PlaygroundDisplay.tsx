@@ -7,7 +7,6 @@ import {
   usePlaygroundSource,
   usePlaygroundState
 } from './playgroundStore';
-import { useThemeColors } from '../../../state/ThemeProvider';
 import HtmlDisplayMolecule from '../../molecules/HtmlDisplayMolecule';
 import BoxNucleon from '../../nucleons/BoxNucleon';
 import { SheetProps } from './Sheet';
@@ -30,7 +29,6 @@ export default function PlaygroundDisplay({
 }: {
   onTTreeChange: (t: TNode) => void;
 }) {
-  const theme = useThemeColors();
   const html = usePlaygroundSource().source;
   const {
     fontFamily,
@@ -76,13 +74,7 @@ export default function PlaygroundDisplay({
   );
   const { width: contentWidth } = useWindowDimensions();
   return (
-    <ScrollView
-      contentContainerStyle={[
-        styles.container,
-        {
-          backgroundColor: theme.background
-        }
-      ]}>
+    <ScrollView contentContainerStyle={styles.container}>
       <BoxNucleon padding={0}>
         <HtmlDisplayMolecule
           renderHtmlProps={renderHtmlProps}

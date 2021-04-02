@@ -1,5 +1,4 @@
 import React, {
-  ComponentProps,
   PropsWithChildren,
   useCallback,
   useMemo,
@@ -8,14 +7,18 @@ import React, {
 import { StyleSheet } from 'react-native';
 import { Linking, View } from 'react-native';
 import { RenderHTMLProps } from 'react-native-render-html';
-import { Snackbar } from 'react-native-paper';
-import { useComponentColors } from '../../state/ThemeProvider';
 import onLinkPressContext from '../../state/onLinkPressContext';
-import TextNucleon from '../nucleons/TextNucleon';
+import SnackbarAtom, { SnackbarAtomProps } from '../atoms/SnackbarAtom';
+import { NuclearTextStyle } from '../nucleons/useNuclearTextStyle';
 
 const styles = StyleSheet.create({
   container: { position: 'relative', flexGrow: 1 }
 });
+
+const textStyle: NuclearTextStyle = {
+  mono: true,
+  fontSize: 'small'
+};
 
 export default function LinkPressDisplayMolecule({
   children
@@ -27,8 +30,7 @@ export default function LinkPressDisplayMolecule({
     },
     []
   );
-  const { backgroundColor } = useComponentColors('snackbar');
-  const action: ComponentProps<typeof Snackbar>['action'] = useMemo(
+  const action: SnackbarAtomProps['action'] = useMemo(
     () => ({
       label: 'browse',
       onPress: () => {
@@ -40,14 +42,13 @@ export default function LinkPressDisplayMolecule({
   return (
     <onLinkPressContext.Provider value={onLinkPress}>
       <View style={styles.container}>{children}</View>
-      <Snackbar
+      <SnackbarAtom
         visible={url !== null}
         action={action}
+        textStyle={textStyle}
         onDismiss={() => setUrl(null)}>
-        <TextNucleon mono style={{ color: backgroundColor }}>
-          {url}
-        </TextNucleon>
-      </Snackbar>
+        {url}
+      </SnackbarAtom>
     </onLinkPressContext.Provider>
   );
 }

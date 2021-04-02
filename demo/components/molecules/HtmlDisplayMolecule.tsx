@@ -5,11 +5,11 @@ import RenderHTML, {
   RenderHTMLProps
 } from 'react-native-render-html';
 import LegacyHTML from 'react-native-render-html-v5';
-import Constants from 'expo-constants';
-import { useComponentColors } from '../../state/ThemeProvider';
 import DisplayLoadingAtom from '../atoms/DisplayLoadingAtom';
 import TextNucleon from '../nucleons/TextNucleon';
 import useOnLinkPress from '../../hooks/useOnLinkPress';
+import { useColorRoles } from '../../state/colorSystem';
+import { SYSTEM_FONTS } from '../../constants';
 
 const DEFAULT_PROPS: Pick<
   RenderHTMLProps,
@@ -65,10 +65,10 @@ const HtmlDisplayMolecule = React.memo(
     style?: StyleProp<ViewStyle>;
   }) => {
     const onLinkPress = useOnLinkPress();
-    const { color, backgroundColor, border } = useComponentColors('html');
+    const { surface, softDivider } = useColorRoles();
     const baseStyle = {
-      color,
-      backgroundColor,
+      color: surface.content,
+      backgroundColor: surface.background,
       //@ts-ignore
       ...renderHtmlProps.baseStyle
     };
@@ -98,14 +98,10 @@ const HtmlDisplayMolecule = React.memo(
         marginBottom: 16,
         ...sharedProps.tagsStyles?.hr,
         height: 1,
-        backgroundColor: border
+        backgroundColor: softDivider
       },
       html: {}
     };
-    const systemFonts = React.useMemo(
-      () => [...Constants.systemFonts, 'space-mono'],
-      []
-    );
     if (!supportsLegacy && useLegacy) {
       return (
         <View style={styles.legacyWarningContainer}>
@@ -134,7 +130,7 @@ const HtmlDisplayMolecule = React.memo(
         enableUserAgentStyles
         enableExperimentalMarginCollapsing={true}
         debug={false}
-        systemFonts={systemFonts}
+        systemFonts={SYSTEM_FONTS}
         remoteLoadingView={() => <DisplayLoadingAtom />}
         triggerTREInvalidationPropNames={['baseStyle', 'tagsStyles']}
       />

@@ -5,6 +5,7 @@ import PlaygroundStoreProvider, {
 } from './playgroundStore';
 import Sheet, { SheetProps } from './Sheet';
 import PlaygroundDisplay from './PlaygroundDisplay';
+import CardColorRolesProvider from '../../../state/CardColorRolesProvider';
 
 export interface PlaygroundTemplateProps<Sk extends string>
   extends PlaygroundInitParams<Sk> {
@@ -17,9 +18,11 @@ export default function PlaygroundTemplate<Sk extends string>({
 }: PlaygroundTemplateProps<Sk>) {
   const [ttree, setTtree] = useState<TNode>();
   return (
-    <PlaygroundStoreProvider {...storeInitParams}>
-      <PlaygroundDisplay onTTreeChange={setTtree} />
-      <Sheet ttree={ttree}>{children}</Sheet>
-    </PlaygroundStoreProvider>
+    <CardColorRolesProvider>
+      <PlaygroundStoreProvider {...storeInitParams}>
+        <PlaygroundDisplay onTTreeChange={setTtree} />
+        <Sheet ttree={ttree}>{children}</Sheet>
+      </PlaygroundStoreProvider>
+    </CardColorRolesProvider>
   );
 }

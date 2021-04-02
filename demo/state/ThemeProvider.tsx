@@ -9,36 +9,34 @@ import {
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperLightTheme
 } from 'react-native-paper';
-import themeColors, { ColorsShape } from './themeColors';
-import componentColors, { ComponentColors } from './componentColors';
+import themeAdaptedColors, { ColorsShape } from './themeAdaptedColors';
 import { useColorScheme } from './ColorSchemeProvider';
+import { ColorPrimitivesProvider } from './colorSystem';
+import colorPrimitivesDeclarations from './colorPrimitivesDeclaration';
+import DefaultColorRolesProvider from './DefaultColorRolesProvider';
 
 function mergeTheme(
   paperTheme: typeof PaperDarkTheme,
   navTheme: typeof NavDarkTheme,
-  colors: ColorsShape,
-  colorSheme: 'dark' | 'light'
+  colors: ColorsShape
 ) {
   return {
     ...paperTheme,
     ...navTheme,
-    colors,
-    componentColors: componentColors(colors, colorSheme)
+    colors
   };
 }
 
 const CombinedLightTheme = mergeTheme(
   PaperLightTheme,
   NavLightTheme,
-  themeColors.light,
-  'light'
+  themeAdaptedColors.light
 );
 
 const CombinedDarkTheme = mergeTheme(
   PaperDarkTheme,
   NavDarkTheme,
-  themeColors.dark,
-  'dark'
+  themeAdaptedColors.dark
 );
 
 const ThemeContext = React.createContext(CombinedLightTheme);
@@ -47,23 +45,17 @@ export function useTheme() {
   return React.useContext(ThemeContext);
 }
 
-export function useComponentColors<K extends keyof ComponentColors>(
-  component: K
-) {
-  return useTheme().componentColors[component];
-}
-
-export function useThemeColors() {
-  return useTheme().colors;
-}
-
 export default function ThemeProvider({ children }: PropsWithChildren<{}>) {
   const colorScheme = useColorScheme();
   const selectedTheme =
     colorScheme === 'dark' ? CombinedDarkTheme : CombinedLightTheme;
   return (
-    <ThemeContext.Provider value={selectedTheme}>
-      <PaperProvider theme={selectedTheme}>{children}</PaperProvider>
-    </ThemeContext.Provider>
+    <ColorPrimitivesProvider value={colorPrimitivesDeclarations[colorScheme]}>
+      <DefaultColorRolesProvider>
+        <ThemeContext.Provider value={selectedTheme}>
+          <PaperProvider theme={selectedTheme}>{children}</PaperProvider>
+        </ThemeContext.Provider>
+      </DefaultColorRolesProvider>
+    </ColorPrimitivesProvider>
   );
 }

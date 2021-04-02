@@ -2,17 +2,16 @@ import React, { ComponentProps } from 'react';
 import { Picker } from '@react-native-picker/picker';
 import useNuclearTextStyle from '../nucleons/useNuclearTextStyle';
 import { StyleSheet, View } from 'react-native';
-import { useThemeColors } from '../../state/ThemeProvider';
 import { NativeViewGestureHandler } from 'react-native-gesture-handler';
-import useSelectorItemsNucleon, {
-  SelectorProps
-} from '../nucleons/useSelectorPropsNucleon';
+import useSelectorItemsNucleon from '../nucleons/useSelectorPropsNucleon';
+import { SelectorListProps } from '../nucleons/types';
+import { useColorRoles } from '../../state/colorSystem';
 
 type PickerProps = ComponentProps<typeof Picker>;
 
 export interface PickerControlAtomProps<V extends string | number>
   extends Pick<PickerProps, 'style'>,
-    SelectorProps<V> {}
+    SelectorListProps<V> {}
 
 const styles = StyleSheet.create({
   fixContainer: {
@@ -31,7 +30,7 @@ export default function PickerControlAtom<V extends string | number>({
   style,
   ...pickerProps
 }: PickerControlAtomProps<V>) {
-  const theme = useThemeColors();
+  const { pressable } = useColorRoles();
   const normalizedItems = useSelectorItemsNucleon(items);
   return (
     <View style={[styles.fixContainer, style]}>
@@ -39,7 +38,7 @@ export default function PickerControlAtom<V extends string | number>({
         <Picker
           {...pickerProps}
           style={[useNuclearTextStyle(), styles.fixStyles]}
-          dropdownIconColor={theme.accent}
+          dropdownIconColor={pressable.tint}
           onValueChange={onSelectedValueChange as any}>
           {normalizedItems.map((item, index) => (
             <Picker.Item

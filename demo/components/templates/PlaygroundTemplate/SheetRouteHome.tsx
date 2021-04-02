@@ -9,21 +9,23 @@ export default function SheetRouteHome() {
   const description = useContext(demoDescriptionContext);
   return (
     <SheetRouteContainer>
-      <NavTideMolecule
-        route="PlaygroundControls"
-        label="Play"
-        description="Change component props and observe how the rendered snippet adjusts."
-        leftIconName="gamepad-circle"
-      />
-      <NavTideMolecule
-        route="PlaygroundSource"
-        label="Change and inspect HTML source"
-        description="Select and inspect a HTML snippet, watch the transient render tree."
-        leftIconName="language-html5"
-      />
-      <BoxNucleon padding={2}>
-        <Stack space={2}>{description}</Stack>
-      </BoxNucleon>
+      <Stack space={2}>
+        <NavTideMolecule
+          route="PlaygroundControls"
+          label="Play"
+          description="Change component props and observe how the rendered snippet adjusts."
+          leftIconName="gamepad-circle"
+        />
+        <NavTideMolecule
+          route="PlaygroundSource"
+          label="Change and inspect HTML source"
+          description="Select and inspect a HTML snippet, watch the transient render tree."
+          leftIconName="language-html5"
+        />
+        <BoxNucleon padding={2}>
+          <Stack space={2}>{description}</Stack>
+        </BoxNucleon>
+      </Stack>
     </SheetRouteContainer>
   );
 }

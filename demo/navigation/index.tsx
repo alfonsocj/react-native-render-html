@@ -10,10 +10,11 @@ export default function Navigation() {
   const setSelectedSnippet = useSetSelectedSnippetId();
   const theme = useTheme();
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
+    <View style={{ flex: 1 }}>
       <NavigationContainer
         // linking={LinkingConfiguration}
         onStateChange={(s) => {
+          // FIXME: this is a hack!
           const drawer = s?.routes[0];
           const index = drawer!.state?.index as number;
           const snippet = drawer!.state?.routeNames![index] as SnippetId;

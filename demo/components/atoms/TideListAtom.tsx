@@ -16,7 +16,7 @@ export default function TideListAtom({
   return (
     <contentWidthContextNucleon.Provider value={controlContentWidth}>
       <BoxNucleon style={style} paddingX={spaces}>
-        <Stack space={4}>{children}</Stack>
+        <Stack space={2}>{children}</Stack>
       </BoxNucleon>
     </contentWidthContextNucleon.Provider>
   );

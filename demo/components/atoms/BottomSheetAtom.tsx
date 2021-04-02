@@ -4,9 +4,9 @@ import BottomSheet, {
   BottomSheetBackgroundProps,
   BottomSheetProps
 } from '@gorhom/bottom-sheet';
-import { useThemeColors } from '../../state/ThemeProvider';
-import Color from 'color';
 import gestureHandlerContextNucleon from '../nucleons/gestureHandlerContextNucleon';
+import useSurfaceBackgroundStyleNucleon from '../nucleons/useSurfaceBackgroundStyleNucleon';
+import { useColorRoles } from '../../state/colorSystem';
 
 const RADIUS = 15;
 
@@ -30,32 +30,22 @@ const styles = StyleSheet.create({
 });
 
 const Handle = () => {
-  const theme = useThemeColors();
+  const { sheetHandle } = useColorRoles();
   return (
     <View
       style={[
         styles.handle,
         styles.radiusTop,
-        { backgroundColor: Color(theme.card).darken(0.1).string() }
+        { backgroundColor: sheetHandle.background }
       ]}>
-      <View style={[styles.indicator, { backgroundColor: theme.primary }]} />
+      <View style={[styles.indicator, { backgroundColor: sheetHandle.slot }]} />
     </View>
   );
 };
 
 const Background = ({ style }: BottomSheetBackgroundProps) => {
-  const theme = useThemeColors();
-  return (
-    <View
-      style={[
-        style,
-        styles.radiusTop,
-        {
-          backgroundColor: Color(theme.card).alpha(0.95).string()
-        }
-      ]}
-    />
-  );
+  const backdropStyles = useSurfaceBackgroundStyleNucleon();
+  return <View style={[style, styles.radiusTop, backdropStyles]} />;
 };
 
 export default function BottomSheetAtom({

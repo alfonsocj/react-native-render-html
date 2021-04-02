@@ -10,11 +10,14 @@ export default function TTreeDisplayMolecule({
   ttree?: TNode;
   style?: StyleProp<ViewStyle>;
 }) {
+  const lines = ((ttree && tnodeToString(ttree)) || '').split('\n');
   return (
     <View style={style}>
-      <TextNucleon mono fontSize="small">
-        {ttree && tnodeToString(ttree)}
-      </TextNucleon>
+      {lines.map((t, i) => (
+        <TextNucleon mono fontSize="small" key={i} numberOfLines={1}>
+          {t}
+        </TextNucleon>
+      ))}
     </View>
   );
 }

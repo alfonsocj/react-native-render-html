@@ -3,24 +3,24 @@ import {
   FlatListProps,
   ListRenderItem,
   StyleProp,
+  TextStyle,
   ViewStyle
 } from 'react-native';
-import { NuclearTextStyle } from '../nucleons/useNuclearTextStyle';
-import useSelectorItemsNucleon, {
-  SelectorItem,
-  SelectorProps
-} from '../nucleons/useSelectorPropsNucleon';
+import useSelectorItemsNucleon from '../nucleons/useSelectorPropsNucleon';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import RadioItemAtom, { RADIO_ITEM_HEIGHT } from '../atoms/RadioItemAtom';
 import selectedRadioItemContextAtom from '../atoms/selectedRadioItemContextAtom';
 import BoxNucleon from '../nucleons/BoxNucleon';
 import { useSpacing } from '@mobily/stacks';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SelectorItem, SelectorListProps } from '../nucleons/types';
 
 export interface RadioListControlProps<V extends string>
-  extends SelectorProps<V> {
+  extends SelectorListProps<V> {
   style?: StyleProp<ViewStyle>;
-  labelStyle?: NuclearTextStyle;
+  labelStyle?:
+    | StyleProp<TextStyle>
+    | ((item: SelectorItem<V>, index: number) => StyleProp<TextStyle>);
 }
 
 function extractKey(item: Required<SelectorItem<any>>, index: number) {
@@ -55,18 +55,21 @@ export default function RadioListControlMolecule<V extends string>({
     }),
     [safeBottom, spacing]
   );
-  const listRenderItem: ListRenderItem<
-    Required<SelectorItem<V>>
-  > = useCallback(
-    ({ item: { label, value } }) => (
-      <RadioItemAtom
-        labelStyle={labelStyle}
-        value={value}
-        label={label}
-        onSelectedValueChange={onSelectedValueChange}
-        style={itemStyle}
-      />
-    ),
+  const listRenderItem: ListRenderItem<Required<SelectorItem<V>>> = useCallback(
+    ({ item, index }) => {
+      const syntheticLabelStyle =
+        typeof labelStyle === 'function' ? labelStyle(item, index) : labelStyle;
+      const { label, value } = item;
+      return (
+        <RadioItemAtom
+          labelStyle={syntheticLabelStyle}
+          value={value}
+          label={label}
+          onSelectedValueChange={onSelectedValueChange}
+          style={itemStyle}
+        />
+      );
+    },
     [labelStyle, onSelectedValueChange, itemStyle]
   );
   return (

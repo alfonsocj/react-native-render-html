@@ -22,7 +22,9 @@ export default function SliderTideMolecule({
   ...sliderProps
 }: SliderTideMolecule) {
   const right = () => (
-    <TextNucleon align="end">{sliderProps.value?.toFixed(1)}</TextNucleon>
+    <TextNucleon mono fontSize="normal" bold align="end">
+      {sliderProps.value?.toFixed(1)}
+    </TextNucleon>
   );
   const bottom = () => <SliderControlAtom {...sliderProps} />;
   return (

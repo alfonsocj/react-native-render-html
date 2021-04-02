@@ -1,7 +1,6 @@
 import { Stack } from '@mobily/stacks';
 import React, { PropsWithChildren, useContext, useMemo } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import { useComponentColors } from '../../../state/ThemeProvider';
 import RadioGroupControlMolecule from '../../molecules/RadioGroupControlMolecule';
 import SourceDisplayMolecule from '../../molecules/SourceDisplayMolecule';
 import TTreeDisplayMolecule from '../../molecules/TTreeDisplayMolecule';
@@ -13,8 +12,24 @@ import {
   usePlaygroundSetter,
   usePlaygroundStateSlice
 } from './playgroundStore';
+import { useColorPrimitives } from '../../../state/colorSystem';
+import { WithStyleProp } from '../../nucleons/types';
 
-function SourecRouteSection({
+function SourceSectionTitle({
+  title,
+  style
+}: WithStyleProp<{ title: string }>) {
+  const { primary } = useColorPrimitives();
+  return (
+    <BoxNucleon padding={1} backgroundColor={primary.color} style={style}>
+      <TextNucleon align="center" color={primary.content} bold>
+        {title}
+      </TextNucleon>
+    </BoxNucleon>
+  );
+}
+
+function SourceRouteSection({
   children,
   title,
   style
@@ -24,9 +39,9 @@ function SourecRouteSection({
 }>) {
   return (
     <BoxNucleon style={style}>
-      <Stack space={2}>
-        <TextNucleon>{title}</TextNucleon>
-        {children}
+      <Stack space={0}>
+        <SourceSectionTitle title={title} />
+        <BoxNucleon>{children}</BoxNucleon>
       </Stack>
     </BoxNucleon>
   );
@@ -34,13 +49,32 @@ function SourecRouteSection({
 
 function SourceBoxAtom({
   children,
+  padding,
   style
-}: PropsWithChildren<{ style?: StyleProp<ViewStyle> }>) {
-  const combo = useComponentColors('sourceBox');
+}: PropsWithChildren<{ style?: StyleProp<ViewStyle>; padding?: number }>) {
+  const { surface: background } = useColorPrimitives();
   return (
-    <BoxNucleon padding={1} style={[style, { borderRadius: 10 }]} {...combo}>
+    <BoxNucleon
+      padding={padding}
+      style={style}
+      backgroundColor={background.content}
+      color={background.color}>
       {children}
     </BoxNucleon>
+  );
+}
+
+function HtmlDisplayBox({ html, style }: { html: string; style?: any }) {
+  return (
+    <SourceBoxAtom style={style}>
+      <SourceDisplayMolecule
+        clipLines
+        fontSize="small"
+        content={html}
+        paddingVertical={2}
+        language="html"
+      />
+    </SourceBoxAtom>
   );
 }
 
@@ -60,23 +94,23 @@ export default function SheetSourceRoute() {
   );
   return (
     <SheetRouteContainer>
-      <BoxNucleon padding={2}>
+      <BoxNucleon>
         <Stack space={4}>
-          <RadioGroupControlMolecule
-            selectedValue={selectedSource}
-            onSelectedValueChange={setSelectedSource}
-            items={items}
-          />
-          <SourecRouteSection title="HTML source">
-            <SourceBoxAtom>
-              <SourceDisplayMolecule html={html} />
-            </SourceBoxAtom>
-          </SourecRouteSection>
-          <SourecRouteSection title="Transient Render Tree">
-            <SourceBoxAtom>
+          <SourceRouteSection title="Select source">
+            <RadioGroupControlMolecule
+              selectedValue={selectedSource}
+              onSelectedValueChange={setSelectedSource}
+              items={items}
+            />
+          </SourceRouteSection>
+          <SourceRouteSection title="HTML source">
+            <HtmlDisplayBox html={html} />
+          </SourceRouteSection>
+          <SourceRouteSection title="Transient Render Tree">
+            <SourceBoxAtom padding={2}>
               <TTreeDisplayMolecule ttree={ttree} />
             </SourceBoxAtom>
-          </SourecRouteSection>
+          </SourceRouteSection>
         </Stack>
       </BoxNucleon>
     </SheetRouteContainer>

@@ -1,11 +1,15 @@
 import React, { useRef } from 'react';
 import Slider, { SliderProps } from '@react-native-community/slider';
-import { useComponentColors } from '../../state/ThemeProvider';
+import { createNativeWrapper } from 'react-native-gesture-handler';
 import { AccessibilityProps, Platform, View } from 'react-native';
-import { NativeViewGestureHandler } from 'react-native-gesture-handler';
 import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
-import Color from 'color';
-import { useColorScheme } from '../../state/ColorSchemeProvider';
+import { useColorRoles } from '../../state/colorSystem';
+
+const GestureSlider = createNativeWrapper(Slider, {
+  disallowInterruption: true,
+  shouldActivateOnStart: true,
+  shouldCancelWhenOutside: false
+});
 
 export type SliderControlAtomProps = Pick<
   SliderProps,
@@ -36,31 +40,23 @@ export default function SliderControlAtom({
   ...accessibilityProps
 }: SliderControlAtomProps) {
   const initialValueRef = useRef(value);
-  const colors = useComponentColors('controls');
+  const { switchColor, trackColor } = useColorRoles();
   const contentWidth = useNuclearContentWidth();
-  const isDarkMode = useColorScheme();
   const syntheticContentWidth = width ?? contentWidth;
-  const maxTrackColor = Color(colors.trackColorOff);
   return (
     <View style={style}>
-      <NativeViewGestureHandler disallowInterruption={true}>
-        <Slider
-          style={getFixedStyle(syntheticContentWidth)}
-          minimumValue={minimumValue}
-          maximumValue={maximumValue}
-          step={step}
-          thumbTintColor={colors.tintColorOn}
-          minimumTrackTintColor={colors.trackColorOn}
-          maximumTrackTintColor={
-            isDarkMode
-              ? maxTrackColor.lighten(0.5).string()
-              : maxTrackColor.darken(1).string()
-          }
-          value={initialValueRef.current}
-          onValueChange={onValueChange}
-          {...accessibilityProps}
-        />
-      </NativeViewGestureHandler>
+      <GestureSlider
+        style={getFixedStyle(syntheticContentWidth)}
+        minimumValue={minimumValue}
+        maximumValue={maximumValue}
+        step={step}
+        thumbTintColor={switchColor.on}
+        minimumTrackTintColor={trackColor.on}
+        maximumTrackTintColor={trackColor.off}
+        value={initialValueRef.current}
+        onValueChange={onValueChange}
+        {...accessibilityProps}
+      />
     </View>
   );
 }

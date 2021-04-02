@@ -4,14 +4,14 @@ import { TextStyle, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 // @ts-ignore
 import version from '../../version';
-import TextNucleon from '../nucleons/TextNucleon';
+import TextNucleon from '../../components/nucleons/TextNucleon';
 
 const monoStyle: TextStyle = {
   fontSize: 10,
   textAlign: 'left'
 };
 
-export default function VersionDisplayMolecule() {
+export default function VersionDisplay() {
   const { bottom, left, right } = useSafeAreaInsets();
   return (
     <View
@@ -22,10 +22,9 @@ export default function VersionDisplayMolecule() {
         marginRight: right,
         padding: 10
       }}>
-      <TextNucleon mono style={monoStyle}>
+      <TextNucleon mono fontSize="small" style={monoStyle}>
         Foundry Playground {version.demo}
-      </TextNucleon>
-      <TextNucleon mono style={monoStyle}>
+        {'\n'}
         react-native-render-html {version.lib}
       </TextNucleon>
     </View>

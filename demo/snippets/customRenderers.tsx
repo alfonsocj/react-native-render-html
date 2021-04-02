@@ -8,7 +8,7 @@ import {
 } from 'react-native-render-html';
 import { View, Text } from 'react-native';
 import { SnippetDeclaration } from '../types';
-import { Snackbar } from 'react-native-paper';
+import SnackbarAtom from '../components/atoms/SnackbarAtom';
 
 const html = `
 <h2>Introduction</h2>
@@ -121,12 +121,12 @@ const ButtonRenderer: CustomBlockRenderer = function ({
   return (
     <>
       <TDefaultRenderer {...props} onPress={onPress} />
-      <Snackbar
+      <SnackbarAtom
         duration={1200}
         visible={isVisible}
         onDismiss={() => setIsVisible(false)}>
-        <Text>Button has been clicked!</Text>
-      </Snackbar>
+        Button has been clicked!
+      </SnackbarAtom>
     </>
   );
 };

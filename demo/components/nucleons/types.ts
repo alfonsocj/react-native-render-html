@@ -12,9 +12,9 @@ export type SelectorItem<V extends string | number> = {
 
 export interface SelectorListProps<V extends string | number>
   extends SelectorProps<V> {
-  items: ReadonlyArray<SelectorItem<V>> | ReadonlyArray<V>;
+  readonly items: ReadonlyArray<SelectorItem<V>> | ReadonlyArray<V>;
 }
 
-export interface WithStyleProp {
+export type WithStyleProp<P> = {
   style?: StyleProp<ViewStyle>;
-}
+} & P;

@@ -8,9 +8,9 @@ export type TextNucleonProps = React.PropsWithChildren<
   TextProps & NuclearTextStyle
 >;
 
-export default function TextNucleon(props: TextNucleonProps) {
+export default function TextNucleon({ style, ...props }: TextNucleonProps) {
   const memoizedStyle = useNuclearTextStyle(props);
-  const text = <NativeText {...props} style={memoizedStyle} />;
+  const text = <NativeText {...props} style={[memoizedStyle, style]} />;
   if (props.color) {
     return (
       <textColorContext.Provider value={props.color}>

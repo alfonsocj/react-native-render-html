@@ -4,7 +4,7 @@ import {
   DefaultTagRendererProps
 } from 'react-native-render-html';
 import { SnippetDeclaration } from '../types';
-import { Snackbar } from 'react-native-paper';
+import SnackbarAtom from '../components/atoms/SnackbarAtom';
 
 const html = `
 <h2>Introduction</h2>
@@ -33,11 +33,11 @@ function CustomImageRenderer(props: DefaultTagRendererProps<any>) {
   return (
     <>
       <Renderer {...rendererProps} onPress={() => setIsSnackVisible(true)} />
-      <Snackbar
+      <SnackbarAtom
         visible={isSnackVisible}
         onDismiss={() => setIsSnackVisible(false)}>
         I pressed an IMG element!
-      </Snackbar>
+      </SnackbarAtom>
     </>
   );
 }

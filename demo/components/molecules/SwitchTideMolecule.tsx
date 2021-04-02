@@ -20,6 +20,7 @@ export default function SwitchTideMolecule({
   const right = () => <SwitchControlAtom {...switchProps} />;
   return (
     <TideAtom
+      onPress={() => switchProps.onValueChange?.(!switchProps.value)}
       style={style}
       leftIconName={leftIconName}
       title={label}

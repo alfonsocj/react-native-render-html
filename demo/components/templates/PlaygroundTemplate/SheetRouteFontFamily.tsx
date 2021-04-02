@@ -1,10 +1,18 @@
 import React from 'react';
-import Constants from 'expo-constants';
-import RadioListControlMolecule from '../../molecules/RadioListControlMolecule';
+import RadioListControlMolecule, {
+  RadioListControlProps
+} from '../../molecules/RadioListControlMolecule';
 import {
   usePlaygroundStateSlice,
   usePlaygroundSetter
 } from './playgroundStore';
+import { SYSTEM_FONTS } from '../../../constants';
+
+const getLabelStyle: RadioListControlProps<string>['labelStyle'] = ({
+  value
+}) => ({
+  fontFamily: value
+});
 
 export default function SheetRouteFontFamily() {
   const fontFamily = usePlaygroundStateSlice('fontFamily');
@@ -13,7 +21,8 @@ export default function SheetRouteFontFamily() {
     <RadioListControlMolecule
       selectedValue={fontFamily}
       onSelectedValueChange={setFontFamily}
-      items={Constants.systemFonts}
+      items={SYSTEM_FONTS}
+      labelStyle={getLabelStyle}
     />
   );
 }
