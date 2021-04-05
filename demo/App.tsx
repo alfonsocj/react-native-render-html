@@ -1,7 +1,7 @@
 import { enableScreens } from 'react-native-screens';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import useCachedResources from './src/hooks/useCachedResources';
 import Navigation from './src/navigation';
 import ThemeProvider from './src/theme/ThemeProvider';
@@ -10,6 +10,7 @@ import { useColorScheme, useWindowDimensions } from 'react-native';
 import LinkPressDisplayMolecule from './src/components/molecules/LinkPressDisplayMolecule';
 import { StacksProvider } from '@mobily/stacks';
 import contentWidthContextNucleon from './src/components/nucleons/contentWidthContextNucleon';
+import Images from './src/features/Images';
 
 enableScreens();
 
@@ -27,7 +28,10 @@ export default function App() {
             <ColorSchemeProvider initialColorScheme={initialColorScheme}>
               <ThemeProvider>
                 <LinkPressDisplayMolecule>
-                  <Navigation />
+                  {/* <Navigation /> */}
+                  <SafeAreaView>
+                    <Images />
+                  </SafeAreaView>
                   <StatusBar style="light" />
                 </LinkPressDisplayMolecule>
               </ThemeProvider>

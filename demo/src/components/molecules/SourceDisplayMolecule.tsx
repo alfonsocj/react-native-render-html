@@ -32,6 +32,7 @@ export type SourceDisplayMoleculeProps = {
 export default function SourceDisplayMolecule({
   paddingVertical,
   fontSize: nuclearFontSize = 'normal',
+  showLineNumbers = true,
   ...otherProps
 }: SourceDisplayMoleculeProps) {
   const { card } = useColorPrimitives();
@@ -63,6 +64,7 @@ export default function SourceDisplayMolecule({
       paddingBottom={paddingVerticalNucleon}
       paddingTop={paddingVerticalNucleon}
       lineNumberDisplayWidthComputer={lineNumberDisplayWidthComputer}
+      showLineNumbers={showLineNumbers}
       {...otherProps}
     />
   );

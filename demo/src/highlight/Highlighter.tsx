@@ -1,4 +1,9 @@
-import React, { useContext, useMemo } from 'react';
+import React, {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useMemo
+} from 'react';
 import { highlight } from 'lowlight';
 import {
   StyleProp,
@@ -10,6 +15,7 @@ import {
 } from 'react-native';
 import StylesheetsProvider, { HighlightJsStyles } from './StylesheetsProvider';
 import highlighterStylesheetsContext from './highlighterStylesheetsContext';
+import generateLines, { SimpleNode } from './generateLines';
 // import * as html from 'highlight.js/lib/languages/html';
 // registerLanguage('html', html);
 
@@ -29,6 +35,7 @@ export interface HighlighterProps extends ViewProps {
   clipLines?: boolean;
   paddingTop?: number;
   paddingBottom?: number;
+  showLineNumbers?: boolean;
   /**
    * A function which returns a string representation of the line number.
    *
@@ -54,62 +61,68 @@ const styles = StyleSheet.create({
   container: { flexGrow: 1, flexDirection: 'column', overflow: 'hidden' }
 });
 
-function Element({ element }: { element: lowlight.AST.Element }) {
-  const className = element.properties['className'] as string;
-  const { contentStylesheet } = useContext(highlighterStylesheetsContext);
-  return (
-    <Text style={className ? contentStylesheet[className] : null}>
-      {element.children?.map((v, i) =>
-        React.createElement(Node, { node: v as lowlight.HastNode, key: i })
+function RenderLine({
+  line,
+  index
+}: PropsWithChildren<{ line: SimpleNode[]; index: number }>) {
+  const {
+    clipLines,
+    lineStyle,
+    lineNumberStyle,
+    lineNumberFormatter,
+    showLineNumbers
+  } = useContext(formattingSpecContext);
+  const content = (
+    <Text
+      numberOfLines={clipLines ? 1 : undefined}
+      lineBreakMode="tail"
+      textBreakStrategy="simple"
+      style={lineStyle}>
+      {line.map((n, i) =>
+        React.createElement(RenderSimpleNode, { node: n, key: i })
       )}
     </Text>
   );
-}
-
-function Node({ node }: { node: lowlight.HastNode }) {
-  if (node.type === 'element') {
-    return React.createElement(Element, { element: node });
+  if (!showLineNumbers) {
+    return content;
   }
-  if (node.type === 'text') {
-    return <Text>{node.value}</Text>;
-  }
-  return null;
-}
-
-function Tree({ nodes }: { nodes: lowlight.HastNode[] }) {
   return (
-    <>{nodes?.map((n, i) => React.createElement(Node, { node: n, key: i }))}</>
-  );
-}
-
-function Line({
-  row,
-  lineStyle,
-  lineNumberStyle,
-  lineNumberFormatter,
-  index,
-  clipLines = false
-}: {
-  row: lowlight.HastNode[];
-  lineStyle: StyleProp<TextStyle>;
-  lineNumberStyle: StyleProp<TextStyle>;
-  lineNumberFormatter: NonNullable<HighlighterProps['lineNumberFormatter']>;
-  index: number;
-  clipLines?: boolean;
-}) {
-  return (
-    <View style={styles.line} key={index}>
+    <View style={styles.line}>
       <Text style={lineNumberStyle}>{lineNumberFormatter(index + 1)}</Text>
-      <Text
-        numberOfLines={clipLines ? 1 : undefined}
-        lineBreakMode="tail"
-        textBreakStrategy="simple"
-        style={lineStyle}>
-        <Tree nodes={row} />
-      </Text>
+      {content}
     </View>
   );
 }
+
+function RenderSimpleNode({ node }: { node: SimpleNode }) {
+  const { contentStylesheet } = useContext(highlighterStylesheetsContext);
+  const className = node.className;
+  return (
+    <Text style={className?.map((n) => contentStylesheet[n])}>{node.text}</Text>
+  );
+}
+
+function RenderTree({ nodes }: { nodes: lowlight.HastNode[] }) {
+  const lines = generateLines(nodes);
+  console.info(lines);
+  return (
+    <>
+      {lines.map((l, i) =>
+        React.createElement(RenderLine, { line: l, key: i, index: i })
+      )}
+    </>
+  );
+}
+type FormattingSpecs = Pick<
+  Required<HighlighterProps>,
+  | 'lineNumberStyle'
+  | 'lineStyle'
+  | 'lineNumberFormatter'
+  | 'clipLines'
+  | 'showLineNumbers'
+>;
+
+const formattingSpecContext = createContext<FormattingSpecs>({} as any);
 
 function Padding({
   lineNumberStyle,
@@ -118,10 +131,13 @@ function Padding({
   lineNumberStyle: StyleProp<TextStyle>;
   value?: number;
 }) {
+  const { showLineNumbers } = useContext(formattingSpecContext);
   if (!value) {
     return null;
   }
-  return <Text style={[lineNumberStyle, { height: value }]} />;
+  return (
+    <Text style={[showLineNumbers && lineNumberStyle, { height: value }]} />
+  );
 }
 
 const defaultLineNumberFormatter = (number: number) =>
@@ -137,7 +153,7 @@ const defaultLineNumberDisplayWidthComputer = (
 function HighlighterContent({
   content,
   language,
-  clipLines,
+  clipLines = false,
   fontSize = 14,
   fontFamily,
   lineNumberFontFamily,
@@ -147,11 +163,13 @@ function HighlighterContent({
   style,
   paddingTop,
   paddingBottom,
+  showLineNumbers = false,
   lineNumberFormatter = defaultLineNumberFormatter,
   lineNumberDisplayWidthComputer = defaultLineNumberDisplayWidthComputer,
   ...viewProps
 }: Omit<HighlighterProps, 'highlightJsStyle'>) {
   const lines = content.split('\n').map((l) => highlight(language, l).value);
+  const tree = highlight(language, content).value;
   const { containerStylesheet } = useContext(highlighterStylesheetsContext);
   const syntheticLineNumberFontSize = lineNumberFontSize ?? fontSize;
   const syntheticLineNumberFontFamily = lineNumberFontFamily ?? fontFamily;
@@ -169,7 +187,6 @@ function HighlighterContent({
     ],
     [containerStylesheet.text, fontFamily, fontSize, userLineStyle]
   );
-
   const lineNumberWidth = useMemo(() => {
     const numberDisplayLength = lineNumberFormatter(lines.length + 1).length;
     return lineNumberDisplayWidthComputer(fontSize, numberDisplayLength);
@@ -204,17 +221,16 @@ function HighlighterContent({
       style={[containerStylesheet.container, styles.container, style]}
       {...viewProps}>
       <Padding lineNumberStyle={lineNumberStyle} value={paddingTop} />
-      {lines.map((l, i) =>
-        React.createElement(Line, {
-          key: i,
-          row: l,
-          index: i,
-          lineStyle,
-          lineNumberStyle,
+      <formattingSpecContext.Provider
+        value={{
+          clipLines,
           lineNumberFormatter,
-          clipLines
-        })
-      )}
+          lineNumberStyle,
+          lineStyle,
+          showLineNumbers
+        }}>
+        <RenderTree nodes={tree} />
+      </formattingSpecContext.Provider>
       <Padding lineNumberStyle={lineNumberStyle} value={paddingBottom} />
     </View>
   );
