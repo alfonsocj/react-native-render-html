@@ -6,13 +6,11 @@ import { TNode } from '@native-html/transient-render-engine';
 import snippets, { SnippetId } from '../../snippets';
 import { useSetHTMLForSnippet, useSetTTreeForSnippet } from '../state/store';
 import HtmlDisplayMolecule from '../components/molecules/HtmlDisplayMolecule';
-
-const CONTAINER_PADDING = 10;
+import { useSpacing } from '@mobily/stacks';
 
 const styles = StyleSheet.create({
   contentContainer: {
-    flexGrow: 1,
-    paddingHorizontal: CONTAINER_PADDING
+    flexGrow: 1
   },
   container: { flexGrow: 1 }
 });
@@ -42,13 +40,17 @@ const Snippet = React.memo(
     );
     const snippetProps = snippets[snippetId].props || {};
     const supportsLegacy = snippets[snippetId].supportsLegacy;
+    const containerPadding = useSpacing(2);
 
     return (
       <ScrollView
-        contentContainerStyle={styles.contentContainer}
+        contentContainerStyle={[
+          styles.contentContainer,
+          { padding: containerPadding }
+        ]}
         style={styles.container}>
         <HtmlDisplayMolecule
-          contentWidth={contentWidth - CONTAINER_PADDING * 2}
+          contentWidth={contentWidth - containerPadding * 2}
           useLegacy={useLegacy}
           supportsLegacy={supportsLegacy}
           renderHtmlProps={{
