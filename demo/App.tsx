@@ -1,15 +1,15 @@
 import { enableScreens } from 'react-native-screens';
 import { StatusBar } from 'expo-status-bar';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import useCachedResources from './hooks/useCachedResources';
-import Navigation from './navigation';
-import ThemeProvider from './state/ThemeProvider';
-import ColorSchemeProvider from './state/ColorSchemeProvider';
-import { useColorScheme, useWindowDimensions, View } from 'react-native';
-import LinkPressDisplayMolecule from './components/molecules/LinkPressDisplayMolecule';
+import useCachedResources from './src/hooks/useCachedResources';
+import Navigation from './src/navigation';
+import ThemeProvider from './src/theme/ThemeProvider';
+import ColorSchemeProvider from './src/state/ColorSchemeProvider';
+import { useColorScheme, useWindowDimensions } from 'react-native';
+import LinkPressDisplayMolecule from './src/components/molecules/LinkPressDisplayMolecule';
 import { StacksProvider } from '@mobily/stacks';
-import contentWidthContextNucleon from './components/nucleons/contentWidthContextNucleon';
+import contentWidthContextNucleon from './src/components/nucleons/contentWidthContextNucleon';
 
 enableScreens();
 
