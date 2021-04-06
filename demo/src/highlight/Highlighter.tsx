@@ -104,7 +104,6 @@ function RenderSimpleNode({ node }: { node: SimpleNode }) {
 
 function RenderTree({ nodes }: { nodes: lowlight.HastNode[] }) {
   const lines = generateLines(nodes);
-  console.info(lines);
   return (
     <>
       {lines.map((l, i) =>

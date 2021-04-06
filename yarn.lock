@@ -3341,15 +3341,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mobily/stacks@npm:^0.9.4":
-  version: 0.9.4
-  resolution: "@mobily/stacks@npm:0.9.4"
-  dependencies:
-    wonka: ^4.0.14
+"@mobily/stacks@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@mobily/stacks@npm:1.1.1"
   peerDependencies:
     react: ">=16.8.0"
     react-native: ">=0.59.0"
-  checksum: 41b4b42b238eeab1bc8603cadb1dbce9f29b59122b4d3cc258cb0236bbd91824b0e8b7f79266a8847c3e2f7f73e8464452d5a1573948a9c265807a47ca3bcb05
+  checksum: 86b39e0e9238255b21f87c1208ec04d77390741c44567348362e6030a9641a7d0b8d8b6e8197ec65bde1b6c22b18cb160128fdc9be511f2fe5213d7c15cafcaf
   languageName: node
   linkType: hard
 
@@ -3748,16 +3746,6 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 89a1c72c18febe26ae3ff2daa848d676fd1c889f68ca9bfa189031fae2de0f5171a772794578e8f6c9be9a9dc3644e7906ae10f82f41ac0ab7df117ad7078a8e
-  languageName: node
-  linkType: hard
-
-"@react-native-community/viewpager@npm:4.2.0":
-  version: 4.2.0
-  resolution: "@react-native-community/viewpager@npm:4.2.0"
-  peerDependencies:
-    react: ^16.0
-    react-native: ">=0.57"
-  checksum: 1f6ba6e3787bc5bb5c075c799b27319dacb50feae18c806b2af9598aeb934f871de67cf405377864a5e2553270592f5f4f27689bbd5cf15e50db3388cc86a93e
   languageName: node
   linkType: hard
 
@@ -7134,10 +7122,9 @@ __metadata:
     "@expo/metro-config": ^0.1.59
     "@expo/vector-icons": ^12.0.0
     "@gorhom/bottom-sheet": ^2
-    "@mobily/stacks": ^0.9.4
+    "@mobily/stacks": ^1.1.1
     "@react-native-community/masked-view": 0.1.10
     "@react-native-community/slider": 3.0.3
-    "@react-native-community/viewpager": 4.2.0
     "@react-native-picker/picker": 1.9.2
     "@react-navigation/bottom-tabs": ^5.11.7
     "@react-navigation/drawer": ^5.12.3
@@ -7165,12 +7152,14 @@ __metadata:
     react-native: "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz"
     react-native-gesture-handler: ~1.8.0
     react-native-hsv-color-picker: ^1.0.2
+    react-native-pager-view: ~5.0.12
     react-native-paper: ^4.7.2
     react-native-reanimated: ~1.13.0
     react-native-render-html: "workspace:*"
     react-native-render-html-v5: "npm:react-native-render-html@^5.0.0"
     react-native-safe-area-context: 3.1.9
     react-native-screens: ~2.15.2
+    react-native-tab-view: ^3.0.1
     react-native-web: ~0.13.12
     react-native-webview: 11.0.0
     react-syntax-highlighter: ^15.4.3
@@ -14714,6 +14703,16 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"react-native-pager-view@npm:~5.0.12":
+  version: 5.0.12
+  resolution: "react-native-pager-view@npm:5.0.12"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 3a931655dab2be54c787e2bfcb1ea8eddeb12e33e23fdfae5d190046fd90b7a7f7313c350fd5237cc4107cf8d2b2176d503d7ffc2450b29945ccb8c3bdc9a3ea
+  languageName: node
+  linkType: hard
+
 "react-native-paper@npm:^4.7.2":
   version: 4.7.2
   resolution: "react-native-paper@npm:4.7.2"
@@ -14853,6 +14852,17 @@ fsevents@^1.2.7:
     react: "*"
     react-native: "*"
   checksum: 0279acda51aea9eb56b605f39b4895092fcefd74adc2d9f5e361929033fce65507193cc75895143999d1d6b2bcd6882d32a4d880e86946e13e8b7f1033f40ac9
+  languageName: node
+  linkType: hard
+
+"react-native-tab-view@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "react-native-tab-view@npm:3.0.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-pager-view: "*"
+  checksum: 2d0729c3c4c63ca400f384fbb2a1c35550acb7ab33a2998fd37ab38772517136cadf966d7d060d74f04887633d9e1774f0b5062395225bf47c57baed0c9eff01
   languageName: node
   linkType: hard
 
@@ -17947,13 +17957,6 @@ typescript@~4.1.3:
   dependencies:
     execa: ^4.0.2
   checksum: 6e285986c3e2db1eae14da639938ccdd7e78cdccd4b408b173bac81c8214485ed8477fb0d97c67f9f5df722b9ce66d8330f3112d49dae033b16511837867194b
-  languageName: node
-  linkType: hard
-
-"wonka@npm:^4.0.14":
-  version: 4.0.15
-  resolution: "wonka@npm:4.0.15"
-  checksum: df4fd51c15744570e6737975b9cff3e27c39840c1f2c4d4a01cb0b0a6641ff672c96475eb8df8276da2873147e46d8bdd3c3cddcf8f258ef5e97ae55c031f8f9
   languageName: node
   linkType: hard
 

@@ -23,6 +23,7 @@ function mergeTheme(
   return {
     ...paperTheme,
     ...navTheme,
+    roundness: 0,
     colors
   };
 }

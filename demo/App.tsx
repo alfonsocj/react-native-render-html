@@ -29,7 +29,7 @@ export default function App() {
               <ThemeProvider>
                 <LinkPressDisplayMolecule>
                   {/* <Navigation /> */}
-                  <SafeAreaView>
+                  <SafeAreaView style={{ flex: 1 }}>
                     <Images />
                   </SafeAreaView>
                   <StatusBar style="light" />
