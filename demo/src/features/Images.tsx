@@ -54,7 +54,11 @@ function ReactNativeExport({ name }: { name: keyof typeof ReactNative }) {
 function Paragraph(props: TextNucleonProps) {
   return (
     <BoxNucleon paddingX={2}>
-      <TextNucleon {...props} />
+      <TextNucleon
+        {...props}
+        lineHeight={2}
+        style={{ fontFamily: 'IBMPlexSerif_400Regular' }}
+      />
     </BoxNucleon>
   );
 }

@@ -4,52 +4,78 @@ import {
   DrawerNavigationOptions
 } from '@react-navigation/drawer';
 import { StackScreenProps } from '@react-navigation/stack';
-import SnippetScreen from '../SnippetScreen';
-import snippets, { devSelectedSnippet, SnippetId } from '../../../snippets';
-import DrawerSnippetHeader from './DrawerSnippetHeader';
-import { useSetSelectedSnippetId } from '../../state/store';
 import Lists from '../../playgrounds/Lists';
 import CustomDrawerContent from './CustomDrawerContent';
 import DrawerPlaygroundHeader from './DrawerPlaygroundHeader';
 import useSurfaceBackgroundStyleNucleon from '../../components/nucleons/useSurfaceBackgroundStyleNucleon';
+import { IconNucleonProps } from '../../components/nucleons/IconNucleon';
+import Images from '../../features/Images';
 
-type PlaygroundsRoutes = 'ListsPlayground';
+type RouteName = string;
 
-const Drawer = createDrawerNavigator<
-  Record<keyof typeof snippets | PlaygroundsRoutes, any>
->();
+const Drawer = createDrawerNavigator<Record<RouteName, {}>>();
+const initialRouteName = 'Images';
 
-const initialRouteName = __DEV__ ? devSelectedSnippet : 'whitespace';
+interface GroupDefinition {
+  groupLabel: string;
+  group: string;
+  header: DrawerNavigationOptions['header'];
+  routes: Array<{
+    title: string;
+    name: string;
+    iconName: IconNucleonProps['name'];
+    component: React.ComponentType<any>;
+  }>;
+}
 
-const listsPlaygroundsScreenOptions: DrawerNavigationOptions = {
-  headerShown: true,
-  title: 'Lists Playground',
-  header: (props) => <DrawerPlaygroundHeader {...props} />
+const playgrounds: GroupDefinition = {
+  groupLabel: 'Playgrounds',
+  group: 'playgrounds',
+  header: (props) => <DrawerPlaygroundHeader {...props} />,
+  routes: [
+    {
+      title: 'Lists Playground',
+      name: 'ListsPlayground',
+      iconName: 'format-list-bulleted-square',
+      component: Lists
+    }
+  ]
 };
 
-export default function HomeScreen({}: StackScreenProps<any>) {
-  const setSelectedSnippetId = useSetSelectedSnippetId();
-  React.useEffect(() => {
-    setSelectedSnippetId(initialRouteName);
-  }, [setSelectedSnippetId]);
-  const snippetScreens = (Object.keys(snippets) as SnippetId[]).map(
-    (snippetId) => {
-      return (
-        <Drawer.Screen
-          component={SnippetScreen}
-          initialParams={{ snippetId }}
-          options={{
-            header: (props) => (
-              <DrawerSnippetHeader snippetId={snippetId} {...props} />
-            ),
-            title: snippets[snippetId].name
-          }}
-          key={snippets[snippetId].name}
-          name={snippetId}
-        />
-      );
+const features: GroupDefinition = {
+  groupLabel: 'Content',
+  group: 'content',
+  header: (props) => <DrawerPlaygroundHeader {...props} />,
+  routes: [
+    {
+      title: 'Images',
+      name: 'Images',
+      component: Images,
+      iconName: 'image-album'
     }
-  );
+  ]
+};
+
+function mapGroup({ routes, group, groupLabel, header }: GroupDefinition) {
+  return routes.map(({ component, iconName, name, title }) => (
+    <Drawer.Screen
+      component={component}
+      options={{
+        //@ts-ignore
+        group,
+        groupLabel,
+        header,
+        title,
+        headerShown: true,
+        iconName
+      }}
+      key={name}
+      name={name}
+    />
+  ));
+}
+
+export default function HomeScreen({}: StackScreenProps<any>) {
   return (
     <Drawer.Navigator
       hideStatusBar={false}
@@ -60,13 +86,8 @@ export default function HomeScreen({}: StackScreenProps<any>) {
         headerShown: true,
         headerTitleAllowFontScaling: true
       }}>
-      {snippetScreens}
-      <Drawer.Screen
-        component={Lists}
-        options={listsPlaygroundsScreenOptions}
-        key={'lists'}
-        name={'ListsPlayground'}
-      />
+      {mapGroup(features)}
+      {mapGroup(playgrounds)}
     </Drawer.Navigator>
   );
 }

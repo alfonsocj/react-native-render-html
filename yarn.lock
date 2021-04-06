@@ -2014,6 +2014,55 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@expo-google-fonts/ibm-plex-mono@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@expo-google-fonts/ibm-plex-mono@npm:0.1.0"
+  checksum: c3ce3acbbb6047d4fe6a7938db5c8634660b1a59435f47468af431906f93eab91c86ca0f7a6cbcdb5211f69b251a8327d37eb2a9a43d95e057a64e48d0a7d418
+  languageName: node
+  linkType: hard
+
+"@expo-google-fonts/ibm-plex-serif@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@expo-google-fonts/ibm-plex-serif@npm:0.1.0"
+  checksum: 43c7d7cae4ca1674d9a844b5109b7f469819bf37a14f2c1819115864a8a397a909bef7d8583667960f52e9a768ad35a0f0ed711b0dbce33403279aebda9be4e1
+  languageName: node
+  linkType: hard
+
+"@expo-google-fonts/josefin-sans@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@expo-google-fonts/josefin-sans@npm:0.1.0"
+  checksum: 3e763a2602ce691316f8067bc45438c043e6b6eec45f64b47007a138a43f2cbd88da9eeaff2bf85dbced339b0b7bf4a90a4bffe2a23169a2f449087f5947e625
+  languageName: node
+  linkType: hard
+
+"@expo-google-fonts/lora@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@expo-google-fonts/lora@npm:0.1.0"
+  checksum: 0f1d6ae9b28996bee55e5b9a6b8e6e8751c70277875fcdedf36f69a7ff69d415df7036c2f2d74fa5efa0a042d3a25218ee552761c3337fd8ff27c116c61e1c93
+  languageName: node
+  linkType: hard
+
+"@expo-google-fonts/source-code-pro@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@expo-google-fonts/source-code-pro@npm:0.1.0"
+  checksum: b64fa03779af72f0c8acb17756abfed0c8f92dfbf2a86b5b92008559c961372e0e45e47d6e6f44be10e415b5553d1ec6c323b4ffeb7486cb4cafb426ab540fdc
+  languageName: node
+  linkType: hard
+
+"@expo-google-fonts/space-mono@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@expo-google-fonts/space-mono@npm:0.1.0"
+  checksum: ff924c69a96ccc279c571ef8f88e1d9d6a08fb38de0ec60a9eebd10ea9055d18983d47a927acdbdc1f82422dbeb099ac5239f8540b6c8db4aa4300557cbd4939
+  languageName: node
+  linkType: hard
+
+"@expo-google-fonts/work-sans@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@expo-google-fonts/work-sans@npm:0.1.0"
+  checksum: c47b18ee56afd8f917d8e284595b4f339c6dbff052d3a7fd85d7dda6bff0cbb70766a2a5bc6aac53504c6d2dbdfc4f910e1b69bcfdc31dc18c8ea3319f637c20
+  languageName: node
+  linkType: hard
+
 "@expo/babel-preset-cli@npm:0.2.18":
   version: 0.2.18
   resolution: "@expo/babel-preset-cli@npm:0.2.18"
@@ -7119,6 +7168,13 @@ __metadata:
   resolution: "demo@workspace:demo"
   dependencies:
     "@babel/core": ~7.9.0
+    "@expo-google-fonts/ibm-plex-mono": ^0.1.0
+    "@expo-google-fonts/ibm-plex-serif": ^0.1.0
+    "@expo-google-fonts/josefin-sans": ^0.1.0
+    "@expo-google-fonts/lora": ^0.1.0
+    "@expo-google-fonts/source-code-pro": ^0.1.0
+    "@expo-google-fonts/space-mono": ^0.1.0
+    "@expo-google-fonts/work-sans": ^0.1.0
     "@expo/metro-config": ^0.1.59
     "@expo/vector-icons": ^12.0.0
     "@gorhom/bottom-sheet": ^2
