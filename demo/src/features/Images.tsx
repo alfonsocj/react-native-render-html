@@ -7,16 +7,16 @@ import TextNucleonRole, {
 import * as ReactNative from 'react-native';
 import BoxNucleon from '../components/nucleons/BoxNucleon';
 import { useNuclearContentWidth } from '../components/nucleons/useContentWidthContext';
-import SurfaceAtom from '../components/atoms/SurfaceAtom';
 import RenderHtmlCard from './RenderHtmlCard';
 import { ScrollView } from 'react-native-gesture-handler';
-import { WithStyleProp } from '../components/nucleons/types';
-import { useColorPrimitives, useColorRoles } from '../theme/colorSystem';
+import { PropsWithStyle } from '../components/nucleons/types';
+import { useColorRoles } from '../theme/colorSystem';
 import IconNucleon from '../components/nucleons/IconNucleon';
 import textColorContext from '../state/textColorContext';
-import DividerAtom from '../components/atoms/DividerAtom';
+import BodyDividerAtom from '../components/BodyDividerAtom';
 import useOnLinkPress from '../hooks/useOnLinkPress';
 import TextRoleNucleon from '../components/nucleons/TextRoleNucleon';
+import useSurfaceBackgroundStyleNucleon from '../components/nucleons/useSurfaceBackgroundStyleNucleon';
 
 type TextProps = Omit<TextRoleNucleonProps, 'role'>;
 
@@ -80,7 +80,7 @@ function BodyTipBox({ children, ...props }: TextProps) {
   const dividerHeight = ReactNative.StyleSheet.hairlineWidth;
   const renderDivider = () => (
     <BoxNucleon paddingX={2}>
-      <DividerAtom height={dividerHeight} color={tipColor} />
+      <BodyDividerAtom height={dividerHeight} color={tipColor} />
     </BoxNucleon>
   );
   return (
@@ -120,12 +120,12 @@ function BodyTipBox({ children, ...props }: TextProps) {
 function BodyHeaderMolecule({
   children,
   style
-}: WithStyleProp<PropsWithChildren<{}>>) {
+}: PropsWithStyle<PropsWithChildren<{}>>) {
   const { surface } = useColorRoles();
   const color = surface.secondaryContent;
   return (
     <Stack space={1}>
-      <DividerAtom
+      <BodyDividerAtom
         height={ReactNative.StyleSheet.hairlineWidth}
         color={color}
       />
@@ -134,7 +134,7 @@ function BodyHeaderMolecule({
           {children}
         </TextNucleonRole>
       </BoxNucleon>
-      <DividerAtom
+      <BodyDividerAtom
         height={ReactNative.StyleSheet.hairlineWidth}
         color={color}
       />
@@ -163,7 +163,7 @@ function BodyHead({
   style,
   imageSource,
   children
-}: WithStyleProp<StackProps & { imageSource: number }>) {
+}: PropsWithStyle<StackProps & { imageSource: number }>) {
   const width = useNuclearContentWidth();
   return (
     <Stack space={4} style={style}>
@@ -180,7 +180,7 @@ function BodyChapter({
   title,
   style,
   children
-}: PropsWithChildren<WithStyleProp<{ title: string }>>) {
+}: PropsWithChildren<PropsWithStyle<{ title: string }>>) {
   return (
     <Stack style={style} space={4}>
       <BodyHeaderMolecule>{title}</BodyHeaderMolecule>
@@ -192,7 +192,7 @@ function BodyChapter({
 function AttributesSupportTable({
   style,
   attributes
-}: WithStyleProp<{ attributes: Record<string, boolean> }>) {
+}: PropsWithStyle<{ attributes: Record<string, boolean> }>) {
   return (
     <ReactNative.View
       style={[
@@ -223,8 +223,10 @@ function AttributesSupportTable({
 export default function Images() {
   const contentWidth = useNuclearContentWidth();
   return (
-    <ScrollView style={{ flexGrow: 1 }}>
-      <SurfaceAtom paddingBottom={2}>
+    <ScrollView
+      style={{ flexGrow: 1 }}
+      contentContainerStyle={useSurfaceBackgroundStyleNucleon()}>
+      <BoxNucleon paddingBottom={2}>
         <Stack space={10}>
           <BodyHead
             imageSource={require('../../assets/images/soragrit-wongsa-pictures.jpg')}>
@@ -319,7 +321,7 @@ export default function Images() {
             />
           </BodyChapter>
         </Stack>
-      </SurfaceAtom>
+      </BoxNucleon>
     </ScrollView>
   );
 }

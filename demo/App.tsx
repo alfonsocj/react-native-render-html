@@ -7,7 +7,7 @@ import Navigation from './src/navigation';
 import ThemeProvider from './src/theme/ThemeProvider';
 import ColorSchemeProvider from './src/state/ColorSchemeProvider';
 import { useColorScheme, useWindowDimensions } from 'react-native';
-import LinkPressDisplayMolecule from './src/components/molecules/LinkPressDisplayMolecule';
+import UILinkPressDisplayMolecule from './src/components/UILinkPressDisplayMolecule';
 import { StacksProvider } from '@mobily/stacks';
 import contentWidthContextNucleon from './src/components/nucleons/contentWidthContextNucleon';
 
@@ -26,10 +26,10 @@ export default function App() {
           <SafeAreaProvider>
             <ColorSchemeProvider initialColorScheme={initialColorScheme}>
               <ThemeProvider>
-                <LinkPressDisplayMolecule>
+                <UILinkPressDisplayMolecule>
                   <Navigation />
                   <StatusBar style="light" />
-                </LinkPressDisplayMolecule>
+                </UILinkPressDisplayMolecule>
               </ThemeProvider>
             </ColorSchemeProvider>
           </SafeAreaProvider>

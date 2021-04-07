@@ -1,25 +1,28 @@
 import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import TideAtom, { TideAtomProps } from '../atoms/TideAtom';
-import SwitchControlAtom, {
-  SwitchControlAtomProps
-} from '../atoms/SwitchControlAtom';
+import UITideAtom, { TideAtomProps } from './UITideAtom';
+import UISwitchControlAtom, {
+  UISwitchControlAtomProps
+} from './UISwitchControlAtom';
 
-export type SwitchTideMoleculeProps = Omit<SwitchControlAtomProps, 'style'> & {
+export type UISwitchTideMoleculeProps = Omit<
+  UISwitchControlAtomProps,
+  'style'
+> & {
   style?: StyleProp<ViewStyle>;
   leftIconName: TideAtomProps['leftIconName'];
   label: string;
 };
 
-export default function SwitchTideMolecule({
+export default function UISwitchTideMolecule({
   style,
   label,
   leftIconName,
   ...switchProps
-}: SwitchTideMoleculeProps) {
-  const right = () => <SwitchControlAtom {...switchProps} />;
+}: UISwitchTideMoleculeProps) {
+  const right = () => <UISwitchControlAtom {...switchProps} />;
   return (
-    <TideAtom
+    <UITideAtom
       onPress={() => switchProps.onValueChange?.(!switchProps.value)}
       style={style}
       leftIconName={leftIconName}

@@ -5,7 +5,7 @@ import { Dimensions, View } from 'react-native';
 import { NativeViewGestureHandler } from 'react-native-gesture-handler';
 const HsvColorPicker = require('react-native-hsv-color-picker')
   .default as HsvColorPicker;
-import { SelectorProps, WithStyleProp } from './nucleons/types';
+import { SelectorProps, PropsWithStyle } from './nucleons/types';
 
 type HsvColorPicker = ComponentType<Record<string, any>>;
 
@@ -13,7 +13,7 @@ export type UIColorPickerControlAtomProps = Pick<
   SelectorProps<string>,
   'onSelectedValueChange'
 > &
-  WithStyleProp<{
+  PropsWithStyle<{
     initialValue: string;
   }>;
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import RadioListControlMolecule, {
+import UIRadioListControlMolecule, {
   RadioListControlProps
-} from '../../molecules/RadioListControlMolecule';
+} from '../../UIRadioListControlMolecule';
 import {
   usePlaygroundStateSlice,
   usePlaygroundSetter
@@ -18,7 +18,7 @@ export default function SheetRouteFontFamily() {
   const fontFamily = usePlaygroundStateSlice('fontFamily');
   const setFontFamily = usePlaygroundSetter('fontFamily');
   return (
-    <RadioListControlMolecule
+    <UIRadioListControlMolecule
       selectedValue={fontFamily}
       onSelectedValueChange={setFontFamily}
       items={SYSTEM_FONTS}

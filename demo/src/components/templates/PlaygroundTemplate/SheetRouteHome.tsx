@@ -1,7 +1,7 @@
 import { Stack } from '@mobily/stacks';
 import React, { useContext } from 'react';
 import BoxNucleon from '../../nucleons/BoxNucleon';
-import NavTideMolecule from '../../molecules/NavTideMolecule';
+import UINavTideMolecule from '../../UINavTideMolecule';
 import { demoDescriptionContext } from './contexts';
 import SheetRouteContainer from './SheetRouteContainer';
 
@@ -10,13 +10,13 @@ export default function SheetRouteHome() {
   return (
     <SheetRouteContainer>
       <Stack space={2}>
-        <NavTideMolecule
+        <UINavTideMolecule
           route="PlaygroundControls"
           label="Play"
           description="Change component props and observe how the rendered snippet adjusts."
           leftIconName="gamepad-circle"
         />
-        <NavTideMolecule
+        <UINavTideMolecule
           route="PlaygroundSource"
           label="Change and inspect HTML source"
           description="Select and inspect a HTML snippet, watch the transient render tree."

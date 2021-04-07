@@ -3,16 +3,16 @@ import React, { ComponentProps, memo, ReactNode } from 'react';
 import { Stack, useSpacing } from '@mobily/stacks';
 import { ViewStyle, StyleProp, View, AccessibilityProps } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
-import BoxNucleon, { BoxNucleonProps } from '../nucleons/BoxNucleon';
-import TextRoleNucleon from '../nucleons/TextRoleNucleon';
-import contentWidthContextNucleon from '../nucleons/contentWidthContextNucleon';
-import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
+import BoxNucleon, { BoxNucleonProps } from './nucleons/BoxNucleon';
+import TextRoleNucleon from './nucleons/TextRoleNucleon';
+import contentWidthContextNucleon from './nucleons/contentWidthContextNucleon';
+import { useNuclearContentWidth } from './nucleons/useContentWidthContext';
 import IconNucleon, {
   IconName,
   IconNucleonProps
-} from '../nucleons/IconNucleon';
-import GestureHandlerAdapterNucleon from '../nucleons/GestureHandlerAdapterNucleon';
-import { useColorRoles } from '../../theme/colorSystem';
+} from './nucleons/IconNucleon';
+import GestureHandlerAdapterNucleon from './nucleons/GestureHandlerAdapterNucleon';
+import { useColorRoles } from '../theme/colorSystem';
 
 export interface TideAtomProps extends AccessibilityProps {
   style?: StyleProp<ViewStyle>;
@@ -106,7 +106,7 @@ function CenterBottom({
   );
 }
 
-const TideAtom = memo(function TideAtom({
+const UITideAtom = memo(function UITideAtom({
   style,
   title,
   leftIconName,
@@ -193,6 +193,6 @@ const TideAtom = memo(function TideAtom({
   );
 });
 
-TideAtom.displayName = 'MemoizedTideAtom';
+UITideAtom.displayName = 'MemoizedUITideAtom';
 
-export default TideAtom;
+export default UITideAtom;

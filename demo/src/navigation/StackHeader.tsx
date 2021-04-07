@@ -2,7 +2,7 @@ import { StackHeaderProps } from '@react-navigation/stack';
 import React from 'react';
 import UIAppbarActionAtom from '../components/UIAppbarActionAtom';
 import UIAppbarContentAtom from '../components/UIAppbarContentAtom';
-import HeaderMolecule from '../components/molecules/HeaderMolecule';
+import UIHeaderAtom from '../components/UIHeaderAtom';
 
 export { StackHeaderProps };
 
@@ -15,9 +15,9 @@ export default function StackHeader(props: StackHeaderProps) {
     navigation
   ]);
   return (
-    <HeaderMolecule>
+    <UIHeaderAtom>
       <UIAppbarActionAtom icon="arrow-left" onPress={onMenuPress} />
       <UIAppbarContentAtom title={options.title} />
-    </HeaderMolecule>
+    </UIHeaderAtom>
   );
 }

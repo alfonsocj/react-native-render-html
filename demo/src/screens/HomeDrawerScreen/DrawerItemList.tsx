@@ -1,7 +1,7 @@
 import React from 'react';
 import { CommonActions, DrawerActions } from '@react-navigation/native';
 import type { DrawerContentComponentProps } from '@react-navigation/drawer';
-import TideAtom from '../../components/atoms/TideAtom';
+import UITideAtom from '../../components/UITideAtom';
 import { Stack } from '@mobily/stacks';
 import BoxNucleon from '../../components/nucleons/BoxNucleon';
 import { IconNucleonProps } from '../../components/nucleons/IconNucleon';
@@ -56,7 +56,7 @@ export default function DrawerItemList({
   }: ItemDefinition) => {
     const focused = index === state.index;
     return (
-      <TideAtom
+      <UITideAtom
         key={key}
         title={
           drawerLabel !== undefined

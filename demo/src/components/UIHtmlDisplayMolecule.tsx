@@ -5,11 +5,11 @@ import RenderHTML, {
   RenderHTMLProps
 } from 'react-native-render-html';
 import LegacyHTML from 'react-native-render-html-v5';
-import UIDisplayLoadingAtom from '../UIDisplayLoadingAtom';
-import useOnLinkPress from '../../hooks/useOnLinkPress';
-import { useColorRoles } from '../../theme/colorSystem';
-import { SYSTEM_FONTS } from '../../constants';
-import TextRoleNucleon from '../nucleons/TextRoleNucleon';
+import UIDisplayLoadingAtom from './UIDisplayLoadingAtom';
+import useOnLinkPress from '../hooks/useOnLinkPress';
+import { useColorRoles } from '../theme/colorSystem';
+import { SYSTEM_FONTS } from '../constants';
+import TextRoleNucleon from './nucleons/TextRoleNucleon';
 
 const DEFAULT_PROPS: Pick<
   RenderHTMLProps,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const HtmlDisplayMolecule = React.memo(
+const UIHtmlDisplayMolecule = React.memo(
   ({
     supportsLegacy,
     renderHtmlProps,
@@ -138,4 +138,4 @@ const HtmlDisplayMolecule = React.memo(
   }
 );
 
-export default HtmlDisplayMolecule;
+export default UIHtmlDisplayMolecule;

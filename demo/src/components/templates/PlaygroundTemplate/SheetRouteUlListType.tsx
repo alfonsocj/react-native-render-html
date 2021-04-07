@@ -1,5 +1,5 @@
 import React from 'react';
-import RadioListControlMolecule from '../../molecules/RadioListControlMolecule';
+import UIRadioListControlMolecule from '../../UIRadioListControlMolecule';
 import {
   usePlaygroundStateSlice,
   usePlaygroundSetter,
@@ -10,7 +10,7 @@ export default function SheetRouteUlListType() {
   const ulListType = usePlaygroundStateSlice('ulListType');
   const setUlListType = usePlaygroundSetter('ulListType');
   return (
-    <RadioListControlMolecule
+    <UIRadioListControlMolecule
       selectedValue={ulListType}
       onSelectedValueChange={setUlListType}
       items={ulListTypes}

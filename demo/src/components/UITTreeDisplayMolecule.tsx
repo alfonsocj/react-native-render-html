@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { TNode, tnodeToString } from 'react-native-render-html';
-import TextRoleNucleon from '../nucleons/TextRoleNucleon';
+import TextRoleNucleon from './nucleons/TextRoleNucleon';
 
-export default function TTreeDisplayMolecule({
+export default function UITTreeDisplayMolecule({
   ttree,
   style
 }: {

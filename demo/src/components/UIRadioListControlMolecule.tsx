@@ -6,14 +6,14 @@ import {
   TextStyle,
   ViewStyle
 } from 'react-native';
-import useSelectorItemsNucleon from '../nucleons/useSelectorPropsNucleon';
+import useSelectorItemsNucleon from './nucleons/useSelectorPropsNucleon';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import RadioItemAtom, { RADIO_ITEM_HEIGHT } from '../atoms/RadioItemAtom';
-import selectedRadioItemContextAtom from '../atoms/selectedRadioItemContextAtom';
-import BoxNucleon from '../nucleons/BoxNucleon';
+import UIRadioItemAtom, { RADIO_ITEM_HEIGHT } from './UIRadioItemAtom';
+import selectedRadioItemContextAtom from './selectedRadioItemContextAtom';
+import BoxNucleon from './nucleons/BoxNucleon';
 import { useSpacing } from '@mobily/stacks';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { SelectorItem, SelectorListProps } from '../nucleons/types';
+import { SelectorItem, SelectorListProps } from './nucleons/types';
 
 export interface RadioListControlProps<V extends string>
   extends SelectorListProps<V> {
@@ -37,7 +37,7 @@ const getItemLayout: FlatListProps<
   };
 };
 
-export default function RadioListControlMolecule<V extends string>({
+export default function UIRadioListControlMolecule<V extends string>({
   items,
   selectedValue,
   onSelectedValueChange,
@@ -61,7 +61,7 @@ export default function RadioListControlMolecule<V extends string>({
         typeof labelStyle === 'function' ? labelStyle(item, index) : labelStyle;
       const { label, value } = item;
       return (
-        <RadioItemAtom
+        <UIRadioItemAtom
           labelStyle={syntheticLabelStyle}
           value={value}
           label={label}

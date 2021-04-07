@@ -1,13 +1,13 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, { ComponentProps, useMemo } from 'react';
-import { View } from 'react-native';
+import React, { ComponentProps, PropsWithChildren, useMemo } from 'react';
 import { Appbar } from 'react-native-paper';
+import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColorRoles } from '../theme/colorSystem';
+import HeaderColorRolesProvider from '../croles/HeaderColorRolesProvider';
 
-export type UIAppbarHeaderAtomProps = ComponentProps<typeof Appbar.Header>;
+type AppbarHeaderProps = ComponentProps<typeof Appbar.Header>;
 
-export default function UIAppbarHeaderAtom(props: UIAppbarHeaderAtomProps) {
+function AppbarHeader(props: AppbarHeaderProps) {
   const { surface, statusBarBackground } = useColorRoles();
   const { top } = useSafeAreaInsets();
   const appbarStyles = useMemo(
@@ -25,5 +25,15 @@ export default function UIAppbarHeaderAtom(props: UIAppbarHeaderAtomProps) {
       />
       <Appbar.Header statusBarHeight={0} {...props} style={appbarStyles} />
     </View>
+  );
+}
+
+export type UIHeaderAtomProps = PropsWithChildren<AppbarHeaderProps>;
+
+export default function UIHeaderAtom(appbarProps: UIHeaderAtomProps) {
+  return (
+    <HeaderColorRolesProvider>
+      <AppbarHeader {...appbarProps} />
+    </HeaderColorRolesProvider>
   );
 }

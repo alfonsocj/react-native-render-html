@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
-import TideAtom, { TideAtomProps } from '../atoms/TideAtom';
-import TextRoleNucleon from '../nucleons/TextRoleNucleon';
+import UITideAtom, { TideAtomProps } from './UITideAtom';
+import TextRoleNucleon from './nucleons/TextRoleNucleon';
 import { useNavigation } from '@react-navigation/core';
-import { useColorRoles } from '../../theme/colorSystem';
+import { useColorRoles } from '../theme/colorSystem';
 
-export default function NavTideMolecule<R extends string>({
+export default function UINavTideMolecule<R extends string>({
   leftIconName,
   description,
   label,
@@ -25,7 +25,7 @@ export default function NavTideMolecule<R extends string>({
       )
     : null;
   return (
-    <TideAtom
+    <UITideAtom
       {...listProps}
       title={label}
       onPress={useCallback(() => navigation.navigate(route), [

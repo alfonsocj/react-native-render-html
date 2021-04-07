@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import TideAtom, { TideAtomProps } from '../atoms/TideAtom';
+import UITideAtom, { TideAtomProps } from './UITideAtom';
 import SliderControlAtom, {
   SliderControlAtomProps
-} from '../atoms/SliderControlAtom';
-import TextRoleNucleon from '../nucleons/TextRoleNucleon';
-import { useColorRoles } from '../../theme/colorSystem';
+} from './UISliderControlAtom';
+import TextRoleNucleon from './nucleons/TextRoleNucleon';
+import { useColorRoles } from '../theme/colorSystem';
 import { useSpacing } from '@mobily/stacks';
 
-export type SliderTideMolecule = Omit<
+export type UISliderTideMoleculeProps = Omit<
   SliderControlAtomProps,
   'width' | 'style'
 > & {
@@ -17,12 +17,12 @@ export type SliderTideMolecule = Omit<
   label: string;
 };
 
-export default function SliderTideMolecule({
+export default function UISliderTideMolecule({
   style,
   label,
   leftIconName,
   ...sliderProps
-}: SliderTideMolecule) {
+}: UISliderTideMoleculeProps) {
   const { surface } = useColorRoles();
   const padding = useSpacing(2);
   const right = ({ width }: { width: number }) => (
@@ -42,7 +42,7 @@ export default function SliderTideMolecule({
   );
   const bottom = () => <SliderControlAtom {...sliderProps} />;
   return (
-    <TideAtom
+    <UITideAtom
       style={style}
       leftIconName={leftIconName}
       title={label}

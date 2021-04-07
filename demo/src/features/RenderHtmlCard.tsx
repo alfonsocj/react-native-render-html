@@ -1,8 +1,8 @@
 import { Stack, useSpacing } from '@mobily/stacks';
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
-import HtmlDisplayMolecule from '../components/molecules/HtmlDisplayMolecule';
-import SourceDisplayMolecule from '../components/molecules/SourceDisplayMolecule';
+import UIHtmlDisplayMolecule from '../components/UIHtmlDisplayMolecule';
+import UISourceDisplayMolecule from '../components/UISourceDisplayMolecule';
 import BoxNucleon from '../components/nucleons/BoxNucleon';
 import IconNucleon from '../components/nucleons/IconNucleon';
 import { useColorRoles } from '../theme/colorSystem';
@@ -33,7 +33,7 @@ export default function RenderHtmlCard({
       }}>
       <Stack space={2}>
         <ScrollView indicatorStyle="white" horizontal>
-          <SourceDisplayMolecule
+          <UISourceDisplayMolecule
             paddingVertical={2}
             style={sourceDisplayStyle}
             content={html}
@@ -44,7 +44,7 @@ export default function RenderHtmlCard({
         <BoxNucleon alignX="center">
           <IconNucleon size={30} name="transfer-down" />
         </BoxNucleon>
-        <HtmlDisplayMolecule
+        <UIHtmlDisplayMolecule
           style={{
             borderWidth: borderWidth,
             borderColor: surface.secondaryContent

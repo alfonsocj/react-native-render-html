@@ -4,10 +4,10 @@ import PlaygroundTemplate, {
   PlaygroundControls,
   PlaygroundDescription
 } from '../components/templates/PlaygroundTemplate';
-import TideListAtom from '../components/atoms/TideListAtom';
-import SliderTideMolecule from '../components/molecules/SliderTideMolecule';
-import SwitchTideMolecule from '../components/molecules/SwitchTideMolecule';
-import NavTideMolecule from '../components/molecules/NavTideMolecule';
+import UITideListAtom from '../components/TideListAtom';
+import UISliderTideMolecule from '../components/UISliderTideMolecule';
+import UISwitchTideMolecule from '../components/UISwitchTideMolecule';
+import UINavTideMolecule from '../components/UINavTideMolecule';
 import {
   usePlaygroundSetter,
   usePlaygroundStateSlice
@@ -104,7 +104,7 @@ function FontSizeTide(props: any) {
   const fontSize = usePlaygroundStateSlice('fontSize');
   const setFontSize = usePlaygroundSetter('fontSize');
   return (
-    <SliderTideMolecule
+    <UISliderTideMolecule
       leftIconName="format-size"
       label="Font size"
       minimumValue={10}
@@ -121,7 +121,7 @@ function LineHeightTide(props: any) {
   const lineHeight = usePlaygroundStateSlice('lineHeight');
   const setLineHeight = usePlaygroundSetter('lineHeight');
   return (
-    <SliderTideMolecule
+    <UISliderTideMolecule
       leftIconName="format-line-spacing"
       label="Line height"
       minimumValue={1}
@@ -138,7 +138,7 @@ function BoldTide(props: any) {
   const isBold = usePlaygroundStateSlice('isBold');
   const setIsBold = usePlaygroundSetter('isBold');
   return (
-    <SwitchTideMolecule
+    <UISwitchTideMolecule
       leftIconName="format-bold"
       label="Bold?"
       value={isBold}
@@ -152,7 +152,7 @@ function ItalicTide(props: any) {
   const isItalic = usePlaygroundStateSlice('isItalic');
   const setIsItalic = usePlaygroundSetter('isItalic');
   return (
-    <SwitchTideMolecule
+    <UISwitchTideMolecule
       leftIconName="format-italic"
       label="Italic?"
       value={isItalic}
@@ -164,7 +164,7 @@ function ItalicTide(props: any) {
 
 function FontFamilyTide(props: any) {
   return (
-    <NavTideMolecule
+    <UINavTideMolecule
       leftIconName="format-font"
       label="Font family"
       route="PlaygroundFontFamily"
@@ -175,7 +175,7 @@ function FontFamilyTide(props: any) {
 
 function ColorTide(props: any) {
   return (
-    <NavTideMolecule
+    <UINavTideMolecule
       leftIconName="palette"
       label="Color"
       route="PlaygroundColor"
@@ -186,7 +186,7 @@ function ColorTide(props: any) {
 
 function OrderedListTypeTide(props: any) {
   return (
-    <NavTideMolecule
+    <UINavTideMolecule
       leftIconName="format-list-numbered"
       label="ol List type"
       route="PlaygroundOlListType"
@@ -197,7 +197,7 @@ function OrderedListTypeTide(props: any) {
 
 function UnorderedListTypeTide(props: any) {
   return (
-    <NavTideMolecule
+    <UINavTideMolecule
       leftIconName="format-list-bulleted-type"
       label="ul List type"
       route="PlaygroundUlListType"
@@ -210,7 +210,7 @@ export default function Lists() {
   return (
     <PlaygroundTemplate sourceMap={sourceMap} initialSource="shortOl">
       <PlaygroundControls>
-        <TideListAtom>
+        <UITideListAtom>
           <FontSizeTide />
           <LineHeightTide />
           <BoldTide />
@@ -219,7 +219,7 @@ export default function Lists() {
           <ColorTide />
           <OrderedListTypeTide />
           <UnorderedListTypeTide />
-        </TideListAtom>
+        </UITideListAtom>
       </PlaygroundControls>
       <PlaygroundDescription>
         <TextRoleNucleon role="body">

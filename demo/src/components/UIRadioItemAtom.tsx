@@ -7,10 +7,10 @@ import {
   ViewStyle
 } from 'react-native';
 import { RadioButton, TouchableRipple } from 'react-native-paper';
-import GestureHandlerAdapterNucleon from '../nucleons/GestureHandlerAdapterNucleon';
-import TextRoleNucleon from '../nucleons/TextRoleNucleon';
+import GestureHandlerAdapterNucleon from './nucleons/GestureHandlerAdapterNucleon';
+import TextRoleNucleon from './nucleons/TextRoleNucleon';
 import selectedRadioItemContextAtom from './selectedRadioItemContextAtom';
-import { useColorRoles } from '../../theme/colorSystem';
+import { useColorRoles } from '../theme/colorSystem';
 
 export const RADIO_ITEM_HEIGHT = 40;
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   item: { height: RADIO_ITEM_HEIGHT }
 });
 
-const RadioItemAtom = memo(function RadioItem<V extends string>({
+const UIRadioItemAtom = memo(function RadioItem<V extends string>({
   value,
   label,
   onSelectedValueChange,
@@ -63,6 +63,6 @@ const RadioItemAtom = memo(function RadioItem<V extends string>({
   );
 });
 
-type RadioItemAtom = typeof RadioItemAtom;
+type UIRadioItemAtom = typeof UIRadioItemAtom;
 
-export default RadioItemAtom;
+export default UIRadioItemAtom;

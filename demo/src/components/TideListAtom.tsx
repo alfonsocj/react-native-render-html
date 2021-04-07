@@ -2,11 +2,11 @@ import React from 'react';
 import { Stack, useSpacing } from '@mobily/stacks';
 import { PropsWithChildren } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import BoxNucleon from '../nucleons/BoxNucleon';
-import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
-import contentWidthContextNucleon from '../nucleons/contentWidthContextNucleon';
+import BoxNucleon from './nucleons/BoxNucleon';
+import { useNuclearContentWidth } from './nucleons/useContentWidthContext';
+import contentWidthContextNucleon from './nucleons/contentWidthContextNucleon';
 
-export default function TideListAtom({
+export default function UITideListAtom({
   children,
   spaces = 0,
   style

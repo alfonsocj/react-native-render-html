@@ -12,7 +12,7 @@ import { useColorRoles } from '../../theme/colorSystem';
 import DrawerItemList from './DrawerItemList';
 import { ScrollView } from 'react-native-gesture-handler';
 import BoxNucleon from '../../components/nucleons/BoxNucleon';
-import SwitchTideMolecule from '../../components/molecules/SwitchTideMolecule';
+import UISwitchTideMolecule from '../../components/UISwitchTideMolecule';
 import CardColorRolesProvider from '../../croles/CardColorRolesProvider';
 
 function Footer() {
@@ -21,7 +21,7 @@ function Footer() {
   const setColorScheme = useColorSchemeSetter();
   return (
     <BoxNucleon backgroundColor={surface.background} paddingY={0}>
-      <SwitchTideMolecule
+      <UISwitchTideMolecule
         leftIconName="weather-night"
         label="Dark"
         value={colorScheme === 'dark'}

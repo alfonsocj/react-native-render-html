@@ -15,6 +15,6 @@ export interface SelectorListProps<V extends string | number>
   readonly items: ReadonlyArray<SelectorItem<V>> | ReadonlyArray<V>;
 }
 
-export type WithStyleProp<P> = {
+export type PropsWithStyle<P> = {
   style?: StyleProp<ViewStyle>;
 } & P;

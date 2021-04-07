@@ -7,9 +7,9 @@ import React, {
 import { StyleSheet } from 'react-native';
 import { Linking, View } from 'react-native';
 import { RenderHTMLProps } from 'react-native-render-html';
-import onLinkPressContext from '../../state/onLinkPressContext';
-import SnackbarAtom, { SnackbarAtomProps } from '../atoms/SnackbarAtom';
-import { TextRoleNucleonProps } from '../nucleons/useTextRoleNucleon';
+import onLinkPressContext from '../state/onLinkPressContext';
+import UISnackbarAtom, { UISnackbarAtomProps } from './UISnackbarAtom';
+import { TextRoleNucleonProps } from './nucleons/useTextRoleNucleon';
 
 const styles = StyleSheet.create({
   container: { position: 'relative', flexGrow: 1 }
@@ -19,7 +19,7 @@ const textProps: TextRoleNucleonProps = {
   role: 'hyperlink'
 };
 
-export default function LinkPressDisplayMolecule({
+export default function UILinkPressDisplayMolecule({
   children
 }: PropsWithChildren<{}>) {
   const [url, setUrl] = useState<string | null>(null);
@@ -29,7 +29,7 @@ export default function LinkPressDisplayMolecule({
     },
     []
   );
-  const action: SnackbarAtomProps['action'] = useMemo(
+  const action: UISnackbarAtomProps['action'] = useMemo(
     () => ({
       label: 'browse',
       onPress: () => {
@@ -41,13 +41,13 @@ export default function LinkPressDisplayMolecule({
   return (
     <onLinkPressContext.Provider value={onLinkPress}>
       <View style={styles.container}>{children}</View>
-      <SnackbarAtom
+      <UISnackbarAtom
         visible={url !== null}
         action={action}
         textProps={textProps}
         onDismiss={() => setUrl(null)}>
         {url}
-      </SnackbarAtom>
+      </UISnackbarAtom>
     </onLinkPressContext.Provider>
   );
 }

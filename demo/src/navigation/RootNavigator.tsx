@@ -8,7 +8,7 @@ import TTreeScreen from '../screens/TTreeScreen';
 import HomeScreen from '../screens/HomeDrawerScreen';
 import { useLegacyMode } from '../state/store';
 import StackHeader from './StackHeader';
-import SnackbarAtom from '../components/atoms/SnackbarAtom';
+import UISnackbarAtom from '../components/UISnackbarAtom';
 import useSurfaceBackgroundStyleNucleon from '../components/nucleons/useSurfaceBackgroundStyleNucleon';
 
 const Stack = createStackNavigator();
@@ -22,12 +22,12 @@ function LegacySnackbar() {
     return () => clearTimeout(timeout);
   }, [legacyMode]);
   return (
-    <SnackbarAtom
+    <UISnackbarAtom
       collapsable
       visible={snackbarVisible}
       onDismiss={() => setSnackbarVisible(false)}>
       {legacyMode ? 'Legacy (v5.x) enabled.' : 'Foundry (v6.x) enabled'}
-    </SnackbarAtom>
+    </UISnackbarAtom>
   );
 }
 

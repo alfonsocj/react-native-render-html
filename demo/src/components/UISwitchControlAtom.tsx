@@ -1,18 +1,18 @@
 import React from 'react';
 import { SwitchProps, Switch, AccessibilityProps } from 'react-native';
 import { NativeViewGestureHandler } from 'react-native-gesture-handler';
-import { useColorRoles } from '../../theme/colorSystem';
+import { useColorRoles } from '../theme/colorSystem';
 
-export type SwitchControlAtomProps = Omit<
+export type UISwitchControlAtomProps = Omit<
   SwitchProps,
   'tintColor' | 'trackColor' | 'thumbColor'
 > &
   AccessibilityProps;
 
-export default function SwitchControlAtom({
+export default function UISwitchControlAtom({
   value,
   ...switchProps
-}: SwitchControlAtomProps) {
+}: UISwitchControlAtomProps) {
   const { switchColor, trackColor } = useColorRoles();
   return (
     <NativeViewGestureHandler disallowInterruption={true}>

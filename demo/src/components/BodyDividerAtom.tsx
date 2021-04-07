@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-import { useColorRoles } from '../../theme/colorSystem';
-import { WithStyleProp } from '../nucleons/types';
+import { useColorRoles } from '../theme/colorSystem';
+import { PropsWithStyle } from './nucleons/types';
 
-export default function DividerAtom({
+export default function BodyDividerAtom({
   color,
   height = 1,
   width = '100%'
-}: WithStyleProp<{
+}: PropsWithStyle<{
   color?: string;
   height?: number;
   width?: number | string;

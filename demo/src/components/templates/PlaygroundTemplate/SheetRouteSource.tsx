@@ -1,9 +1,9 @@
 import { Stack } from '@mobily/stacks';
 import React, { PropsWithChildren, useContext, useMemo } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import RadioGroupControlMolecule from '../../molecules/RadioGroupControlMolecule';
-import SourceDisplayMolecule from '../../molecules/SourceDisplayMolecule';
-import TTreeDisplayMolecule from '../../molecules/TTreeDisplayMolecule';
+import UIRadioGroupControlMolecule from '../../UIRadioGroupControlMolecule';
+import UISourceDisplayMolecule from '../../UISourceDisplayMolecule';
+import UITTreeDisplayMolecule from '../../UITTreeDisplayMolecule';
 import BoxNucleon from '../../nucleons/BoxNucleon';
 import { demoStateContext } from './contexts';
 import SheetRouteContainer from './SheetRouteContainer';
@@ -12,13 +12,13 @@ import {
   usePlaygroundStateSlice
 } from './playgroundStore';
 import { useColorPrimitives, useColorRoles } from '../../../theme/colorSystem';
-import { WithStyleProp } from '../../nucleons/types';
+import { PropsWithStyle } from '../../nucleons/types';
 import TextRoleNucleon from '../../nucleons/TextRoleNucleon';
 
 function SourceSectionTitle({
   title,
   style
-}: WithStyleProp<{ title: string }>) {
+}: PropsWithStyle<{ title: string }>) {
   const { surface } = useColorRoles();
   return (
     <BoxNucleon padding={1} style={style}>
@@ -70,7 +70,7 @@ function SourceBoxAtom({
 function HtmlDisplayBox({ html, style }: { html: string; style?: any }) {
   return (
     <SourceBoxAtom style={style}>
-      <SourceDisplayMolecule
+      <UISourceDisplayMolecule
         clipLines
         content={html}
         paddingVertical={2}
@@ -99,7 +99,7 @@ export default function SheetSourceRoute() {
       <BoxNucleon>
         <Stack space={4}>
           <SourceRouteSection title="Select source">
-            <RadioGroupControlMolecule
+            <UIRadioGroupControlMolecule
               selectedValue={selectedSource}
               onSelectedValueChange={setSelectedSource}
               items={items}
@@ -110,7 +110,7 @@ export default function SheetSourceRoute() {
           </SourceRouteSection>
           <SourceRouteSection title="Transient Render Tree">
             <SourceBoxAtom padding={2}>
-              <TTreeDisplayMolecule ttree={ttree} />
+              <UITTreeDisplayMolecule ttree={ttree} />
             </SourceBoxAtom>
           </SourceRouteSection>
         </Stack>

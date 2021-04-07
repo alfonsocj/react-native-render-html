@@ -7,7 +7,7 @@ import {
   usePlaygroundSource,
   usePlaygroundState
 } from './playgroundStore';
-import HtmlDisplayMolecule from '../../molecules/HtmlDisplayMolecule';
+import UIHtmlDisplayMolecule from '../../UIHtmlDisplayMolecule';
 import BoxNucleon from '../../nucleons/BoxNucleon';
 import { SheetProps } from './Sheet';
 import sheetSnapPoints from './sheetSnapPoints';
@@ -79,7 +79,7 @@ export default function PlaygroundDisplay({
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <BoxNucleon padding={0}>
-        <HtmlDisplayMolecule
+        <UIHtmlDisplayMolecule
           renderHtmlProps={renderHtmlProps}
           useLegacy={false}
           supportsLegacy={false}

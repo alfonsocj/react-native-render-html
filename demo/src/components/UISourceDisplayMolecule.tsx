@@ -1,17 +1,17 @@
 import { useSpacing } from '@mobily/stacks';
 import React, { useCallback } from 'react';
-import Highlighter, { HighlighterProps } from '../../highlight/Highlighter';
-import { useColorScheme } from '../../state/ColorSchemeProvider';
-import { useColorPrimitives } from '../../theme/colorSystem';
+import Highlighter, { HighlighterProps } from '../highlight/Highlighter';
+import { useColorScheme } from '../state/ColorSchemeProvider';
+import { useColorPrimitives } from '../theme/colorSystem';
 import useTextRoleNucleon, {
   TextRoleNucleonProps
-} from '../nucleons/useTextRoleNucleon';
+} from './nucleons/useTextRoleNucleon';
 
 export interface SourceRenderer {
   htmlSource: string;
 }
 
-export type SourceDisplayMoleculeProps = {
+export type UISourceDisplayMoleculeProps = {
   content: string;
   style?: HighlighterProps['style'];
   language?: HighlighterProps['language'];
@@ -30,12 +30,12 @@ export type SourceDisplayMoleculeProps = {
   | 'fontFamily'
 >;
 
-export default function SourceDisplayMolecule({
+export default function UISourceDisplayMolecule({
   paddingVertical,
   textRole = 'source',
   showLineNumbers = true,
   ...otherProps
-}: SourceDisplayMoleculeProps) {
+}: UISourceDisplayMoleculeProps) {
   const { card } = useColorPrimitives();
   const spacing = useSpacing(2);
   const colorScheme = useColorScheme();

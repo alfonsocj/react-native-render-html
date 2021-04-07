@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import Slider, { SliderProps } from '@react-native-community/slider';
 import { createNativeWrapper } from 'react-native-gesture-handler';
 import { AccessibilityProps, Platform, View } from 'react-native';
-import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
-import { useColorRoles } from '../../theme/colorSystem';
+import { useNuclearContentWidth } from './nucleons/useContentWidthContext';
+import { useColorRoles } from '../theme/colorSystem';
 
 const GestureSlider = createNativeWrapper(Slider, {
   disallowInterruption: true,
