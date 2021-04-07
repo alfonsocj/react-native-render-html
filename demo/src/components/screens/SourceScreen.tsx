@@ -1,8 +1,8 @@
 import React from 'react';
-import UIBidirectionalScrollViewAtom from '../components/UIBidirectionalScrollViewAtom';
-import UIDisplayLoadingAtom from '../components/UIDisplayLoadingAtom';
-import UISourceDisplayMolecule from '../components/UISourceDisplayMolecule';
-import { useSelectedHTML } from '../state/store';
+import UIBidirectionalScrollViewAtom from '../UIBidirectionalScrollViewAtom';
+import UIDisplayLoadingAtom from '../UIDisplayLoadingAtom';
+import UISourceDisplayMolecule from '../UISourceDisplayMolecule';
+import { useSelectedHTML } from '../../state/store';
 
 export default function SourceScreen() {
   const html = useSelectedHTML();

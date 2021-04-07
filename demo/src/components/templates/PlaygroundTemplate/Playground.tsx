@@ -5,7 +5,7 @@ import PlaygroundStoreProvider, {
 } from './playgroundStore';
 import Sheet, { SheetProps } from './Sheet';
 import PlaygroundDisplay from './PlaygroundDisplay';
-import CardColorRolesProvider from '../../../croles/CardColorRolesProvider';
+import CardColorRolesProvider from '../../croles/CardColorRolesProvider';
 
 export interface PlaygroundTemplateProps<Sk extends string>
   extends PlaygroundInitParams<Sk> {

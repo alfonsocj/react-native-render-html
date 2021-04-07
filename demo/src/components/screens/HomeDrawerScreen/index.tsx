@@ -7,8 +7,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 import Lists from '../../playgrounds/Lists';
 import CustomDrawerContent from './CustomDrawerContent';
 import DrawerPlaygroundHeader from './DrawerPlaygroundHeader';
-import useSurfaceBackgroundStyleNucleon from '../../components/nucleons/useSurfaceBackgroundStyleNucleon';
-import { IconNucleonProps } from '../../components/nucleons/IconNucleon';
+import useSurfaceBackgroundStyleNucleon from '../../nucleons/useSurfaceBackgroundStyleNucleon';
+import { IconNucleonProps } from '../../nucleons/IconNucleon';
 import Images from '../../features/Images';
 
 type RouteName = string;

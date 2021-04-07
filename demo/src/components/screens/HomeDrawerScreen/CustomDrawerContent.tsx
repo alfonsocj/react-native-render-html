@@ -6,13 +6,13 @@ import { View } from 'react-native';
 import {
   useColorScheme,
   useColorSchemeSetter
-} from '../../state/ColorSchemeProvider';
+} from '../../../state/ColorSchemeProvider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useColorRoles } from '../../theme/colorSystem';
+import { useColorRoles } from '../../../theme/colorSystem';
 import DrawerItemList from './DrawerItemList';
 import { ScrollView } from 'react-native-gesture-handler';
-import BoxNucleon from '../../components/nucleons/BoxNucleon';
-import UISwitchTideMolecule from '../../components/UISwitchTideMolecule';
+import BoxNucleon from '../../nucleons/BoxNucleon';
+import UISwitchTideMolecule from '../../UISwitchTideMolecule';
 import CardColorRolesProvider from '../../croles/CardColorRolesProvider';
 
 function Footer() {

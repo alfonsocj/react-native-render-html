@@ -3,9 +3,9 @@ import {
   createStackNavigator,
   StackNavigationOptions
 } from '@react-navigation/stack';
-import SourceScreen from '../screens/SourceScreen';
-import TTreeScreen from '../screens/TTreeScreen';
-import HomeScreen from '../screens/HomeDrawerScreen';
+import SourceScreen from '../components/screens/SourceScreen';
+import TTreeScreen from '../components/screens/TTreeScreen';
+import HomeScreen from '../components/screens/HomeDrawerScreen';
 import { useLegacyMode } from '../state/store';
 import StackHeader from './StackHeader';
 import UISnackbarAtom from '../components/UISnackbarAtom';

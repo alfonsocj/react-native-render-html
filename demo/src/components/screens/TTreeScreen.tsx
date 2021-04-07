@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSelectedTTree } from '../state/store';
-import UIBidirectionalScrollViewAtom from '../components/UIBidirectionalScrollViewAtom';
-import UIDisplayLoadingAtom from '../components/UIDisplayLoadingAtom';
-import UITTreeDisplayMolecule from '../components/UITTreeDisplayMolecule';
+import { useSelectedTTree } from '../../state/store';
+import UIBidirectionalScrollViewAtom from '../UIBidirectionalScrollViewAtom';
+import UIDisplayLoadingAtom from '../UIDisplayLoadingAtom';
+import UITTreeDisplayMolecule from '../UITTreeDisplayMolecule';
 
 export default function TTreeScreen() {
   const ttree = useSelectedTTree();

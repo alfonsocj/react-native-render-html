@@ -1,5 +1,4 @@
 import { TextStyle } from 'react-native';
-import useNuclearTextColor from './useNuclearTextColor';
 
 export type TextRole =
   // Non Body roles
@@ -68,10 +67,9 @@ export default function useTextRoleNucleon({
   align = 'start',
   color
 }: TextRoleNucleonProps) {
-  const syntheticColor = useNuclearTextColor(color);
   const roleStyle = roleDefs[role];
   return {
-    color: syntheticColor,
+    color,
     textAlign:
       align === 'end' ? 'right' : align === 'start' ? 'left' : 'center',
     ...roleStyle

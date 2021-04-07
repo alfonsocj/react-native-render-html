@@ -1,17 +1,17 @@
 import React from 'react';
-import TextRoleNucleon from '../components/nucleons/TextRoleNucleon';
+import TextRoleNucleon from '../nucleons/TextRoleNucleon';
 import PlaygroundTemplate, {
   PlaygroundControls,
   PlaygroundDescription
-} from '../components/templates/PlaygroundTemplate';
-import UITideListAtom from '../components/TideListAtom';
-import UISliderTideMolecule from '../components/UISliderTideMolecule';
-import UISwitchTideMolecule from '../components/UISwitchTideMolecule';
-import UINavTideMolecule from '../components/UINavTideMolecule';
+} from '../templates/PlaygroundTemplate';
+import UITideListAtom from '../TideListAtom';
+import UISliderTideMolecule from '../UISliderTideMolecule';
+import UISwitchTideMolecule from '../UISwitchTideMolecule';
+import UINavTideMolecule from '../UINavTideMolecule';
 import {
   usePlaygroundSetter,
   usePlaygroundStateSlice
-} from '../components/templates/PlaygroundTemplate/playgroundStore';
+} from '../templates/PlaygroundTemplate/playgroundStore';
 
 const sourceMap = {
   shortOl: {

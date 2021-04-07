@@ -3,7 +3,7 @@ import { Appbar } from 'react-native-paper';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColorRoles } from '../theme/colorSystem';
-import HeaderColorRolesProvider from '../croles/HeaderColorRolesProvider';
+import HeaderColorRolesProvider from './croles/HeaderColorRolesProvider';
 
 type AppbarHeaderProps = ComponentProps<typeof Appbar.Header>;
 

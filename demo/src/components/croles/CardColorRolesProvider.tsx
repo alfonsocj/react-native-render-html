@@ -3,9 +3,9 @@ import {
   ColorPrimitivesDeclaration,
   ColorRoles,
   ColorRolesProvider
-} from '../theme/colorSystem';
+} from '../../theme/colorSystem';
 import { PropsWithChildren } from 'react';
-import generateColorRoles from '../theme/generateColorRoles';
+import generateColorRoles from '../../theme/generateColorRoles';
 
 function mapPrimitivesColorRoles(
   primitives: ColorPrimitivesDeclaration

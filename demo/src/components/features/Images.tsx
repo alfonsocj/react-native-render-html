@@ -1,28 +1,29 @@
-import { Stack, StackProps } from '@mobily/stacks';
-import React, { PropsWithChildren } from 'react';
+import { Stack } from '@mobily/stacks';
+import React from 'react';
 import { RenderHTMLProps } from 'react-native-render-html';
-import TextNucleonRole, {
+import TextRoleNucleon, {
   TextRoleNucleonProps
-} from '../components/nucleons/TextRoleNucleon';
+} from '../nucleons/TextRoleNucleon';
 import * as ReactNative from 'react-native';
-import BoxNucleon from '../components/nucleons/BoxNucleon';
-import { useNuclearContentWidth } from '../components/nucleons/useContentWidthContext';
+import BoxNucleon from '../nucleons/BoxNucleon';
+import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
 import RenderHtmlCard from './RenderHtmlCard';
 import { ScrollView } from 'react-native-gesture-handler';
-import { PropsWithStyle } from '../components/nucleons/types';
-import { useColorRoles } from '../theme/colorSystem';
-import IconNucleon from '../components/nucleons/IconNucleon';
-import textColorContext from '../state/textColorContext';
-import BodyDividerAtom from '../components/BodyDividerAtom';
-import useOnLinkPress from '../hooks/useOnLinkPress';
-import TextRoleNucleon from '../components/nucleons/TextRoleNucleon';
-import useSurfaceBackgroundStyleNucleon from '../components/nucleons/useSurfaceBackgroundStyleNucleon';
+import { PropsWithStyle } from '../nucleons/types';
+import { useColorRoles } from '../../theme/colorSystem';
+import IconNucleon from '../nucleons/IconNucleon';
+import useOnLinkPress from '../../hooks/useOnLinkPress';
+import useSurfaceBackgroundStyleNucleon from '../nucleons/useSurfaceBackgroundStyleNucleon';
+import BodyParagraphAtom from '../BodyParagraphAtom';
+import BodyTipBoxAtom from '../BodyTipBoxAtom';
+import BodyChapterMolecule from '../BodyChapterMolecule';
+import ArticleHeaderAtom from '../ArticleHeader';
 
 type TextProps = Omit<TextRoleNucleonProps, 'role'>;
 
 function BodyHyperlinkAtom(props: TextProps) {
   const { hyperlinkColor } = useColorRoles();
-  return <TextNucleonRole {...props} color={hyperlinkColor} role="hyperlink" />;
+  return <TextRoleNucleon {...props} color={hyperlinkColor} role="hyperlink" />;
 }
 
 function BodyHtmlAttributeRef(props: TextProps) {
@@ -67,81 +68,6 @@ function BodyReactNativeExportRef({
   return <BodyHyperlinkAtom>{name}</BodyHyperlinkAtom>;
 }
 
-function BodyParagraphAtom(props: TextProps) {
-  return (
-    <BoxNucleon paddingX={2}>
-      <TextNucleonRole role="body" {...props} />
-    </BoxNucleon>
-  );
-}
-
-function BodyTipBox({ children, ...props }: TextProps) {
-  const { surface, tipColor } = useColorRoles();
-  const dividerHeight = ReactNative.StyleSheet.hairlineWidth;
-  const renderDivider = () => (
-    <BoxNucleon paddingX={2}>
-      <BodyDividerAtom height={dividerHeight} color={tipColor} />
-    </BoxNucleon>
-  );
-  return (
-    <BoxNucleon {...props} style={[props.style]}>
-      <Stack space={1}>
-        {renderDivider()}
-        <BoxNucleon
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center'
-          }}>
-          <BoxNucleon
-            style={{
-              flexGrow: 1,
-              flexShrink: 1,
-              alignSelf: 'stretch',
-              justifyContent: 'center'
-            }}>
-            <textColorContext.Provider value={surface.secondaryContent}>
-              {children}
-            </textColorContext.Provider>
-          </BoxNucleon>
-          <BoxNucleon padding={2} backgroundColor={surface.background}>
-            <IconNucleon
-              color={tipColor}
-              name="lightbulb-on-outline"
-              size={16}
-            />
-          </BoxNucleon>
-        </BoxNucleon>
-        {renderDivider()}
-      </Stack>
-    </BoxNucleon>
-  );
-}
-
-function BodyHeaderMolecule({
-  children,
-  style
-}: PropsWithStyle<PropsWithChildren<{}>>) {
-  const { surface } = useColorRoles();
-  const color = surface.secondaryContent;
-  return (
-    <Stack space={1}>
-      <BodyDividerAtom
-        height={ReactNative.StyleSheet.hairlineWidth}
-        color={color}
-      />
-      <BoxNucleon paddingX={2}>
-        <TextNucleonRole color={color} role="bodyHeader1" style={style}>
-          {children}
-        </TextNucleonRole>
-      </BoxNucleon>
-      <BodyDividerAtom
-        height={ReactNative.StyleSheet.hairlineWidth}
-        color={color}
-      />
-    </Stack>
-  );
-}
-
 const inlineExample = `<img
   width="1200" height="800"
   style="width: 50%; height: 100px; align-self: center"
@@ -158,36 +84,6 @@ const unreachableExample = `<img
   alt="The Void"
   src="http://example.tld/image.jpg"
 />`;
-
-function BodyHead({
-  style,
-  imageSource,
-  children
-}: PropsWithStyle<StackProps & { imageSource: number }>) {
-  const width = useNuclearContentWidth();
-  return (
-    <Stack space={4} style={style}>
-      <ReactNative.Image
-        style={{ width, height: (9 / 16) * width }}
-        source={imageSource}
-      />
-      {children}
-    </Stack>
-  );
-}
-
-function BodyChapter({
-  title,
-  style,
-  children
-}: PropsWithChildren<PropsWithStyle<{ title: string }>>) {
-  return (
-    <Stack style={style} space={4}>
-      <BodyHeaderMolecule>{title}</BodyHeaderMolecule>
-      {children}
-    </Stack>
-  );
-}
 
 function AttributesSupportTable({
   style,
@@ -206,7 +102,7 @@ function AttributesSupportTable({
             <Stack horizontal space={4} key={attr}>
               <ReactNative.View
                 style={{ width: 150, justifyContent: 'center', flexGrow: 1 }}>
-                <TextNucleonRole role="hyperlink">{attr}</TextNucleonRole>
+                <TextRoleNucleon role="hyperlink">{attr}</TextRoleNucleon>
               </ReactNative.View>
               <ReactNative.View
                 style={{ width: 100, justifyContent: 'center', flexGrow: 1 }}>
@@ -228,8 +124,8 @@ export default function Images() {
       contentContainerStyle={useSurfaceBackgroundStyleNucleon()}>
       <BoxNucleon paddingBottom={2}>
         <Stack space={10}>
-          <BodyHead
-            imageSource={require('../../assets/images/soragrit-wongsa-pictures.jpg')}>
+          <ArticleHeaderAtom
+            imageSource={require('../../../assets/images/soragrit-wongsa-pictures.jpg')}>
             <BodyParagraphAtom>
               This article covers the{' '}
               <BodyHtmlElementRef>img</BodyHtmlElementRef> element renderer.{' '}
@@ -254,28 +150,26 @@ export default function Images() {
                 usemap: false
               }}
             />
-          </BodyHead>
-          <BodyChapter title={'Sizing'}>
+          </ArticleHeaderAtom>
+          <BodyChapterMolecule title={'Sizing'}>
             <BodyParagraphAtom>
               To determine the display size of an image, the renderer will go
               through the following steps:{'\n'}
               1. 2. 3.
             </BodyParagraphAtom>
-          </BodyChapter>
-          <BodyChapter title={'Scaling'}>
+          </BodyChapterMolecule>
+          <BodyChapterMolecule title={'Scaling'}>
             <BodyParagraphAtom>
               The renderer will automatically scale images down to the available
               width, even when the provided inline style width is greater than
               the container width.
             </BodyParagraphAtom>
-            <BodyTipBox>
-              <BodyParagraphAtom>
-                You are strongly advised to provide a{' '}
-                <BodyRenderHtmlPropRef name="contentWidth" /> property from{' '}
-                <BodyReactNativeExportRef name="useWindowDimensions" /> official
-                hook to help this component handle the scaling.
-              </BodyParagraphAtom>
-            </BodyTipBox>
+            <BodyTipBoxAtom>
+              You are strongly advised to provide a{' '}
+              <BodyRenderHtmlPropRef name="contentWidth" /> property from{' '}
+              <BodyReactNativeExportRef name="useWindowDimensions" /> official
+              hook to help this component handle the scaling.
+            </BodyTipBoxAtom>
             <RenderHtmlCard
               caption={
                 'This image dimensions are set with inline styles. Note that both the width/height couple and the style attributes are evaluated, but the style attribute takes precedence. The relative width (50%) is computed against contentWidth.'
@@ -298,8 +192,8 @@ export default function Images() {
               html={autoSizeExample}
               contentWidth={contentWidth}
             />
-          </BodyChapter>
-          <BodyChapter title="Preloading">
+          </BodyChapterMolecule>
+          <BodyChapterMolecule title="Preloading">
             <BodyParagraphAtom>
               Similarly to browsers, this library will place a print box before
               fetching image dimensions when both{' '}
@@ -310,8 +204,8 @@ export default function Images() {
               is great to avoid images "jumping" from zero height to their
               computed height, and is a hint to good web design.
             </BodyParagraphAtom>
-          </BodyChapter>
-          <BodyChapter title="Error Handling">
+          </BodyChapterMolecule>
+          <BodyChapterMolecule title="Error Handling">
             <RenderHtmlCard
               caption={
                 'When an image is unreachable, the image renderer will print a box while preserving its requested dimensions. It will also display at the center of the box the content of alt attribute.'
@@ -319,7 +213,7 @@ export default function Images() {
               html={unreachableExample}
               contentWidth={contentWidth}
             />
-          </BodyChapter>
+          </BodyChapterMolecule>
         </Stack>
       </BoxNucleon>
     </ScrollView>

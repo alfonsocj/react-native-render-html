@@ -13,7 +13,7 @@ import themeAdaptedColors, { ColorsShape } from './themeAdaptedColors';
 import { useColorScheme } from '../state/ColorSchemeProvider';
 import { ColorPrimitivesProvider } from './colorSystem';
 import colorPrimitivesDeclarations from './colorPrimitivesDeclaration';
-import DefaultColorRolesProvider from '../croles/DefaultColorRolesProvider';
+import DefaultColorRolesProvider from '../components/croles/DefaultColorRolesProvider';
 
 function mergeTheme(
   paperTheme: typeof PaperDarkTheme,
