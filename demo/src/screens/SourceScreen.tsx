@@ -1,6 +1,6 @@
 import React from 'react';
 import UIBidirectionalScrollViewAtom from '../components/UIBidirectionalScrollViewAtom';
-import DisplayLoadingAtom from '../components/atoms/DisplayLoadingAtom';
+import UIDisplayLoadingAtom from '../components/UIDisplayLoadingAtom';
 import SourceDisplayMolecule from '../components/molecules/SourceDisplayMolecule';
 import { useSelectedHTML } from '../state/store';
 
@@ -15,6 +15,6 @@ export default function SourceScreen() {
       />
     </UIBidirectionalScrollViewAtom>
   ) : (
-    <DisplayLoadingAtom />
+    <UIDisplayLoadingAtom />
   );
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import TextRoleNucleon from '../components/nucleons/TextRoleNucleon';
-import HtmlElDisplayAtom from '../components/atoms/HtmlElDisplayAtom';
 import PlaygroundTemplate, {
   PlaygroundControls,
   PlaygroundDescription
@@ -224,8 +223,8 @@ export default function Lists() {
       </PlaygroundControls>
       <PlaygroundDescription>
         <TextRoleNucleon role="body">
-          Discover how <HtmlElDisplayAtom name="ul" /> and{' '}
-          <HtmlElDisplayAtom name="ol" /> elements react to varying style
+          {/* Discover how <HtmlElDisplayAtom name="ul" /> and{' '}
+          <HtmlElDisplayAtom name="ol" /> elements react to varying style */}
           constraints. The renderer for both is the same. The style of the
           prefix (or marker in CSS terminology) is determined by{' '}
           <TextRoleNucleon role="hyperlink">list-style-type</TextRoleNucleon>{' '}

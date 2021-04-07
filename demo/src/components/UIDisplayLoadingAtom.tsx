@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
-import { useColorRoles } from '../../theme/colorSystem';
-import BoxNucleon from '../nucleons/BoxNucleon';
+import { useColorRoles } from '../theme/colorSystem';
+import BoxNucleon from './nucleons/BoxNucleon';
 
-export default function DisplayLoadingAtom({
+export default function UIDisplayLoadingAtom({
   style
 }: {
   style?: StyleProp<ViewStyle>;

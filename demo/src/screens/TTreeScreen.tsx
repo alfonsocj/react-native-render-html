@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelectedTTree } from '../state/store';
 import UIBidirectionalScrollViewAtom from '../components/UIBidirectionalScrollViewAtom';
-import DisplayLoadingAtom from '../components/atoms/DisplayLoadingAtom';
+import UIDisplayLoadingAtom from '../components/UIDisplayLoadingAtom';
 import TTreeDisplayMolecule from '../components/molecules/TTreeDisplayMolecule';
 
 export default function TTreeScreen() {
@@ -11,6 +11,6 @@ export default function TTreeScreen() {
       <TTreeDisplayMolecule ttree={ttree} />
     </UIBidirectionalScrollViewAtom>
   ) : (
-    <DisplayLoadingAtom />
+    <UIDisplayLoadingAtom />
   );
 }

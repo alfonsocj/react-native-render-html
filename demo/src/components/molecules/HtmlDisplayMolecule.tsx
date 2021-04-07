@@ -5,7 +5,7 @@ import RenderHTML, {
   RenderHTMLProps
 } from 'react-native-render-html';
 import LegacyHTML from 'react-native-render-html-v5';
-import DisplayLoadingAtom from '../atoms/DisplayLoadingAtom';
+import UIDisplayLoadingAtom from '../UIDisplayLoadingAtom';
 import useOnLinkPress from '../../hooks/useOnLinkPress';
 import { useColorRoles } from '../../theme/colorSystem';
 import { SYSTEM_FONTS } from '../../constants';
@@ -130,7 +130,7 @@ const HtmlDisplayMolecule = React.memo(
         enableExperimentalMarginCollapsing={true}
         debug={false}
         systemFonts={SYSTEM_FONTS}
-        remoteLoadingView={() => <DisplayLoadingAtom />}
+        remoteLoadingView={() => <UIDisplayLoadingAtom />}
         triggerTREInvalidationPropNames={['baseStyle', 'tagsStyles']}
       />
     );
