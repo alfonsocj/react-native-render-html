@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import RenderHTML, {
   RenderersPropsBase,
@@ -63,7 +63,10 @@ const UIHtmlDisplayMolecule = React.memo(
     useLegacy: boolean;
     style?: StyleProp<ViewStyle>;
   }) => {
-    const onLinkPress = useOnLinkPress();
+    const onSelectUri = useOnLinkPress();
+    const onLinkPress = useCallback((e, uri) => onSelectUri(uri), [
+      onSelectUri
+    ]);
     const { surface, softDivider } = useColorRoles();
     const baseStyle = {
       color: surface.content,

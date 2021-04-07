@@ -15,6 +15,7 @@ import {
 } from '@expo-google-fonts/source-code-pro';
 import {
   IBMPlexMono_400Regular,
+  IBMPlexMono_400Regular_Italic,
   IBMPlexMono_600SemiBold
 } from '@expo-google-fonts/ibm-plex-mono';
 import { IBMPlexSerif_400Regular } from '@expo-google-fonts/ibm-plex-serif';
@@ -48,7 +49,8 @@ export default function useCachedResources() {
           IBMPlexMono_600SemiBold,
           Merriweather_400Regular,
           Merriweather_400Regular_Italic,
-          Merriweather_700Bold
+          Merriweather_700Bold,
+          IBMPlexMono_400Regular_Italic
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

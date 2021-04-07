@@ -17,12 +17,13 @@ export type UISnackbarAtomProps = Omit<
 export default function UISnackbarAtom({
   children,
   textProps,
+  role = 'uiLabel',
   ...props
-}: UISnackbarAtomProps) {
+}: UISnackbarAtomProps & Pick<Partial<TextRoleNucleonProps>, 'role'>) {
   const { surface } = useColorPrimitives();
   return (
     <Snackbar style={{ backgroundColor: surface.content }} {...props}>
-      <TextRoleNucleon role="uiLabel" color={surface.color} {...textProps}>
+      <TextRoleNucleon role={role} color={surface.color} {...textProps}>
         {children}
       </TextRoleNucleon>
     </Snackbar>

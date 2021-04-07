@@ -9,7 +9,7 @@ import BoxNucleon from '../nucleons/BoxNucleon';
 import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
 import RenderHtmlCard from './RenderHtmlCard';
 import { ScrollView } from 'react-native-gesture-handler';
-import { PropsWithStyle } from '../nucleons/types';
+import { PropsWithStringChild, PropsWithStyle } from '../nucleons/types';
 import { useColorRoles } from '../../theme/colorSystem';
 import IconNucleon from '../nucleons/IconNucleon';
 import useOnLinkPress from '../../hooks/useOnLinkPress';
@@ -23,49 +23,52 @@ type TextProps = Omit<TextRoleNucleonProps, 'role'>;
 
 function BodyHyperlinkAtom(props: TextProps) {
   const { hyperlinkColor } = useColorRoles();
-  return <TextRoleNucleon {...props} color={hyperlinkColor} role="hyperlink" />;
-}
-
-function BodyHtmlAttributeRef(props: TextProps) {
-  return <BodyHyperlinkAtom {...props} />;
-}
-
-// TODO refactor onLinkPress
-function BodyHtmlElementRef({
-  children,
-  ...props
-}: Omit<TextProps, 'children'> & { children: string }) {
-  const onLinkPress = useOnLinkPress();
   return (
-    <BodyHyperlinkAtom
-      {...props}
-      onPress={(e) =>
-        onLinkPress(
-          e,
-          `https://developer.mozilla.org/docs/Web/HTML/Element/${children}`,
-          {},
-          '_blank'
-        )
-      }>
+    <TextRoleNucleon {...props} color={hyperlinkColor} role="bodyInlineCode" />
+  );
+}
+
+function BodyRefHtmlAttribute(props: PropsWithStringChild) {
+  return <TextRoleNucleon role="bodyInlineCode" {...props} />;
+}
+
+function BodyRefHtmlElement({ children, ...props }: PropsWithStringChild) {
+  const onLinkPress = useOnLinkPress(`https://mdn.io/${children}`);
+  return (
+    <BodyHyperlinkAtom {...props} onPress={onLinkPress}>
       &lt;{children}&gt;
     </BodyHyperlinkAtom>
   );
 }
 
-function BodyJavaScriptSymbolAtom({ name }: { name: string }) {
-  return <BodyHyperlinkAtom>{name}</BodyHyperlinkAtom>;
+function BodyRefJSSymbolAtom({ children, ...props }: PropsWithStringChild) {
+  const onLinkPress = useOnLinkPress(`https://mdn.io/${children}`);
+  return (
+    <BodyHyperlinkAtom {...props} onPress={onLinkPress}>
+      {children}
+    </BodyHyperlinkAtom>
+  );
 }
 
-function BodyRenderHtmlPropRef({ name }: { name: keyof RenderHTMLProps }) {
-  return <BodyHyperlinkAtom>{name}</BodyHyperlinkAtom>;
+function BodyRefRenderHtmlProp({
+  propName,
+  ...props
+}: Omit<TextProps, 'children'> & { propName: keyof RenderHTMLProps }) {
+  return <BodyHyperlinkAtom {...props}>{propName}</BodyHyperlinkAtom>;
 }
 
-function BodyReactNativeExportRef({
-  name
-}: {
-  name: keyof typeof ReactNative;
-}) {
-  return <BodyHyperlinkAtom>{name}</BodyHyperlinkAtom>;
+function BodyRefReactNativeExport({
+  children,
+  ...props
+}: PropsWithStringChild) {
+  const onLinkPress = useOnLinkPress(
+    `https://reactnative.dev/docs/${children}`
+  );
+  return (
+    <BodyHyperlinkAtom {...props} onPress={onLinkPress}>
+      {children}
+    </BodyHyperlinkAtom>
+  );
 }
 
 const inlineExample = `<img
@@ -102,7 +105,7 @@ function AttributesSupportTable({
             <Stack horizontal space={4} key={attr}>
               <ReactNative.View
                 style={{ width: 150, justifyContent: 'center', flexGrow: 1 }}>
-                <TextRoleNucleon role="hyperlink">{attr}</TextRoleNucleon>
+                <TextRoleNucleon role="bodyInlineCode">{attr}</TextRoleNucleon>
               </ReactNative.View>
               <ReactNative.View
                 style={{ width: 100, justifyContent: 'center', flexGrow: 1 }}>
@@ -128,8 +131,8 @@ export default function Images() {
             imageSource={require('../../../assets/images/soragrit-wongsa-pictures.jpg')}>
             <BodyParagraphAtom>
               This article covers the{' '}
-              <BodyHtmlElementRef>img</BodyHtmlElementRef> element renderer.{' '}
-              <BodyHtmlElementRef>picture</BodyHtmlElementRef> is not yet
+              <BodyRefHtmlElement>img</BodyRefHtmlElement> element renderer.{' '}
+              <BodyRefHtmlElement>picture</BodyRefHtmlElement> is not yet
               supported.
             </BodyParagraphAtom>
             <AttributesSupportTable
@@ -166,9 +169,11 @@ export default function Images() {
             </BodyParagraphAtom>
             <BodyTipBoxAtom>
               You are strongly advised to provide a{' '}
-              <BodyRenderHtmlPropRef name="contentWidth" /> property from{' '}
-              <BodyReactNativeExportRef name="useWindowDimensions" /> official
-              hook to help this component handle the scaling.
+              <BodyRefRenderHtmlProp propName="contentWidth" /> property from{' '}
+              <BodyRefReactNativeExport>
+                useWindowDimensions
+              </BodyRefReactNativeExport>{' '}
+              official hook to help this component handle the scaling.
             </BodyTipBoxAtom>
             <RenderHtmlCard
               caption={
@@ -179,11 +184,12 @@ export default function Images() {
             />
             <BodyParagraphAtom>
               The next image will be sized automatically thanks to the{' '}
-              <BodyRenderHtmlPropRef name="contentWidth" /> and{' '}
-              <BodyRenderHtmlPropRef name="computeEmbeddedMaxWidth" /> props.
-              The latter allows you to set the maximum width from{' '}
-              <BodyRenderHtmlPropRef name="contentWidth" />, or disabling
-              scaling by returning <BodyJavaScriptSymbolAtom name="Infinity" />.
+              <BodyRefRenderHtmlProp propName="contentWidth" /> and{' '}
+              <BodyRefRenderHtmlProp propName="computeEmbeddedMaxWidth" />{' '}
+              props. The latter allows you to set the maximum width from{' '}
+              <BodyRefRenderHtmlProp propName="contentWidth" />, or disabling
+              scaling by returning{' '}
+              <BodyRefJSSymbolAtom>Infinity</BodyRefJSSymbolAtom>.
             </BodyParagraphAtom>
             <RenderHtmlCard
               caption={
@@ -197,10 +203,10 @@ export default function Images() {
             <BodyParagraphAtom>
               Similarly to browsers, this library will place a print box before
               fetching image dimensions when both{' '}
-              <BodyHtmlAttributeRef>width</BodyHtmlAttributeRef> and{' '}
-              <BodyHtmlAttributeRef>height</BodyHtmlAttributeRef> attributes are
+              <BodyRefHtmlAttribute>width</BodyRefHtmlAttribute> and{' '}
+              <BodyRefHtmlAttribute>height</BodyRefHtmlAttribute> attributes are
               provided, or the two dimensions are set in the{' '}
-              <BodyHtmlAttributeRef>style</BodyHtmlAttributeRef> attribute. This
+              <BodyRefHtmlAttribute>style</BodyRefHtmlAttribute> attribute. This
               is great to avoid images "jumping" from zero height to their
               computed height, and is a hint to good web design.
             </BodyParagraphAtom>

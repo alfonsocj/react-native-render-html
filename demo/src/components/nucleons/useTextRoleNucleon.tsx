@@ -1,7 +1,7 @@
 import { TextStyle } from 'react-native';
 
 export type TextRole =
-  // Non Body roles
+  // UI roles
   | 'headerTitle'
   | 'headerSubtitle'
   | 'uiLabel'
@@ -11,18 +11,20 @@ export type TextRole =
   | 'source'
   | 'sectionOutline'
   | 'footer'
+  | 'uiHyperlink'
   // Body roles
   | 'body'
   | 'bodyTable'
   | 'bodyTableHeader'
   | 'bodyHeader1'
-  | 'hyperlink'
+  | 'bodyInlineCode'
   | 'caption';
 
 const FONT_BODY = 'Merriweather_400Regular';
 const FONT_BODY_BOLD = 'Merriweather_700Bold';
 const FONT_BODY_ITALIC = 'Merriweather_400Regular_Italic';
 const FONT_MONO = 'IBMPlexMono_400Regular';
+const FONT_MONO_ITALIC = 'IBMPlexMono_400Regular_Italic';
 const FONT_UI = 'Merriweather_400Regular';
 
 const roleDefs: Record<
@@ -43,11 +45,12 @@ const roleDefs: Record<
   uiDescription: { fontSize: 11, fontFamily: FONT_UI },
   uiLabel: { fontSize: 14, fontFamily: FONT_UI },
   uiMono: { fontSize: 14, fontFamily: FONT_MONO },
+  uiHyperlink: { fontSize: 5, fontFamily: FONT_MONO_ITALIC },
   footer: { fontSize: 11, fontFamily: FONT_MONO },
   //@ts-expect-error
   html: { fontSize: 14 },
   //@ts-expect-error
-  hyperlink: { fontFamily: FONT_MONO },
+  bodyInlineCode: { fontFamily: FONT_MONO_ITALIC },
   sectionOutline: {
     fontSize: 11,
     fontFamily: FONT_UI,

@@ -6,7 +6,6 @@ import React, {
 } from 'react';
 import { StyleSheet } from 'react-native';
 import { Linking, View } from 'react-native';
-import { RenderHTMLProps } from 'react-native-render-html';
 import onLinkPressContext from '../state/onLinkPressContext';
 import UISnackbarAtom, { UISnackbarAtomProps } from './UISnackbarAtom';
 import { TextRoleNucleonProps } from './nucleons/useTextRoleNucleon';
@@ -16,19 +15,16 @@ const styles = StyleSheet.create({
 });
 
 const textProps: TextRoleNucleonProps = {
-  role: 'hyperlink'
+  role: 'bodyInlineCode'
 };
 
 export default function UILinkPressDisplayMolecule({
   children
 }: PropsWithChildren<{}>) {
   const [url, setUrl] = useState<string | null>(null);
-  const onLinkPress = useCallback<Required<RenderHTMLProps>['onLinkPress']>(
-    (evt, href) => {
-      setUrl(href);
-    },
-    []
-  );
+  const onLinkPress = useCallback((href) => {
+    setUrl(href);
+  }, []);
   const action: UISnackbarAtomProps['action'] = useMemo(
     () => ({
       label: 'browse',
@@ -42,6 +38,7 @@ export default function UILinkPressDisplayMolecule({
     <onLinkPressContext.Provider value={onLinkPress}>
       <View style={styles.container}>{children}</View>
       <UISnackbarAtom
+        role="uiHyperlink"
         visible={url !== null}
         action={action}
         textProps={textProps}

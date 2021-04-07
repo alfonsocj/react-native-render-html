@@ -227,9 +227,9 @@ export default function Lists() {
           <HtmlElDisplayAtom name="ol" /> elements react to varying style */}
           constraints. The renderer for both is the same. The style of the
           prefix (or marker in CSS terminology) is determined by{' '}
-          <TextRoleNucleon role="hyperlink">list-style-type</TextRoleNucleon>{' '}
+          <TextRoleNucleon role="bodyInlineCode">list-style-type</TextRoleNucleon>{' '}
           CSS rule, camel-cased{' '}
-          <TextRoleNucleon role="hyperlink">listStyleType</TextRoleNucleon>.
+          <TextRoleNucleon role="bodyInlineCode">listStyleType</TextRoleNucleon>.
         </TextRoleNucleon>
       </PlaygroundDescription>
     </PlaygroundTemplate>

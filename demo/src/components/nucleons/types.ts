@@ -1,4 +1,4 @@
-import { StyleProp, ViewStyle } from 'react-native';
+import { StyleProp, TextProps, ViewStyle } from 'react-native';
 
 export interface SelectorProps<V extends string | number> {
   selectedValue: V;
@@ -18,3 +18,8 @@ export interface SelectorListProps<V extends string | number>
 export type PropsWithStyle<P> = {
   style?: StyleProp<ViewStyle>;
 } & P;
+
+export type PropsWithStringChild<Target = TextProps> = Omit<
+  Target,
+  'children'
+> & { children: string };

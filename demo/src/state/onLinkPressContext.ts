@@ -1,8 +1,7 @@
 import { createContext } from 'react';
-import { RenderHTMLProps } from 'react-native-render-html';
 
-const onLinkPressContext = createContext<
-  Required<RenderHTMLProps>['onLinkPress']
->(() => undefined as void);
+const onLinkPressContext = createContext<(uri: string) => void>(
+  () => undefined as void
+);
 
 export default onLinkPressContext;
