@@ -1,4 +1,5 @@
 import Color from 'color';
+import { Colors } from 'react-native-paper';
 import alphaMixColor from '../theme/alphaMixColor';
 import { ColorPrimitivesDeclaration, ColorRoles } from '../theme/colorSystem';
 import shiftColor from './shiftColor';
@@ -21,6 +22,7 @@ export default function generateColorRoles({
   const inactiveBackground = 'transparent';
   const accentColor = primitives.accent.color;
   const secondaryContent = Color(surfaceContent).alpha(0.5).string();
+  const isDark = Color(surfaceColor).isDark();
   return {
     name,
     surface: {
@@ -29,6 +31,8 @@ export default function generateColorRoles({
       content: surfaceContent,
       scrim: primitives.scrim
     },
+    hyperlinkColor: isDark ? Colors.blue300 : Colors.blue700,
+    tipColor: isDark ? Colors.amber300 : Colors.amber700,
     sheetHandle: {
       slot: shiftColor(surfaceColor, 1, 0.3),
       background: shiftColor(surfaceColor, 0.3, 0.07)

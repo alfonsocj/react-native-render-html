@@ -3,7 +3,7 @@ import React, { ComponentProps, memo, ReactNode } from 'react';
 import { Stack, useSpacing } from '@mobily/stacks';
 import { ViewStyle, StyleProp, View, AccessibilityProps } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
-import BoxNucleon from '../nucleons/BoxNucleon';
+import BoxNucleon, { BoxNucleonProps } from '../nucleons/BoxNucleon';
 import TextRoleNucleon from '../nucleons/TextRoleNucleon';
 import contentWidthContextNucleon from '../nucleons/contentWidthContextNucleon';
 import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
@@ -28,7 +28,7 @@ export interface TideAtomProps extends AccessibilityProps {
 const ICON_SIZE = 25;
 const RIGHT_WIDTH = 60;
 const COMPONENT_PADDING = 2;
-const INLINE_SPACING = 0;
+const INLINE_SPACING = 2;
 
 function ConditionalTouchable({ children, onPress, ...other }: any) {
   const { pressable } = useColorRoles();
@@ -46,9 +46,13 @@ function ConditionalTouchable({ children, onPress, ...other }: any) {
   );
 }
 
-function LefIcon({ color, name }: Pick<IconNucleonProps, 'name' | 'color'>) {
+function LefIcon({
+  color,
+  name,
+  ...nucProps
+}: Pick<IconNucleonProps, 'name' | 'color'> & BoxNucleonProps<any>) {
   return (
-    <BoxNucleon alignY="center">
+    <BoxNucleon alignY="center" {...nucProps}>
       <IconNucleon color={color} size={ICON_SIZE} name={name} />
     </BoxNucleon>
   );
@@ -56,10 +60,15 @@ function LefIcon({ color, name }: Pick<IconNucleonProps, 'name' | 'color'>) {
 
 function Right({
   right,
-  rightIconName
-}: Pick<TideAtomProps, 'right' | 'rightIconName'>) {
+  rightIconName,
+  ...nucProps
+}: Pick<TideAtomProps, 'right' | 'rightIconName'> & BoxNucleonProps<any>) {
   return (
-    <BoxNucleon alignX="center" alignY="center" style={{ width: RIGHT_WIDTH }}>
+    <BoxNucleon
+      alignX="center"
+      alignY="center"
+      {...nucProps}
+      style={[{ width: RIGHT_WIDTH }, nucProps.style]}>
       {typeof right === 'function'
         ? right({ width: RIGHT_WIDTH })
         : right ||
@@ -143,7 +152,6 @@ const TideAtom = memo(function TideAtom({
         }
       ]}>
       <ConditionalTouchable onPress={onPress} {...accessibilityProps}>
-        {/*FIXME replace with Stack+inline to inject spaces hz, waifor https://github.com/mobily/stacks/issues/16 */}
         <View
           style={{
             flexGrow: 1,
@@ -152,7 +160,13 @@ const TideAtom = memo(function TideAtom({
             flexDirection: 'row',
             padding: useSpacing(COMPONENT_PADDING)
           }}>
-          {displayLeft && <LefIcon color={iconColor} name={leftIconName!} />}
+          {displayLeft && (
+            <LefIcon
+              marginRight={INLINE_SPACING}
+              color={iconColor}
+              name={leftIconName!}
+            />
+          )}
           <BoxNucleon
             style={{
               flexGrow: 1
@@ -167,7 +181,11 @@ const TideAtom = memo(function TideAtom({
             </Stack>
           </BoxNucleon>
           {displayRight && (
-            <Right right={right} rightIconName={rightIconName} />
+            <Right
+              marginLeft={INLINE_SPACING}
+              right={right}
+              rightIconName={rightIconName}
+            />
           )}
         </View>
       </ConditionalTouchable>

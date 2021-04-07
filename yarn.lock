@@ -2042,6 +2042,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@expo-google-fonts/merriweather@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@expo-google-fonts/merriweather@npm:0.1.0"
+  checksum: 8c75a3cb0a23bddeecdea240d0f4b2783693239574ca3b7aa0a170eea192afe7858c60cc466aa3c08b6bb53f64d5c2653a7ee6bab46b4d7f0a79d68b4e1de100
+  languageName: node
+  linkType: hard
+
 "@expo-google-fonts/source-code-pro@npm:^0.1.0":
   version: 0.1.0
   resolution: "@expo-google-fonts/source-code-pro@npm:0.1.0"
@@ -7172,6 +7179,7 @@ __metadata:
     "@expo-google-fonts/ibm-plex-serif": ^0.1.0
     "@expo-google-fonts/josefin-sans": ^0.1.0
     "@expo-google-fonts/lora": ^0.1.0
+    "@expo-google-fonts/merriweather": ^0.1.0
     "@expo-google-fonts/source-code-pro": ^0.1.0
     "@expo-google-fonts/space-mono": ^0.1.0
     "@expo-google-fonts/work-sans": ^0.1.0

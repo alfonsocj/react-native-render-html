@@ -14,23 +14,32 @@ export type TextRole =
   | 'footer'
   // Body roles
   | 'body'
+  | 'bodyTable'
+  | 'bodyTableHeader'
   | 'bodyHeader1'
   | 'hyperlink'
   | 'caption';
 
-const FONT_BODY = 'WorkSans_400Regular';
-const FONT_BODY_ITALIC = 'WorkSans_400Regular_Italic';
+const FONT_BODY = 'Merriweather_400Regular';
+const FONT_BODY_BOLD = 'Merriweather_700Bold';
+const FONT_BODY_ITALIC = 'Merriweather_400Regular_Italic';
 const FONT_MONO = 'IBMPlexMono_400Regular';
-const FONT_UI = 'WorkSans_400Regular';
+const FONT_UI = 'Merriweather_400Regular';
 
 const roleDefs: Record<
   TextRole,
   { fontSize: number; fontFamily: string } & TextStyle
 > = {
-  headerTitle: { fontSize: 22, fontFamily: FONT_UI },
+  headerTitle: { fontSize: 22, fontFamily: FONT_UI, letterSpacing: 2 },
   headerSubtitle: { fontSize: 14, fontFamily: FONT_MONO },
-  body: { fontSize: 14, fontFamily: FONT_BODY, lineHeight: 21 },
-  bodyHeader1: { fontSize: 28, fontFamily: FONT_BODY, letterSpacing: 2 },
+  body: { fontSize: 16, fontFamily: FONT_BODY, lineHeight: 26 },
+  bodyTable: { fontSize: 14, fontFamily: FONT_BODY },
+  bodyTableHeader: { fontSize: 14, fontFamily: FONT_BODY_BOLD },
+  bodyHeader1: {
+    fontSize: 24,
+    fontFamily: FONT_BODY_ITALIC,
+    letterSpacing: 1.5
+  },
   caption: { fontSize: 11, fontFamily: FONT_BODY_ITALIC },
   uiDescription: { fontSize: 11, fontFamily: FONT_UI },
   uiLabel: { fontSize: 14, fontFamily: FONT_UI },
@@ -38,7 +47,8 @@ const roleDefs: Record<
   footer: { fontSize: 11, fontFamily: FONT_MONO },
   //@ts-expect-error
   html: { fontSize: 14 },
-  hyperlink: { fontSize: 14, fontFamily: FONT_MONO },
+  //@ts-expect-error
+  hyperlink: { fontFamily: FONT_MONO },
   sectionOutline: {
     fontSize: 11,
     fontFamily: FONT_UI,

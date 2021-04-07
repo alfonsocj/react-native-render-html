@@ -32,7 +32,8 @@ export interface ColorRoles {
     secondaryContent: string;
     scrim: string;
   };
-
+  hyperlinkColor: string;
+  tipColor: string;
   /**
    * Used for horizontal lines, list separators, dividers...
    */
