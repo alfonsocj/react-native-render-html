@@ -174,6 +174,17 @@ function FontFamilyTide(props: any) {
   );
 }
 
+function ColorTide(props: any) {
+  return (
+    <NavTideMolecule
+      leftIconName="palette"
+      label="Color"
+      route="PlaygroundColor"
+      {...props}
+    />
+  );
+}
+
 function OrderedListTypeTide(props: any) {
   return (
     <NavTideMolecule
@@ -206,6 +217,7 @@ export default function Lists() {
           <BoldTide />
           <ItalicTide />
           <FontFamilyTide />
+          <ColorTide />
           <OrderedListTypeTide />
           <UnorderedListTypeTide />
         </TideListAtom>

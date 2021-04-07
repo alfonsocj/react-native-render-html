@@ -37,11 +37,13 @@ export default function PlaygroundDisplay({
     isBold,
     lineHeight,
     olListType,
-    ulListType
+    ulListType,
+    color
   } = usePlaygroundState();
   const renderHtmlProps: RenderHTMLProps = useMemo(
     () => ({
       baseStyle: {
+        color,
         fontSize,
         lineHeight: lineHeight * fontSize,
         fontFamily,
@@ -61,6 +63,7 @@ export default function PlaygroundDisplay({
       debug: true
     }),
     [
+      color,
       fontSize,
       lineHeight,
       fontFamily,

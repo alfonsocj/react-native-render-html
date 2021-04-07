@@ -3,11 +3,11 @@ import React, { ComponentProps, useMemo } from 'react';
 import { View } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useColorRoles } from '../../theme/colorSystem';
+import { useColorRoles } from '../theme/colorSystem';
 
-export type AppbarHeaderAtomProps = ComponentProps<typeof Appbar.Header>;
+export type UIAppbarHeaderAtomProps = ComponentProps<typeof Appbar.Header>;
 
-export default function AppbarHeaderAtom(props: AppbarHeaderAtomProps) {
+export default function UIAppbarHeaderAtom(props: UIAppbarHeaderAtomProps) {
   const { surface, statusBarBackground } = useColorRoles();
   const { top } = useSafeAreaInsets();
   const appbarStyles = useMemo(

@@ -4,9 +4,9 @@ import BottomSheet, {
   BottomSheetBackgroundProps,
   BottomSheetProps
 } from '@gorhom/bottom-sheet';
-import gestureHandlerContextNucleon from '../nucleons/gestureHandlerContextNucleon';
-import useSurfaceBackgroundStyleNucleon from '../nucleons/useSurfaceBackgroundStyleNucleon';
-import { useColorRoles } from '../../theme/colorSystem';
+import gestureHandlerContextNucleon from './nucleons/gestureHandlerContextNucleon';
+import useSurfaceBackgroundStyleNucleon from './nucleons/useSurfaceBackgroundStyleNucleon';
+import { useColorRoles } from '../theme/colorSystem';
 
 const RADIUS = 15;
 
@@ -48,7 +48,7 @@ const Background = ({ style }: BottomSheetBackgroundProps) => {
   return <View style={[style, styles.radiusTop, backdropStyles]} />;
 };
 
-export default function BottomSheetAtom({
+export default function UIBottomSheetAtom({
   snapPoints,
   children,
   ...props

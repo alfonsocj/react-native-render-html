@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 // TODO use spacing
 
-export default function BidirectionalScrollViewAtom({
+export default function UIBidirectionalScrollViewAtom({
   children,
   padding
 }: PropsWithChildren<{ padding?: number }>) {

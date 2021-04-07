@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Appbar } from 'react-native-paper';
-import { useColorRoles } from '../../theme/colorSystem';
-import useTextRoleNucleon from '../nucleons/useTextRoleNucleon';
+import { useColorRoles } from '../theme/colorSystem';
+import useTextRoleNucleon from './nucleons/useTextRoleNucleon';
 
-export type AppbarContentAtomProps = Omit<
+export type UIAppbarContentAtomProps = Omit<
   React.ComponentProps<typeof Appbar.Content>,
   'subtitleStyle' | 'color'
 >;
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function AppbarContentAtom(props: AppbarContentAtomProps) {
+export default function UIAppbarContentAtom(props: UIAppbarContentAtomProps) {
   const { surface } = useColorRoles();
   const subtitleStyle = useTextRoleNucleon({
     role: 'headerSubtitle',

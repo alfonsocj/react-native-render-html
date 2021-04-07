@@ -1,7 +1,7 @@
 import { DrawerHeaderProps } from '@react-navigation/drawer/lib/typescript/src/types';
 import React from 'react';
-import AppbarActionAtom from '../../components/atoms/AppbarActionAtom';
-import AppbarContentAtom from '../../components/atoms/AppbarContentAtom';
+import UIAppbarActionAtom from '../../components/UIAppbarActionAtom';
+import UIAppbarContentAtom from '../../components/UIAppbarContentAtom';
 import HeaderMolecule from '../../components/molecules/HeaderMolecule';
 
 export type StandardHeaderOrganismProps = DrawerHeaderProps;
@@ -18,8 +18,8 @@ export default function DrawerPlaygroundHeader({
   );
   return (
     <HeaderMolecule>
-      <AppbarActionAtom icon="menu" onPress={onMenuPress} />
-      <AppbarContentAtom title={options.title} />
+      <UIAppbarActionAtom icon="menu" onPress={onMenuPress} />
+      <UIAppbarContentAtom title={options.title} />
     </HeaderMolecule>
   );
 }

@@ -1,7 +1,7 @@
 import React, { ReactElement, useMemo } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { TNode } from 'react-native-render-html';
-import BottomSheetAtom from '../../atoms/BottomSheetAtom';
+import UIBottomSheetAtom from '../../UIBottomSheetAtom';
 import BoxNucleon from '../../nucleons/BoxNucleon';
 import { demoStateContext } from './contexts';
 import { usePlaygroundSource } from './playgroundStore';
@@ -25,7 +25,7 @@ export type SheetProps = {
 export default function Sheet({ ttree, children, style }: SheetProps) {
   const html = usePlaygroundSource().source;
   return (
-    <BottomSheetAtom
+    <UIBottomSheetAtom
       enableContentPanningGesture={true}
       snapPoints={sheetSnapPoints}>
       <demoStateContext.Provider
@@ -36,6 +36,6 @@ export default function Sheet({ ttree, children, style }: SheetProps) {
           </SheetChildrenRenderer>
         </BoxNucleon>
       </demoStateContext.Provider>
-    </BottomSheetAtom>
+    </UIBottomSheetAtom>
   );
 }

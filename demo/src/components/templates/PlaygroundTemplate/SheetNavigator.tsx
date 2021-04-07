@@ -14,6 +14,7 @@ import SheetRouteFontFamily from './SheetRouteFontFamily';
 import SheetRouteOlListType from './SheetRouteOlListType';
 import SheetRouteUlListType from './SheetRouteUlListType';
 import useSurfaceBackgroundStyleNucleon from '../../nucleons/useSurfaceBackgroundStyleNucleon';
+import SheetRouteColor from './SheetRouteColor';
 
 LogBox.ignoreLogs([
   "Accessing the 'state' property of the 'route' object is not supported."
@@ -71,6 +72,11 @@ export default function SheetNavigator() {
         name="PlaygroundUlListType"
         options={{ title: 'Ul List Type' }}
         component={SheetRouteUlListType}
+      />
+      <SheetStack.Screen
+        name="PlaygroundColor"
+        options={{ title: 'Color' }}
+        component={SheetRouteColor}
       />
     </SheetStack.Navigator>
   );

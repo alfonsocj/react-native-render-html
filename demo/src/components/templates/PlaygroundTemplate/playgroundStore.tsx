@@ -32,6 +32,7 @@ type UlListType = typeof ulListTypes[number];
 
 export interface PlaygroundMutableState<Sk extends string> {
   fontSize: number;
+  color: string | undefined;
   lineHeight: number;
   olListType: OlListType;
   ulListType: UlListType;
@@ -79,6 +80,7 @@ function getInitialState<Sk extends string>({
     lineHeight: 1.2,
     olListType: 'default',
     ulListType: 'default',
+    color: undefined,
     fontFamily: Platform.select({
       android: 'Roboto',
       ios: 'San Francisco',

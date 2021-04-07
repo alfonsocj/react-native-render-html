@@ -7,10 +7,10 @@ import {
 } from '../../state/store';
 import filteredSnippets, { SnippetId } from '../../../snippets';
 import { Linking, Platform } from 'react-native';
-import AppbarActionAtom from '../../components/atoms/AppbarActionAtom';
+import UIAppbarActionAtom from '../../components/UIAppbarActionAtom';
 import MenuAtom from '../../components/atoms/MenuAtom';
 import MenuItemAtom from '../../components/atoms/MenuItemAtom';
-import AppbarContentAtom from '../../components/atoms/AppbarContentAtom';
+import UIAppbarContentAtom from '../../components/UIAppbarContentAtom';
 import HeaderMolecule from '../../components/molecules/HeaderMolecule';
 import { DrawerHeaderProps } from '@react-navigation/drawer/lib/typescript/src/types';
 import CardColorRolesProvider from '../../croles/CardColorRolesProvider';
@@ -91,7 +91,7 @@ function DrawerSnippetContent({ scene, snippetId }: DrawerSnippetHeaderProps) {
     [navigation]
   );
   const menuAnchor = (
-    <AppbarActionAtom
+    <UIAppbarActionAtom
       color={pressable.tint}
       icon={Platform.select({
         ios: 'dots-horizontal',
@@ -102,8 +102,8 @@ function DrawerSnippetContent({ scene, snippetId }: DrawerSnippetHeaderProps) {
   );
   return (
     <>
-      <AppbarActionAtom icon="menu" onPress={onMenuPress} />
-      <AppbarContentAtom
+      <UIAppbarActionAtom icon="menu" onPress={onMenuPress} />
+      <UIAppbarContentAtom
         subtitle={`(${legacyMode ? 'L' : 'F'}) ${snippetSource}`}
         title={options.title}
       />
