@@ -1,12 +1,16 @@
-import React, { ComponentProps, ReactNode } from 'react';
-import { Inline, Stack, useSpacing } from '@mobily/stacks';
+/* eslint-disable react-native/no-inline-styles */
+import React, { ComponentProps, memo, ReactNode } from 'react';
+import { Stack, useSpacing } from '@mobily/stacks';
 import { ViewStyle, StyleProp, View, AccessibilityProps } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 import BoxNucleon from '../nucleons/BoxNucleon';
 import TextRoleNucleon from '../nucleons/TextRoleNucleon';
 import contentWidthContextNucleon from '../nucleons/contentWidthContextNucleon';
 import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
-import IconNucleon, { IconName } from '../nucleons/IconNucleon';
+import IconNucleon, {
+  IconName,
+  IconNucleonProps
+} from '../nucleons/IconNucleon';
 import GestureHandlerAdapterNucleon from '../nucleons/GestureHandlerAdapterNucleon';
 import { useColorRoles } from '../../theme/colorSystem';
 
@@ -16,15 +20,15 @@ export interface TideAtomProps extends AccessibilityProps {
   leftIconName?: IconName;
   rightIconName?: IconName;
   active?: boolean;
-  right?: ReactNode | (() => ReactNode);
+  right?: ReactNode | (({ width }: { width: number }) => ReactNode);
   bottom?: ReactNode | (() => ReactNode);
   onPress?: ComponentProps<typeof TouchableRipple>['onPress'];
 }
 
 const ICON_SIZE = 25;
-const RIGHT_WIDTH = 40;
+const RIGHT_WIDTH = 60;
 const COMPONENT_PADDING = 2;
-const INLINE_SPACING = 4;
+const INLINE_SPACING = 0;
 
 function ConditionalTouchable({ children, onPress, ...other }: any) {
   const { pressable } = useColorRoles();
@@ -42,7 +46,58 @@ function ConditionalTouchable({ children, onPress, ...other }: any) {
   );
 }
 
-export default function TideAtom({
+function LefIcon({ color, name }: Pick<IconNucleonProps, 'name' | 'color'>) {
+  return (
+    <BoxNucleon alignY="center">
+      <IconNucleon color={color} size={ICON_SIZE} name={name} />
+    </BoxNucleon>
+  );
+}
+
+function Right({
+  right,
+  rightIconName
+}: Pick<TideAtomProps, 'right' | 'rightIconName'>) {
+  return (
+    <BoxNucleon alignX="center" alignY="center" style={{ width: RIGHT_WIDTH }}>
+      {typeof right === 'function'
+        ? right({ width: RIGHT_WIDTH })
+        : right ||
+          (rightIconName ? (
+            <IconNucleon size={ICON_SIZE} name={rightIconName} />
+          ) : null)}
+    </BoxNucleon>
+  );
+}
+
+function Title({ title, color }: { color: string; title: string }) {
+  return (
+    <TextRoleNucleon
+      style={{ flexGrow: 1, flexShrink: 0 }}
+      role="uiLabel"
+      color={color}>
+      {title}
+    </TextRoleNucleon>
+  );
+}
+
+function CenterBottom({
+  availableWidth,
+  bottom
+}: {
+  availableWidth: number;
+  bottom: TideAtomProps['bottom'];
+}) {
+  return (
+    <View style={{ width: availableWidth }}>
+      <contentWidthContextNucleon.Provider value={availableWidth}>
+        {typeof bottom === 'function' ? bottom() : bottom}
+      </contentWidthContextNucleon.Provider>
+    </View>
+  );
+}
+
+const TideAtom = memo(function TideAtom({
   style,
   title,
   leftIconName,
@@ -58,7 +113,7 @@ export default function TideAtom({
   const displayRight = !!(right || rightIconName);
   const displayBottom = !!bottom;
   const displayLeft = !!leftIconName;
-  const inlineSpaces = Number(displayRight) + 1;
+  const inlineSpaces = Number(displayRight) + Number(displayLeft);
   const hzSpace = useSpacing(
     (COMPONENT_PADDING + INLINE_SPACING * inlineSpaces) * 2
   );
@@ -74,9 +129,9 @@ export default function TideAtom({
     : pressable.tint;
   const iconColor =
     isSelectable && active ? selectable.activeTint : softIconColor;
-  const bottomContentWidth =
+  const middleWidth =
     useNuclearContentWidth() -
-    ICON_SIZE -
+    ICON_SIZE * Number(displayLeft) -
     hzSpace -
     Number(displayRight) * RIGHT_WIDTH;
   return (
@@ -88,45 +143,38 @@ export default function TideAtom({
         }
       ]}>
       <ConditionalTouchable onPress={onPress} {...accessibilityProps}>
-        <BoxNucleon padding={COMPONENT_PADDING}>
-          <Inline space={INLINE_SPACING}>
-            {displayLeft && (
-              <BoxNucleon alignY="center">
-                <IconNucleon
-                  color={iconColor}
-                  size={ICON_SIZE}
-                  name={leftIconName!}
-                />
-              </BoxNucleon>
-            )}
-            <BoxNucleon alignY="center" grow wrap="nowrap">
-              <Stack space={2}>
-                <TextRoleNucleon role="uiLabel" color={contentColor}>
-                  {title}
-                </TextRoleNucleon>
-                {displayBottom && (
-                  <View style={{ width: bottomContentWidth }}>
-                    <contentWidthContextNucleon.Provider
-                      value={bottomContentWidth}>
-                      {typeof bottom === 'function' ? bottom() : bottom}
-                    </contentWidthContextNucleon.Provider>
-                  </View>
-                )}
-              </Stack>
-            </BoxNucleon>
-            {displayRight && (
-              <BoxNucleon alignY="center" style={{ width: RIGHT_WIDTH }}>
-                {typeof right === 'function'
-                  ? right()
-                  : right ||
-                    (rightIconName ? (
-                      <IconNucleon size={ICON_SIZE} name={rightIconName} />
-                    ) : null)}
-              </BoxNucleon>
-            )}
-          </Inline>
-        </BoxNucleon>
+        {/*FIXME replace with Stack+inline to inject spaces hz, waifor https://github.com/mobily/stacks/issues/16 */}
+        <View
+          style={{
+            flexGrow: 1,
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            flexDirection: 'row',
+            padding: useSpacing(COMPONENT_PADDING)
+          }}>
+          {displayLeft && <LefIcon color={iconColor} name={leftIconName!} />}
+          <BoxNucleon
+            style={{
+              flexGrow: 1
+            }}
+            alignY="center"
+            wrap="nowrap">
+            <Stack style={{ flexGrow: 1, justifyContent: 'center' }} space={1}>
+              <Title color={contentColor} title={title} />
+              {displayBottom && (
+                <CenterBottom availableWidth={middleWidth} bottom={bottom} />
+              )}
+            </Stack>
+          </BoxNucleon>
+          {displayRight && (
+            <Right right={right} rightIconName={rightIconName} />
+          )}
+        </View>
       </ConditionalTouchable>
     </View>
   );
-}
+});
+
+TideAtom.displayName = 'MemoizedTideAtom';
+
+export default TideAtom;

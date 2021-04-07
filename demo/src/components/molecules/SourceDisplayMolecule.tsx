@@ -47,14 +47,13 @@ export default function SourceDisplayMolecule({
     (fs, maxLineNumberCharLength) => spacing + fs * maxLineNumberCharLength,
     [spacing]
   );
-  console.info(fontSize);
   return (
     <Highlighter
       {...otherProps}
       highlightJsStyle={
         colorScheme === 'dark' ? 'solarizedDark' : 'solarizedLight'
       }
-      fontSize={12}
+      fontSize={fontSize}
       fontFamily={fontFamily}
       lineStyle={{
         paddingHorizontal: spacing

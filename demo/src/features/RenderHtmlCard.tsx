@@ -22,7 +22,7 @@ export default function RenderHtmlCard({
   const borderWidth = 0;
   const { surface } = useColorRoles();
   const sourceDisplayStyle = {
-    backgroundColor: 'rgba(125,125,125,.1)',
+    backgroundColor: 'rgba(125,125,125,.0)',
     minWidth: contentWidth
   };
   return (

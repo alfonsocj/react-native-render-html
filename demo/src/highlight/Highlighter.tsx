@@ -102,8 +102,7 @@ function RenderSimpleNode({ node }: { node: SimpleNode }) {
   );
 }
 
-function RenderTree({ nodes }: { nodes: lowlight.HastNode[] }) {
-  const lines = generateLines(nodes);
+function RenderDocument({ lines }: { lines: SimpleNode[][] }) {
   return (
     <>
       {lines.map((l, i) =>
@@ -127,15 +126,18 @@ function Padding({
   lineNumberStyle,
   value
 }: {
-  lineNumberStyle: StyleProp<TextStyle>;
+  lineNumberStyle: TextStyle;
   value?: number;
 }) {
   const { showLineNumbers } = useContext(formattingSpecContext);
   if (!value) {
     return null;
   }
+  const { backgroundColor, width } = lineNumberStyle;
   return (
-    <Text style={[showLineNumbers && lineNumberStyle, { height: value }]} />
+    <Text
+      style={[showLineNumbers && { backgroundColor }, { height: value, width }]}
+    />
   );
 }
 
@@ -167,8 +169,10 @@ function HighlighterContent({
   lineNumberDisplayWidthComputer = defaultLineNumberDisplayWidthComputer,
   ...viewProps
 }: Omit<HighlighterProps, 'highlightJsStyle'>) {
-  const lines = content.split('\n').map((l) => highlight(language, l).value);
-  const tree = highlight(language, content).value;
+  const lines = useMemo(
+    () => generateLines(highlight(language, content).value),
+    [content, language]
+  );
   const { containerStylesheet } = useContext(highlighterStylesheetsContext);
   const syntheticLineNumberFontSize = lineNumberFontSize ?? fontSize;
   const syntheticLineNumberFontFamily = lineNumberFontFamily ?? fontFamily;
@@ -195,8 +199,8 @@ function HighlighterContent({
     lineNumberFormatter,
     lines.length
   ]);
-  const lineNumberStyle: StyleProp<TextStyle> = useMemo(() => {
-    return [
+  const lineNumberStyle: TextStyle = useMemo(() => {
+    return StyleSheet.flatten([
       containerStylesheet.text,
       {
         width: lineNumberWidth,
@@ -207,7 +211,7 @@ function HighlighterContent({
         flexShrink: 0
       },
       userLineNumberStyle
-    ];
+    ]);
   }, [
     containerStylesheet.text,
     lineNumberWidth,
@@ -216,22 +220,22 @@ function HighlighterContent({
     userLineNumberStyle
   ]);
   return (
-    <View
-      style={[containerStylesheet.container, styles.container, style]}
-      {...viewProps}>
-      <Padding lineNumberStyle={lineNumberStyle} value={paddingTop} />
-      <formattingSpecContext.Provider
-        value={{
-          clipLines,
-          lineNumberFormatter,
-          lineNumberStyle,
-          lineStyle,
-          showLineNumbers
-        }}>
-        <RenderTree nodes={tree} />
-      </formattingSpecContext.Provider>
-      <Padding lineNumberStyle={lineNumberStyle} value={paddingBottom} />
-    </View>
+    <formattingSpecContext.Provider
+      value={{
+        clipLines,
+        lineNumberFormatter,
+        lineNumberStyle,
+        lineStyle,
+        showLineNumbers
+      }}>
+      <View
+        style={[containerStylesheet.container, styles.container, style]}
+        {...viewProps}>
+        <Padding lineNumberStyle={lineNumberStyle} value={paddingTop} />
+        <RenderDocument lines={lines} />
+        <Padding lineNumberStyle={lineNumberStyle} value={paddingBottom} />
+      </View>
+    </formattingSpecContext.Provider>
   );
 }
 

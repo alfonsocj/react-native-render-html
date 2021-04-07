@@ -19,6 +19,7 @@ export type TextRole =
   | 'caption';
 
 const FONT_BODY = 'WorkSans_400Regular';
+const FONT_BODY_ITALIC = 'WorkSans_400Regular_Italic';
 const FONT_MONO = 'IBMPlexMono_400Regular';
 const FONT_UI = 'WorkSans_400Regular';
 
@@ -29,8 +30,8 @@ const roleDefs: Record<
   headerTitle: { fontSize: 22, fontFamily: FONT_UI },
   headerSubtitle: { fontSize: 14, fontFamily: FONT_MONO },
   body: { fontSize: 14, fontFamily: FONT_BODY, lineHeight: 21 },
-  bodyHeader1: { fontSize: 18, fontFamily: FONT_BODY, letterSpacing: 2 },
-  caption: { fontSize: 11, fontFamily: FONT_BODY },
+  bodyHeader1: { fontSize: 28, fontFamily: FONT_BODY, letterSpacing: 2 },
+  caption: { fontSize: 11, fontFamily: FONT_BODY_ITALIC },
   uiDescription: { fontSize: 11, fontFamily: FONT_UI },
   uiLabel: { fontSize: 14, fontFamily: FONT_UI },
   uiMono: { fontSize: 14, fontFamily: FONT_MONO },

@@ -21,7 +21,7 @@ export type SliderControlAtomProps = Pick<
 // Fix offsets, see https://github.com/callstack/react-native-slider/issues/258
 function getFixedStyle(contentWidth: number) {
   const offsetLeft = Platform.select({ android: -15, default: 0 });
-  const offsetRight = Platform.select({ android: -45, default: -45 });
+  const offsetRight = Platform.select({ android: -15, default: 0 });
   return {
     width: contentWidth + Math.abs(offsetLeft + offsetRight),
     marginLeft: offsetLeft,

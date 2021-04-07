@@ -3,7 +3,10 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 import { SpaceMono_400Regular } from '@expo-google-fonts/space-mono';
-import { WorkSans_400Regular } from '@expo-google-fonts/work-sans';
+import {
+  WorkSans_400Regular,
+  WorkSans_400Regular_Italic
+} from '@expo-google-fonts/work-sans';
 import { Lora_400Regular } from '@expo-google-fonts/lora';
 import { JosefinSans_200ExtraLight } from '@expo-google-fonts/josefin-sans';
 import {
@@ -29,9 +32,10 @@ export default function useCachedResources() {
         await Font.loadAsync({
           ...Ionicons.font,
           'space-mono': SpaceMono_400Regular,
-          WorkSans_400Regular: WorkSans_400Regular,
-          Lora_400Regular: Lora_400Regular,
-          JosefinSans_200ExtraLight: JosefinSans_200ExtraLight,
+          WorkSans_400Regular,
+          WorkSans_400Regular_Italic,
+          Lora_400Regular,
+          JosefinSans_200ExtraLight,
           SourceCodePro_400Regular,
           SourceCodePro_600SemiBold,
           IBMPlexSerif_400Regular,
