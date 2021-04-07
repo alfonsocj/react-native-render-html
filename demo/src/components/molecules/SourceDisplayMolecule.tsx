@@ -3,9 +3,10 @@ import React, { useCallback } from 'react';
 import Highlighter, { HighlighterProps } from '../../highlight/Highlighter';
 import { useColorScheme } from '../../state/ColorSchemeProvider';
 import { useColorPrimitives } from '../../theme/colorSystem';
-import useNuclearTextStyle, {
-  NuclearTextStyle
-} from '../nucleons/useNuclearTextStyle';
+import useTextRoleNucleon, {
+  TextRoleNucleonProps
+} from '../nucleons/useTextRoleNucleon';
+
 export interface SourceRenderer {
   htmlSource: string;
 }
@@ -16,7 +17,7 @@ export type SourceDisplayMoleculeProps = {
   language?: HighlighterProps['language'];
   paddingVertical?: number;
   clipLines?: boolean;
-  fontSize?: NuclearTextStyle['fontSize'];
+  textRole?: TextRoleNucleonProps['role'];
 } & Omit<
   HighlighterProps,
   | 'paddingTop'
@@ -31,28 +32,29 @@ export type SourceDisplayMoleculeProps = {
 
 export default function SourceDisplayMolecule({
   paddingVertical,
-  fontSize: nuclearFontSize = 'normal',
+  textRole = 'source',
   showLineNumbers = true,
   ...otherProps
 }: SourceDisplayMoleculeProps) {
   const { card } = useColorPrimitives();
   const spacing = useSpacing(2);
   const colorScheme = useColorScheme();
-  const { fontFamily, fontSize } = useNuclearTextStyle({
-    mono: true,
-    fontSize: nuclearFontSize
+  const { fontFamily, fontSize } = useTextRoleNucleon({
+    role: textRole
   });
-  const paddingVerticalNucleon = useSpacing(paddingVertical ?? 0);
+  const syntheticPaddingVertical = useSpacing(paddingVertical ?? 0);
   const lineNumberDisplayWidthComputer: HighlighterProps['lineNumberDisplayWidthComputer'] = useCallback(
     (fs, maxLineNumberCharLength) => spacing + fs * maxLineNumberCharLength,
     [spacing]
   );
+  console.info(fontSize);
   return (
     <Highlighter
+      {...otherProps}
       highlightJsStyle={
         colorScheme === 'dark' ? 'solarizedDark' : 'solarizedLight'
       }
-      fontSize={fontSize}
+      fontSize={12}
       fontFamily={fontFamily}
       lineStyle={{
         paddingHorizontal: spacing
@@ -61,11 +63,10 @@ export default function SourceDisplayMolecule({
         backgroundColor: card.color,
         color: card.content
       }}
-      paddingBottom={paddingVerticalNucleon}
-      paddingTop={paddingVerticalNucleon}
+      paddingBottom={syntheticPaddingVertical}
+      paddingTop={syntheticPaddingVertical}
       lineNumberDisplayWidthComputer={lineNumberDisplayWidthComputer}
       showLineNumbers={showLineNumbers}
-      {...otherProps}
     />
   );
 }

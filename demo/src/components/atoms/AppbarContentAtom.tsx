@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { useColorRoles } from '../../theme/colorSystem';
-import useNuclearTextStyle from '../nucleons/useNuclearTextStyle';
+import useTextRoleNucleon from '../nucleons/useTextRoleNucleon';
 
 export type AppbarContentAtomProps = Omit<
   React.ComponentProps<typeof Appbar.Content>,
@@ -17,14 +17,12 @@ const styles = StyleSheet.create({
 
 export default function AppbarContentAtom(props: AppbarContentAtomProps) {
   const { surface } = useColorRoles();
-  const subtitleStyle = useNuclearTextStyle({
-    mono: true,
-    fontSize: 'small',
+  const subtitleStyle = useTextRoleNucleon({
+    role: 'headerSubtitle',
     color: surface.content
   });
-  const titleStyle = useNuclearTextStyle({
-    mono: false,
-    fontSize: 'big',
+  const titleStyle = useTextRoleNucleon({
+    role: 'headerTitle',
     color: surface.content
   });
   return (

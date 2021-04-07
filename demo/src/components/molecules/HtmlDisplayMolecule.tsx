@@ -6,10 +6,10 @@ import RenderHTML, {
 } from 'react-native-render-html';
 import LegacyHTML from 'react-native-render-html-v5';
 import DisplayLoadingAtom from '../atoms/DisplayLoadingAtom';
-import TextNucleon from '../nucleons/TextNucleon';
 import useOnLinkPress from '../../hooks/useOnLinkPress';
 import { useColorRoles } from '../../theme/colorSystem';
 import { SYSTEM_FONTS } from '../../constants';
+import TextRoleNucleon from '../nucleons/TextRoleNucleon';
 
 const DEFAULT_PROPS: Pick<
   RenderHTMLProps,
@@ -46,8 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginHorizontal: 30,
     flexGrow: 1
-  },
-  legacyWarningText: { textAlign: 'center', fontSize: 20, fontStyle: 'italic' }
+  }
 });
 
 const HtmlDisplayMolecule = React.memo(
@@ -105,9 +104,9 @@ const HtmlDisplayMolecule = React.memo(
     if (!supportsLegacy && useLegacy) {
       return (
         <View style={styles.legacyWarningContainer}>
-          <TextNucleon style={styles.legacyWarningText}>
+          <TextRoleNucleon align="center" role="uiLabel">
             Legacy HTML component is not available for this snippet.
-          </TextNucleon>
+          </TextRoleNucleon>
         </View>
       );
     }

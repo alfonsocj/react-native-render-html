@@ -5,26 +5,29 @@ import RadioGroupControlMolecule from '../../molecules/RadioGroupControlMolecule
 import SourceDisplayMolecule from '../../molecules/SourceDisplayMolecule';
 import TTreeDisplayMolecule from '../../molecules/TTreeDisplayMolecule';
 import BoxNucleon from '../../nucleons/BoxNucleon';
-import TextNucleon from '../../nucleons/TextNucleon';
 import { demoStateContext } from './contexts';
 import SheetRouteContainer from './SheetRouteContainer';
 import {
   usePlaygroundSetter,
   usePlaygroundStateSlice
 } from './playgroundStore';
-import { useColorPrimitives } from '../../../theme/colorSystem';
+import { useColorPrimitives, useColorRoles } from '../../../theme/colorSystem';
 import { WithStyleProp } from '../../nucleons/types';
+import TextRoleNucleon from '../../nucleons/TextRoleNucleon';
 
 function SourceSectionTitle({
   title,
   style
 }: WithStyleProp<{ title: string }>) {
-  const { primary } = useColorPrimitives();
+  const { surface } = useColorRoles();
   return (
-    <BoxNucleon padding={1} backgroundColor={primary.color} style={style}>
-      <TextNucleon align="center" color={primary.content} bold>
+    <BoxNucleon padding={1} style={style}>
+      <TextRoleNucleon
+        role="sectionOutline"
+        align="start"
+        color={surface.secondaryContent}>
         {title}
-      </TextNucleon>
+      </TextRoleNucleon>
     </BoxNucleon>
   );
 }
@@ -69,7 +72,6 @@ function HtmlDisplayBox({ html, style }: { html: string; style?: any }) {
     <SourceBoxAtom style={style}>
       <SourceDisplayMolecule
         clipLines
-        fontSize="small"
         content={html}
         paddingVertical={2}
         language="html"

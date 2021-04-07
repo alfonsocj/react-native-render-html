@@ -1,6 +1,6 @@
 import React, { ComponentProps } from 'react';
 import { Picker } from '@react-native-picker/picker';
-import useNuclearTextStyle from '../nucleons/useNuclearTextStyle';
+import useTextRoleNucleon from '../nucleons/useTextRoleNucleon';
 import { StyleSheet, View } from 'react-native';
 import { NativeViewGestureHandler } from 'react-native-gesture-handler';
 import useSelectorItemsNucleon from '../nucleons/useSelectorPropsNucleon';
@@ -32,12 +32,13 @@ export default function PickerControlAtom<V extends string | number>({
 }: PickerControlAtomProps<V>) {
   const { pressable } = useColorRoles();
   const normalizedItems = useSelectorItemsNucleon(items);
+  const labelStyle = useTextRoleNucleon({ role: 'uiLabel' });
   return (
     <View style={[styles.fixContainer, style]}>
       <NativeViewGestureHandler disallowInterruption={true}>
         <Picker
           {...pickerProps}
-          style={[useNuclearTextStyle(), styles.fixStyles]}
+          style={[labelStyle, styles.fixStyles]}
           dropdownIconColor={pressable.tint}
           onValueChange={onSelectedValueChange as any}>
           {normalizedItems.map((item, index) => (

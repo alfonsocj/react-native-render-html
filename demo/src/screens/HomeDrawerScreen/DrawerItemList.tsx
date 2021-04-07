@@ -5,8 +5,8 @@ import TideAtom from '../../components/atoms/TideAtom';
 import { Stack } from '@mobily/stacks';
 import BoxNucleon from '../../components/nucleons/BoxNucleon';
 import { IconNucleonProps } from '../../components/nucleons/IconNucleon';
-import TextNucleon from '../../components/nucleons/TextNucleon';
 import { useColorRoles } from '../../theme/colorSystem';
+import TextRoleNucleon from '../../components/nucleons/TextRoleNucleon';
 
 function groupBy<T, K extends keyof T>(xs: Array<T>, key: K) {
   return xs.reduce(function (rv, x) {
@@ -83,12 +83,11 @@ export default function DrawerItemList({
     return (
       <BoxNucleon key={name}>
         <Stack space={1}>
-          <TextNucleon
+          <TextRoleNucleon
             color={surface.secondaryContent}
-            fontSize="small"
-            style={{ textTransform: 'uppercase' }}>
+            role="sectionOutline">
             {name}
-          </TextNucleon>
+          </TextRoleNucleon>
           {defs.map(renderItem)}
         </Stack>
       </BoxNucleon>

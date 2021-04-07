@@ -5,8 +5,8 @@ import HtmlDisplayMolecule from '../components/molecules/HtmlDisplayMolecule';
 import SourceDisplayMolecule from '../components/molecules/SourceDisplayMolecule';
 import BoxNucleon from '../components/nucleons/BoxNucleon';
 import IconNucleon from '../components/nucleons/IconNucleon';
-import TextNucleon from '../components/nucleons/TextNucleon';
 import { useColorRoles } from '../theme/colorSystem';
+import TextRoleNucleon from '../components/nucleons/TextRoleNucleon';
 
 export default function RenderHtmlCard({
   html,
@@ -34,8 +34,8 @@ export default function RenderHtmlCard({
       <Stack space={2}>
         <ScrollView indicatorStyle="white" horizontal>
           <SourceDisplayMolecule
+            paddingVertical={2}
             style={sourceDisplayStyle}
-            fontSize="normal"
             content={html}
             language="html"
             showLineNumbers={false}
@@ -55,14 +55,12 @@ export default function RenderHtmlCard({
           contentWidth={contentWidth - (hzSpace + borderWidth) * 2}
         />
         <BoxNucleon paddingX={2}>
-          <TextNucleon
-            mono
-            fontSize="small"
+          <TextRoleNucleon
+            role="caption"
             style={{ flexShrink: 1 }}
-            color={surface.secondaryContent}
-            italic>
+            color={surface.secondaryContent}>
             {caption}
-          </TextNucleon>
+          </TextRoleNucleon>
         </BoxNucleon>
       </Stack>
     </BoxNucleon>

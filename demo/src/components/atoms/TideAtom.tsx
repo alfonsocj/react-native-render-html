@@ -3,7 +3,7 @@ import { Inline, Stack, useSpacing } from '@mobily/stacks';
 import { ViewStyle, StyleProp, View, AccessibilityProps } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 import BoxNucleon from '../nucleons/BoxNucleon';
-import TextNucleon from '../nucleons/TextNucleon';
+import TextRoleNucleon from '../nucleons/TextRoleNucleon';
 import contentWidthContextNucleon from '../nucleons/contentWidthContextNucleon';
 import { useNuclearContentWidth } from '../nucleons/useContentWidthContext';
 import IconNucleon, { IconName } from '../nucleons/IconNucleon';
@@ -101,7 +101,9 @@ export default function TideAtom({
             )}
             <BoxNucleon alignY="center" grow wrap="nowrap">
               <Stack space={2}>
-                <TextNucleon color={contentColor}>{title}</TextNucleon>
+                <TextRoleNucleon role="uiLabel" color={contentColor}>
+                  {title}
+                </TextRoleNucleon>
                 {displayBottom && (
                   <View style={{ width: bottomContentWidth }}>
                     <contentWidthContextNucleon.Provider

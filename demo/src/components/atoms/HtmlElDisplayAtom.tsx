@@ -1,15 +1,17 @@
 import React from 'react';
-import TextNucleon, { TextNucleonProps } from '../nucleons/TextNucleon';
+import TextRoleNucleon, {
+  TextRoleNucleonProps
+} from '../nucleons/TextRoleNucleon';
 
 export default function HtmlElDisplayAtom({
   name,
   ...props
-}: Omit<TextNucleonProps, 'mono' | 'children'> & {
+}: Omit<TextRoleNucleonProps, 'role' | 'children'> & {
   name: string;
 }) {
   return (
-    <TextNucleon {...props} mono>
+    <TextRoleNucleon role="hyperlink" {...props}>
       &lt;{name}&gt;
-    </TextNucleon>
+    </TextRoleNucleon>
   );
 }

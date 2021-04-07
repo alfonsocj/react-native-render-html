@@ -1,18 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import { TextStyle, View } from 'react-native';
+import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 // @ts-ignore
 import version from '../../../version';
-import TextNucleon from '../../components/nucleons/TextNucleon';
-
-const monoStyle: TextStyle = {
-  fontSize: 10,
-  textAlign: 'left'
-};
+import TextRoleNucleon from '../../components/nucleons/TextRoleNucleon';
+import { useColorRoles } from '../../theme/colorSystem';
 
 export default function VersionDisplay() {
   const { bottom, left, right } = useSafeAreaInsets();
+  const { surface } = useColorRoles();
   return (
     <View
       style={{
@@ -22,11 +19,11 @@ export default function VersionDisplay() {
         marginRight: right,
         padding: 10
       }}>
-      <TextNucleon mono fontSize="small" style={monoStyle}>
+      <TextRoleNucleon role="footer" color={surface.secondaryContent}>
         Foundry Playground {version.demo}
         {'\n'}
         react-native-render-html {version.lib}
-      </TextNucleon>
+      </TextRoleNucleon>
     </View>
   );
 }

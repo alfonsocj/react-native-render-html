@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
 import TideAtom, { TideAtomProps } from '../atoms/TideAtom';
-import TextNucleon from '../nucleons/TextNucleon';
-import useNuclearTextColor from '../nucleons/useNuclearTextColor';
-import Color from 'color';
+import TextRoleNucleon from '../nucleons/TextRoleNucleon';
 import { useNavigation } from '@react-navigation/core';
+import { useColorRoles } from '../../theme/colorSystem';
 
 export default function NavTideMolecule<R extends string>({
   leftIconName,
@@ -17,14 +16,12 @@ export default function NavTideMolecule<R extends string>({
   label: string;
 }) {
   const navigation = useNavigation();
-  const descriptionColor = Color(useNuclearTextColor() as string)
-    .alpha(0.5)
-    .string();
+  const { surface } = useColorRoles();
   const bottom = description
     ? () => (
-        <TextNucleon fontSize="small" color={descriptionColor}>
+        <TextRoleNucleon role="uiDescription" color={surface.secondaryContent}>
           {description}
-        </TextNucleon>
+        </TextRoleNucleon>
       )
     : null;
   return (

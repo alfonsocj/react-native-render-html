@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { TNode, tnodeToString } from 'react-native-render-html';
-import TextNucleon from '../nucleons/TextNucleon';
+import TextRoleNucleon from '../nucleons/TextRoleNucleon';
 
 export default function TTreeDisplayMolecule({
   ttree,
@@ -14,9 +14,9 @@ export default function TTreeDisplayMolecule({
   return (
     <View style={style}>
       {lines.map((t, i) => (
-        <TextNucleon mono fontSize="small" key={i} numberOfLines={1}>
+        <TextRoleNucleon role="source" key={i} numberOfLines={1}>
           {t}
-        </TextNucleon>
+        </TextRoleNucleon>
       ))}
     </View>
   );

@@ -1,4 +1,3 @@
-import { Platform } from 'react-native';
 import useNuclearTextColor from './useNuclearTextColor';
 
 export interface NuclearTextStyle {

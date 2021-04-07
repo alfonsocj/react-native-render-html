@@ -9,15 +9,14 @@ import { Linking, View } from 'react-native';
 import { RenderHTMLProps } from 'react-native-render-html';
 import onLinkPressContext from '../../state/onLinkPressContext';
 import SnackbarAtom, { SnackbarAtomProps } from '../atoms/SnackbarAtom';
-import { NuclearTextStyle } from '../nucleons/useNuclearTextStyle';
+import { TextRoleNucleonProps } from '../nucleons/useTextRoleNucleon';
 
 const styles = StyleSheet.create({
   container: { position: 'relative', flexGrow: 1 }
 });
 
-const textStyle: NuclearTextStyle = {
-  mono: true,
-  fontSize: 'small'
+const textProps: TextRoleNucleonProps = {
+  role: 'hyperlink'
 };
 
 export default function LinkPressDisplayMolecule({
@@ -45,7 +44,7 @@ export default function LinkPressDisplayMolecule({
       <SnackbarAtom
         visible={url !== null}
         action={action}
-        textStyle={textStyle}
+        textProps={textProps}
         onDismiss={() => setUrl(null)}>
         {url}
       </SnackbarAtom>

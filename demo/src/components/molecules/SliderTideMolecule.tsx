@@ -4,7 +4,7 @@ import TideAtom, { TideAtomProps } from '../atoms/TideAtom';
 import SliderControlAtom, {
   SliderControlAtomProps
 } from '../atoms/SliderControlAtom';
-import TextNucleon from '../nucleons/TextNucleon';
+import TextRoleNucleon from '../nucleons/TextRoleNucleon';
 
 export type SliderTideMolecule = Omit<
   SliderControlAtomProps,
@@ -22,9 +22,9 @@ export default function SliderTideMolecule({
   ...sliderProps
 }: SliderTideMolecule) {
   const right = () => (
-    <TextNucleon mono fontSize="normal" bold align="end">
+    <TextRoleNucleon role="uiMono" align="end">
       {sliderProps.value?.toFixed(1)}
-    </TextNucleon>
+    </TextRoleNucleon>
   );
   const bottom = () => <SliderControlAtom {...sliderProps} />;
   return (

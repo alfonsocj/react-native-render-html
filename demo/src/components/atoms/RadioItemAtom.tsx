@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { RadioButton, TouchableRipple } from 'react-native-paper';
 import GestureHandlerAdapterNucleon from '../nucleons/GestureHandlerAdapterNucleon';
-import TextNucleon from '../nucleons/TextNucleon';
+import TextRoleNucleon from '../nucleons/TextRoleNucleon';
 import selectedRadioItemContextAtom from './selectedRadioItemContextAtom';
 import { useColorRoles } from '../../theme/colorSystem';
 
@@ -50,7 +50,9 @@ const RadioItemAtom = memo(function RadioItem<V extends string>({
         style={[styles.item, style]}
         onPress={onPress}>
         <View style={styles.row}>
-          <TextNucleon style={(styles.label, labelStyle)}>{label}</TextNucleon>
+          <TextRoleNucleon role="uiLabel" style={(styles.label, labelStyle)}>
+            {label}
+          </TextRoleNucleon>
           <RadioButton
             status={selected ? 'checked' : 'unchecked'}
             value={value}
