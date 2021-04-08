@@ -11,6 +11,7 @@ import UIHtmlDisplayMolecule from '../../UIHtmlDisplayMolecule';
 import BoxNucleon from '../../nucleons/BoxNucleon';
 import { SheetProps } from './Sheet';
 import sheetSnapPoints from './sheetSnapPoints';
+import { useColorRoles } from '../../../theme/colorSystem';
 
 export interface PlaygroundTemplateProps<Sk extends string>
   extends PlaygroundInitParams<Sk> {
@@ -40,10 +41,11 @@ export default function PlaygroundDisplay({
     ulListType,
     color
   } = usePlaygroundState();
+  const fallbackColor = useColorRoles().surface.content;
   const renderHtmlProps: RenderHTMLProps = useMemo(
     () => ({
       baseStyle: {
-        color,
+        color: color ?? fallbackColor,
         fontSize,
         lineHeight: lineHeight * fontSize,
         fontFamily,
@@ -64,6 +66,7 @@ export default function PlaygroundDisplay({
     }),
     [
       color,
+      fallbackColor,
       fontSize,
       lineHeight,
       fontFamily,

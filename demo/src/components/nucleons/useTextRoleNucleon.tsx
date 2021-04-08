@@ -1,4 +1,5 @@
 import { TextStyle } from 'react-native';
+import { useColorRoles } from '../../theme/colorSystem';
 
 export type TextRole =
   // UI roles
@@ -70,9 +71,10 @@ export default function useTextRoleNucleon({
   align = 'start',
   color
 }: TextRoleNucleonProps) {
+  const defaultColor = useColorRoles().surface.content;
   const roleStyle = roleDefs[role];
   return {
-    color,
+    color: color ?? defaultColor,
     textAlign:
       align === 'end' ? 'right' : align === 'start' ? 'left' : 'center',
     ...roleStyle
