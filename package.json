@@ -13,6 +13,7 @@
     "render-html": "yarn workspace react-native-render-html",
     "demo": "yarn workspace demo",
     "website": "yarn workspace website",
+    "doc-pages": "yarn workspace doc-pages",
     "start": "yarn workspace demo start"
   },
   "devDependencies": {
