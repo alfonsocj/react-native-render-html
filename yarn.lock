@@ -2239,6 +2239,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@docusaurus/module-type-aliases@npm:^2.0.0-alpha.73":
+  version: 2.0.0-alpha.ffe8b6106
+  resolution: "@docusaurus/module-type-aliases@npm:2.0.0-alpha.ffe8b6106"
+  checksum: e1cb71f0f8833b4bc28a974af56dfab1e39c7a23a6a9a38ccf7294caad83549bcf31c62183b10bd042984ab82591b286b0024222ccad9455daedb53b89eae217
+  languageName: node
+  linkType: hard
+
 "@docusaurus/plugin-content-blog@npm:2.0.0-alpha.73":
   version: 2.0.0-alpha.73
   resolution: "@docusaurus/plugin-content-blog@npm:2.0.0-alpha.73"
@@ -4726,6 +4733,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tsconfig/docusaurus@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@tsconfig/docusaurus@npm:1.0.2"
+  checksum: 94edb244f8c1b4a1ce99f7092749c15dd96473d326b5638d54316f39b98bdb6862b8ff64df45e966229d00c1b2ccbef662ac0d1702d2147b6925385b0ffab493
+  languageName: node
+  linkType: hard
+
 "@tsconfig/react-native@npm:^1.0.2, @tsconfig/react-native@npm:^1.0.3":
   version: 1.0.3
   resolution: "@tsconfig/react-native@npm:1.0.3"
@@ -4871,6 +4885,13 @@ __metadata:
   dependencies:
     "@types/unist": "*"
   checksum: 8aff367be477854d6cd3e5cf03d7154cd163a67bc3266777c2f4b1c32d07a335420ba58a8a799965dbc3190f1ed9989880008afb1392043290acc384a155a7a3
+  languageName: node
+  linkType: hard
+
+"@types/history@npm:*":
+  version: 4.7.8
+  resolution: "@types/history@npm:4.7.8"
+  checksum: 54020371a412e949d0a329cc325253f16daf5b33e2e485135d39d3b30d3f9a8e323b00ce1162da82387c8ecf0397a8da49ad36ab309f06284326c064092879c7
   languageName: node
   linkType: hard
 
@@ -5070,12 +5091,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-helmet@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "@types/react-helmet@npm:6.1.1"
+  dependencies:
+    "@types/react": "*"
+  checksum: da14d9b180a3a9c046f49873786bb59887d3b9de8b250b8978cf18df0e41469e3914d02c2e77946ac909ce090c5909b3ff84d00076e47366d07e650b9e0be795
+  languageName: node
+  linkType: hard
+
 "@types/react-native@npm:^0.63.49, @types/react-native@npm:^0.63.8, @types/react-native@npm:~0.63.2":
   version: 0.63.52
   resolution: "@types/react-native@npm:0.63.52"
   dependencies:
     "@types/react": "*"
   checksum: 94d580d57753486f4507d073b682e07dbb4141272a5f316eb06c654979883e505d5c9d50a75f8b8da1594726ec26932323d1677ea6d565d1dff225c66a56ca17
+  languageName: node
+  linkType: hard
+
+"@types/react-router-dom@npm:^5.1.7":
+  version: 5.1.7
+  resolution: "@types/react-router-dom@npm:5.1.7"
+  dependencies:
+    "@types/history": "*"
+    "@types/react": "*"
+    "@types/react-router": "*"
+  checksum: c5afe043f99cbe8e05e85db5b95b5fd724e7b00e0314b8bbc081e36c113e22fd102cd0c7a957c7ad55a55d2def91c17b07ffba45c2ac4a00cc56c5c927c93d4c
+  languageName: node
+  linkType: hard
+
+"@types/react-router@npm:*":
+  version: 5.1.13
+  resolution: "@types/react-router@npm:5.1.13"
+  dependencies:
+    "@types/history": "*"
+    "@types/react": "*"
+  checksum: e5e2fe474b2d14030d93dadcd00eaf223c150f64ca00a6b32537d560442e7557444a967002416e1470cea07d1ada689459df62e27c8009263050126e4d435e5f
   languageName: node
   linkType: hard
 
@@ -23418,6 +23469,26 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
+"typescript@^4.2.4, typescript@~4.2.4":
+  version: 4.2.4
+  resolution: "typescript@npm:4.2.4"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: edaede2fa77f56b7fba80ee624a2368ab1216e75b0434d968ccb47ab0a5e2f6d94f848b3b111c1237dd71e988cd376af26370dcdad3b94355c76e759f0dd0a1e
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.2.4#builtin<compat/typescript>, typescript@patch:typescript@~4.2.4#builtin<compat/typescript>":
+  version: 4.2.4
+  resolution: "typescript@patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 3be44317593182e8ce494c114e7ad9b0bb2553a22f3085cc6da4f0a36912c20850daa9be4c898af2ab6fc8b12f430c1c9e46ac715721867cd38643f2350d3ef9
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@~4.0.0#builtin<compat/typescript>":
   version: 4.0.7
   resolution: "typescript@patch:typescript@npm%3A4.0.7#builtin<compat/typescript>::version=4.0.7&hash=a45b0e"
@@ -23438,16 +23509,6 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@~4.2.4#builtin<compat/typescript>":
-  version: 4.2.4
-  resolution: "typescript@patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 3be44317593182e8ce494c114e7ad9b0bb2553a22f3085cc6da4f0a36912c20850daa9be4c898af2ab6fc8b12f430c1c9e46ac715721867cd38643f2350d3ef9
-  languageName: node
-  linkType: hard
-
 typescript@~4.0.0:
   version: 4.0.7
   resolution: "typescript@npm:4.0.7"
@@ -23465,16 +23526,6 @@ typescript@~4.1.3:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 29157c84426ac94ce97aac836264f303a26bd9fb30865650229e3406a36ca2e89735ef4b8878075ba1b95fa4d3ff9810057b64888700c28e20b4034a6db4da83
-  languageName: node
-  linkType: hard
-
-typescript@~4.2.4:
-  version: 4.2.4
-  resolution: "typescript@npm:4.2.4"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: edaede2fa77f56b7fba80ee624a2368ab1216e75b0434d968ccb47ab0a5e2f6d94f848b3b111c1237dd71e988cd376af26370dcdad3b94355c76e759f0dd0a1e
   languageName: node
   linkType: hard
 
@@ -24507,11 +24558,18 @@ typescript@~4.2.4:
   resolution: "website@workspace:apps/website"
   dependencies:
     "@docusaurus/core": 2.0.0-alpha.73
+    "@docusaurus/module-type-aliases": ^2.0.0-alpha.73
     "@docusaurus/preset-classic": 2.0.0-alpha.73
     "@mdx-js/react": ^1.6.21
+    "@tsconfig/docusaurus": ^1.0.2
+    "@types/react": ^17.0.3
+    "@types/react-helmet": ^6.1.1
+    "@types/react-router-dom": ^5.1.7
     clsx: ^1.1.1
+    doc-pages: "workspace:*"
     react: ^17.0.1
     react-dom: ^17.0.1
+    typescript: ^4.2.4
   languageName: unknown
   linkType: soft
 
