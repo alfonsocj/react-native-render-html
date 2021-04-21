@@ -1,0 +1,15 @@
+{
+  "name": "react-mdx",
+  "private": true,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@types/fbjs": "^3.0.0",
+    "@types/react-reconciler": "^0.26.1",
+    "fbjs": "^3.0.0",
+    "react-reconciler": "^0.26.2"
+  }
+}

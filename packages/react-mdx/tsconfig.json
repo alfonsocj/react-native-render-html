@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig-base.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "noEmit": false,
+    "noImplicitAny": false
+  },
+  "exclude": ["node_modules", "**/__tests__", "lib", "types"]
+}

@@ -1,11 +1,33 @@
-# Hello
+ <div > <p >This article is an introduction to the
+ 
+ <a href="https://github.com/meliorence/react-native-render-html#readme">react-native-render-html</a> 
+ 
+architecture.</p> </div> 
+ <section >
 
-Hell owrld!
+## Synopsis
 
-## One
 
-This is one
+ <div > <p >Consumers of this library need to understand the basic data flow model of this library to leverage its capabilities. Features such as props will touch on different areas of the data flow. Let's start with a simple example:</p> 
+ <p >The minimal code to produce such output would look like this:</p> 
+ <p >This looks pretty simple. But what exactly is happening under the hood?</p> </div> </section> 
+ <section >
 
-## Two
+## Data Flow
 
-This is Two
+
+ <div > <p >We can roughly split the transformations from an HTML string to a React tree in 3 steps:</p> 
+ <ol style={{"listStyleType":"upper-alpha"}}> <li >HTML parsing. In this step, the HTML code is parsed to form a DOM tree. This step is performed by the
+ 
+ <a href="https://github.com/fb55/htmlparser2#readme">htmlparser2</a> 
+ 
+library.</li> 
+ <li >Transient Render Tree (TRT) Construction. In this step, the DOM tree is transformed in a TRT. Each node of this tree is referred to as a Transient Node (TNode) which has React-Native compatible styles. This step is performed by
+ 
+ <a href="https://github.com/native-html/core/tree/master/packages/transient-render-engine#readme">@native-html/transient-render-engine</a> 
+ 
+module.</li> 
+ <li >Transient Render Tree Rendering. In this step, the TRT is transformed in a React render tree (VDOM). TNodes are passed to internal and custom renderers.</li> </ol> 
+ <p >One might wonder why the need for a step B: why not just render a DOM tree? There are a few answers:</p> 
+ <ol style={{"listStyleType":"decimal"}}> <li >To mitigate the discrepancies between Web standards and React Native layout engine. The DOM and Transient Render trees will not have the exact same structure to account for React Native limitations.</li> 
+ <li >For the sake of separation of concerns. By decoupling the rendering and parsing logics, we end up with a more robust product where areas of the code with distinct reponsibilities can be tested in isolation.</li> </ol> </div> </section> 
