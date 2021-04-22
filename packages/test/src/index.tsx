@@ -8,5 +8,5 @@ renderMdx(
   <MdxToolkitProvider>
     <PageConceptArchitecture />
   </MdxToolkitProvider>,
-  '/tmp/render-mdx.mdx'
+  '/home/jsamr/Programmation/react-native-render-html/apps/website/docs/concepts/testy.mdx'
 );

@@ -2,6 +2,9 @@ import Reconciler from 'react-reconciler';
 import emptyObject from 'fbjs/lib/emptyObject';
 import { createElement } from './createElement';
 
+// Get inspiration from this well-implemented example
+// https://github.com/RaynalHugo/react-cesium-fiber/blob/master/src/reconciler/index.ts
+
 const MDXRenderer = Reconciler<
   any,
   any,
