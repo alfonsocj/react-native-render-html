@@ -1,4 +1,3 @@
-import AElement from './components/AElement';
 import H2Element from './components/H2Element';
 import HTMLElement from './components/HTMLElement';
 import MDXDocument from './components/MDXDocument';
@@ -17,8 +16,6 @@ function createElement(type: NodeType, props?: any) {
       return new MDXDocument();
     case 'h2':
       return new H2Element();
-    case 'a':
-      return new AElement(props);
     default:
       return new HTMLElement(type, props);
   }

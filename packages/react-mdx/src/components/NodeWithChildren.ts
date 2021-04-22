@@ -11,7 +11,7 @@ abstract class NodeWithChildren {
   childrenToMdx() {
     return this.children
       .map((c) => (typeof c === 'string' ? c : c.toMdx()))
-      .join('\n');
+      .join('');
   }
 
   abstract toMdx(): string;

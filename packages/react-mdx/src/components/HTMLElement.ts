@@ -26,9 +26,9 @@ class HTMLElement extends NodeWithChildren {
   }
 
   toMdx(): string {
-    return ` <${
+    return `<${
       this.tagName
-    } ${this.renderInlineProps()}>${this.childrenToMdx()}</${this.tagName}> `;
+    }${this.renderInlineProps()}>${this.childrenToMdx()}</${this.tagName}>`;
   }
 }
 
