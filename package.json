@@ -34,6 +34,7 @@
   "resolutions": {
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "@mdx-js/react": "2.0.0-next.9",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
     "react-native-webview": "11.2.3"
   },

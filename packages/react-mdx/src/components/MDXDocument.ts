@@ -1,21 +1,16 @@
-import type fs from 'fs';
 import NodeWithChildren from './NodeWithChildren';
 
 export default class MDXDocument extends NodeWithChildren {
-  constructor() {
-    super();
-  }
+  expoImport = false;
 
-  generate(
-    stream: fs.WriteStream,
-    events: { error: () => void; finalize: () => void }
-  ) {
-    stream.on('error', events.error);
-    stream.on('close', events.finalize);
-    stream.write(this.toMdx());
+  signalExpoImport() {
+    this.expoImport = true;
   }
 
   toMdx(): string {
-    return this.childrenToMdx();
+    const importDirective = this.expoImport
+      ? 'import ExpoSnippet from "@site/src/components/ExpoSnippet";\n\n'
+      : '';
+    return importDirective + this.childrenToMdx();
   }
 }

@@ -1,8 +1,39 @@
----
-sidebar_label: Images
-title: Images
----
+import ExpoSnippet from "@site/src/components/ExpoSnippet";
 
-import { PageContentImages } from 'doc-pages';
+<p>This article covers the <a href="https://mdn.io/img">&lt;img&gt;</a> element renderer. <a href="https://mdn.io/picture">&lt;picture&gt;</a> is not yet supported.</p>
 
-<PageContentImages />
+## Sizing
+
+<p>To determine the display size of an image, the renderer will go through the following steps:
+1. 2. 3.</p>
+
+## Scaling
+
+<p>The renderer will automatically scale images down to the available width, even when the provided inline style width is greater than the container width.</p>
+
+:::tip Tip
+
+You are strongly advised to provide a <a href="https://google.com?q=react-native-render-html%20contentWidth">contentWidth</a> property from <a href="https://reactnative.dev/docs/useWindowDimensions">useWindowDimensions</a> official hook to help this component handle the scaling.
+    
+:::
+
+<ExpoSnippet html="&lt;img
+  width=&quot;1200&quot; height=&quot;800&quot;
+  style=&quot;width: 50%; height: 100px; align-self: center&quot;
+  src=&quot;https://i.imgur.com/gSmWCJF.jpg&quot;
+/&gt;" caption="This image dimensions are set with inline styles. Note that both the width/height couple and the style attributes are evaluated, but the style attribute takes precedence. The relative width (50%) is computed against contentWidth." /><p>The next image will be sized automatically thanks to the <a href="https://google.com?q=react-native-render-html%20contentWidth">contentWidth</a> and <a href="https://google.com?q=react-native-render-html%20computeEmbeddedMaxWidth">computeEmbeddedMaxWidth</a> props. The latter allows you to set the maximum width from <a href="https://google.com?q=react-native-render-html%20contentWidth">contentWidth</a>, or disabling scaling by returning <a href="https://mdn.io/Infinity">Infinity</a>.</p><ExpoSnippet html="&lt;img
+  width=&quot;1200&quot; height=&quot;800&quot;
+  src=&quot;https://i.imgur.com/XP2BE7q.jpg&quot;
+/&gt;" caption="This image has no inline style. Its width and height are determined by the width and height attributes, scaled down to fit the result of computeEmbeddedMaxWidth(&apos;img&apos;)." />
+
+## Preloading
+
+<p>Similarly to browsers, this library will place a print box before fetching image dimensions when both <a href="https://mdn.io/attribute/width">width</a> and <a href="https://mdn.io/attribute/height">height</a> attributes are provided, or the two dimensions are set in the <a href="https://mdn.io/attribute/style">style</a> attribute. This is great to avoid images &quot;jumping&quot; from zero height to their computed height, and is a hint to good web design.</p>
+
+## Error Handling
+
+<ExpoSnippet html="&lt;img
+  width=&quot;200&quot; height=&quot;100&quot;
+  alt=&quot;The Void&quot;
+  src=&quot;http://example.tld/image.jpg&quot;
+/&gt;" caption="When an image is unreachable, the image renderer will print a box while preserving its requested dimensions. It will also display at the center of the box the content of alt attribute." />

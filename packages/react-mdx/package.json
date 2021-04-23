@@ -10,6 +10,7 @@
     "@types/fbjs": "^3.0.0",
     "@types/react-reconciler": "^0.26.1",
     "fbjs": "^3.0.0",
+    "html-entities": "^2.3.2",
     "react-reconciler": "^0.26.2"
   }
 }

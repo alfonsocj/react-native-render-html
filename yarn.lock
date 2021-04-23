@@ -3842,12 +3842,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^1.6.21":
-  version: 1.6.22
-  resolution: "@mdx-js/react@npm:1.6.22"
+"@mdx-js/react@npm:2.0.0-next.9":
+  version: 2.0.0-next.9
+  resolution: "@mdx-js/react@npm:2.0.0-next.9"
   peerDependencies:
-    react: ^16.13.1 || ^17.0.0
-  checksum: 3a0a189aa04a3b73e4846f8311573d45404c4ec74a1a4b196e7829492fedabe38b869016125620403bcf5f999f58ab75c9f54279f7557e361c239b57e5ed2267
+    react: ">=16"
+  checksum: 54601adefa741cec122db89124470525ffeba9a2d5cdc2f4b2a61687c0d185eb4b41d50f64fedc482b72a2407840ceeb7812e34f01f9c94c61dcd1106e03b6be
   languageName: node
   linkType: hard
 
@@ -12679,6 +12679,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"html-entities@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "html-entities@npm:2.3.2"
+  checksum: a0bcdfdb2326d8943d43d4f5f794769f666d335f7795e82ac5140154970d82a8a1be082725bd53e18c8727821713e7d124982ed9a3463db9b0159b58bc6eff42
+  languageName: node
+  linkType: hard
+
 "html-escaper@npm:^2.0.0":
   version: 2.0.2
   resolution: "html-escaper@npm:2.0.2"
@@ -20016,6 +20023,7 @@ fsevents@^1.2.7:
     "@types/fbjs": ^3.0.0
     "@types/react-reconciler": ^0.26.1
     fbjs: ^3.0.0
+    html-entities: ^2.3.2
     react-reconciler: ^0.26.2
   languageName: unknown
   linkType: soft

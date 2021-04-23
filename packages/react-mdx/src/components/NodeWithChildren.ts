@@ -1,3 +1,6 @@
+import { encode } from 'html-entities';
+import encodeAttributeVal from '../encodeAttributeVal';
+
 abstract class NodeWithChildren {
   children: Array<NodeWithChildren | string>;
   constructor() {
@@ -10,8 +13,24 @@ abstract class NodeWithChildren {
 
   childrenToMdx() {
     return this.children
-      .map((c) => (typeof c === 'string' ? c : c.toMdx()))
+      .map((c) =>
+        typeof c === 'string' ? encode(c, { level: 'all' }) : c.toMdx()
+      )
       .join('');
+  }
+
+  renderPropVal(val: unknown) {
+    if (typeof val === 'string') {
+      return `"${encodeAttributeVal(val)}"`;
+    } else {
+      return `{${JSON.stringify(val)}}`;
+    }
+  }
+
+  getInlineProps(props: any) {
+    return Object.entries(props)
+      .filter(([name]) => name !== 'children')
+      .map(([name, value]) => `${name}=${this.renderPropVal(value)}`);
   }
 
   abstract toMdx(): string;

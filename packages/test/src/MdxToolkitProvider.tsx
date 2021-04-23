@@ -20,9 +20,13 @@ const config: UIToolkitConfig = {
   ),
   ListItem: ({ children }) => <li>{children}</li>,
   Paragraph: ({ children }) => <p>{children}</p>,
-  RenderHtmlCard: ({}) => null,
-  SourceDisplay: ({}) => null,
-  TipBox: ({ children }) => null,
+  RenderHtmlCard: ({ caption, html }) => (
+    <exposnippet html={html} caption={caption} />
+  ),
+  SourceDisplay: ({ content, lang, title }) => (
+    <codeblockds lang={lang} title={title} content={content} />
+  ),
+  TipBox: ({ children }) => <admonition type="tip">{children}</admonition>,
   RefBuilder: ({ name, url }) => <a href={url}>{name}</a>
 };
 
